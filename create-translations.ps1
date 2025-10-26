@@ -1,0 +1,60 @@
+$enContent = @'
+{
+  "nav": {"home": "Home", "services": "Services", "about": "About", "contact": "Contact", "language": "Language"},
+  "hero": {"title": "Transform Your Digital Vision", "subtitle": "Devura delivers premium web and software development solutions that drive business growth", "cta1": "Let's Collaborate", "cta2": "Contact Us Now"},
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive solutions tailored to your business needs",
+    "webDev": {"title": "Web Development", "description": "Custom websites and web applications built with cutting-edge technology for maximum performance and user engagement"},
+    "maintenance": {"title": "Web Maintenance", "description": "Keep your website running smoothly with our comprehensive maintenance and support services"},
+    "uiux": {"title": "UI/UX Design", "description": "Beautiful, intuitive interfaces that provide exceptional user experiences and drive conversions"},
+    "customSystems": {"title": "Custom Systems Development", "description": "Tailored software solutions designed to streamline your business operations and boost efficiency"},
+    "hosting": {"title": "Domain & Hosting Solutions", "description": "Secure, reliable hosting with SSL certificates and premium domain registration services"},
+    "web-development": {"title": "Web Development", "description": "Custom websites built with cutting-edge technology", "whatIs": {"title": "What is Web Development?"}, "whyNeed": {"title": "Why Your Business Needs It"}, "howWeDo": {"title": "How We Execute"}, "faq": {"title": "Frequently Asked Questions"}, "cta": {"title": "Ready to Start Your Web Project?", "description": "Let's build something amazing together", "primary": "Start Your Project", "secondary": "Chat on WhatsApp"}},
+    "web-maintenance": {"title": "Web Maintenance", "description": "Keep your website running smoothly", "whatIs": {"title": "What is Web Maintenance?"}, "whyNeed": {"title": "Why Your Business Needs It"}, "howWeDo": {"title": "How We Execute"}, "faq": {"title": "Frequently Asked Questions"}, "cta": {"title": "Keep Your Website Running Smoothly", "description": "Get reliable maintenance and support", "primary": "Start Maintenance Plan", "secondary": "Chat on WhatsApp"}},
+    "ui-ux-design": {"title": "UI/UX Design", "description": "Beautiful interfaces that users love", "whatIs": {"title": "What is UI/UX Design?"}, "whyNeed": {"title": "Why Your Business Needs It"}, "howWeDo": {"title": "How We Execute"}, "faq": {"title": "Frequently Asked Questions"}, "cta": {"title": "Transform Your User Experience", "description": "Let's create an interface users will love", "primary": "Start Design Project", "secondary": "Chat on WhatsApp"}},
+    "custom-systems": {"title": "Custom Systems Development", "description": "Tailored solutions for your unique business needs", "whatIs": {"title": "What is Custom Systems Development?"}, "whyNeed": {"title": "Why Your Business Needs It"}, "howWeDo": {"title": "How We Execute"}, "faq": {"title": "Frequently Asked Questions"}, "cta": {"title": "Build Your Custom Solution", "description": "Let's develop a system perfectly tailored to your needs", "primary": "Start Custom Project", "secondary": "Chat on WhatsApp"}},
+    "hosting-solutions": {"title": "Domain & Hosting Solutions", "description": "Secure, fast, and reliable hosting services", "whatIs": {"title": "What are Hosting Solutions?"}, "whyNeed": {"title": "Why Your Business Needs It"}, "howWeDo": {"title": "How We Execute"}, "faq": {"title": "Frequently Asked Questions"}, "cta": {"title": "Get Premium Hosting Today", "description": "Secure, fast, and reliable hosting for your website", "primary": "Get Started", "secondary": "Chat on WhatsApp"}}
+  },
+  "contact": {"title": "Let's Build Something Amazing", "subtitle": "Ready to transform your digital presence? Get in touch with us today", "email": "Email Us", "whatsapp": "WhatsApp", "instagram": "Instagram", "form": {"title": "Send Us a Message", "name": "Name", "email": "Email", "phone": "Phone Number", "message": "Message", "service": "Service Interested In", "submit": "Send Message", "success": "Thank you! We'll get back to you soon", "error": "Something went wrong"}},
+  "footer": {"about": "About Devura", "description": "We are a leading web and software development agency", "quickLinks": "Quick Links", "services": "Services", "contactInfo": "Contact Info", "rights": "All rights reserved"},
+  "serviceDetail": {"whatIs": "What is {service}?", "whyNeed": "Why Your Business Needs It", "howWeDo": "How We Execute", "faq": "Frequently Asked Questions", "cta": "Start Your Project", "ctaSection": {"title": "Ready to Transform Your Business?", "description": "Let's discuss your project and bring your vision to life"}},
+  "about": {"title": "About Devura", "subtitle": "We are a team of passionate developers and designers", "mission": {"title": "Our Mission", "description": "To empower businesses with cutting-edge technology solutions"}, "vision": {"title": "Our Vision", "description": "To be the leading digital agency known for innovation and excellence"}, "values": {"title": "Our Values", "quality": {"title": "Quality Code", "description": "We write clean maintainable code"}, "clientFocused": {"title": "Client-Focused", "description": "Your success is our success"}, "excellence": {"title": "Excellence", "description": "We strive for excellence"}, "results": {"title": "Results-Driven", "description": "We focus on delivering measurable results"}}, "stats": {"efficiency": "Efficiency", "fastDelivery": "Fast Delivery", "quality": "Quality", "security": "Security"}, "team": {"title": "Meet Our Team", "subtitle": "Talented professionals dedicated to your success"}, "cta": {"title": "Ready to Work Together?", "description": "Let's create something amazing together", "button": "Contact Us Now"}},
+  "contactPage": {"title": "Get in Touch", "subtitle": "Ready to start your next project?", "info": {"title": "Contact Information", "description": "Reach out to us through any of these channels"}, "availability": {"title": "Availability", "description": "Monday - Friday: 9:00 AM - 6:00 PM", "weekend": "Weekend: Available for urgent inquiries"}},
+  "servicesPage": {"title": "Our Services", "subtitle": "Comprehensive digital solutions designed to transform your business", "cta": {"title": "Need a Custom Solution?", "description": "Every business is unique", "button": "Schedule a Consultation"}}
+}
+'@
+
+$arContent = @'
+{
+  "nav": {"home": "الرئيسية", "services": "الخدمات", "about": "من نحن", "contact": "اتصل بنا", "language": "اللغة"},
+  "hero": {"title": "حوّل رؤيتك الرقمية إلى واقع", "subtitle": "ديفورا تقدم حلول تطوير ويب وبرمجيات متميزة تدفع نمو الأعمال", "cta1": "لنتعاون", "cta2": "تواصل معنا الآن"},
+  "services": {
+    "title": "خدماتنا",
+    "subtitle": "حلول شاملة مصممة خصيصاً لاحتياجات عملك",
+    "webDev": {"title": "تطوير المواقع", "description": "مواقع وتطبيقات ويب مخصصة مبنية بأحدث التقنيات"},
+    "maintenance": {"title": "صيانة المواقع", "description": "حافظ على موقعك يعمل بسلاسة"},
+    "uiux": {"title": "تصميم واجهات المستخدم", "description": "واجهات جميلة وبديهية"},
+    "customSystems": {"title": "تطوير أنظمة مخصصة", "description": "حلول برمجية مصممة خصيصاً"},
+    "hosting": {"title": "حلول الاستضافة والنطاقات", "description": "استضافة آمنة وموثوقة"},
+    "web-development": {"title": "تطوير المواقع", "description": "مواقع وتطبيقات ويب مخصصة", "whatIs": {"title": "ما هو تطوير المواقع؟"}, "whyNeed": {"title": "لماذا يحتاج عملك إليه"}, "howWeDo": {"title": "كيف ننفذه"}, "faq": {"title": "الأسئلة الشائعة"}, "cta": {"title": "مستعد لبدء مشروع موقعك؟", "description": "لنبني شيئاً مذهلاً معاً", "primary": "ابدأ مشروعك", "secondary": "تحدث على واتساب"}},
+    "web-maintenance": {"title": "صيانة المواقع", "description": "حافظ على موقعك يعمل بسلاسة", "whatIs": {"title": "ما هي صيانة المواقع؟"}, "whyNeed": {"title": "لماذا يحتاج عملك إليها"}, "howWeDo": {"title": "كيف ننفذها"}, "faq": {"title": "الأسئلة الشائعة"}, "cta": {"title": "حافظ على موقعك يعمل بسلاسة", "description": "احصل على صيانة ودعم موثوق", "primary": "ابدأ خطة الصيانة", "secondary": "تحدث على واتساب"}},
+    "ui-ux-design": {"title": "تصميم واجهات المستخدم", "description": "واجهات جميلة يحبها المستخدمون", "whatIs": {"title": "ما هو تصميم واجهات المستخدم؟"}, "whyNeed": {"title": "لماذا يحتاج عملك إليه"}, "howWeDo": {"title": "كيف ننفذه"}, "faq": {"title": "الأسئلة الشائعة"}, "cta": {"title": "حوّل تجربة المستخدم", "description": "لنصمم واجهة سيحبها المستخدمون", "primary": "ابدأ مشروع التصميم", "secondary": "تحدث على واتساب"}},
+    "custom-systems": {"title": "تطوير أنظمة مخصصة", "description": "حلول مخصصة لاحتياجات عملك", "whatIs": {"title": "ما هو تطوير الأنظمة المخصصة؟"}, "whyNeed": {"title": "لماذا يحتاج عملك إليه"}, "howWeDo": {"title": "كيف ننفذه"}, "faq": {"title": "الأسئلة الشائعة"}, "cta": {"title": "ابنِ حلك المخصص", "description": "لنطور نظاماً مصمماً بشكل مثالي لاحتياجاتك", "primary": "ابدأ المشروع المخصص", "secondary": "تحدث على واتساب"}},
+    "hosting-solutions": {"title": "حلول الاستضافة والنطاقات", "description": "خدمات استضافة آمنة وسريعة", "whatIs": {"title": "ما هي حلول الاستضافة؟"}, "whyNeed": {"title": "لماذا يحتاج عملك إليها"}, "howWeDo": {"title": "كيف ننفذها"}, "faq": {"title": "الأسئلة الشائعة"}, "cta": {"title": "احصل على استضافة متميزة اليوم", "description": "استضافة آمنة وسريعة وموثوقة لموقعك", "primary": "ابدأ الآن", "secondary": "تحدث على واتساب"}}
+  },
+  "contact": {"title": "لنبني شيئاً مذهلاً", "subtitle": "مستعد لتحويل حضورك الرقمي؟", "email": "راسلنا", "whatsapp": "واتساب", "instagram": "إنستغرام", "form": {"title": "أرسل لنا رسالة", "name": "الاسم", "email": "البريد الإلكتروني", "phone": "رقم الهاتف", "message": "الرسالة", "service": "الخدمة المهتم بها", "submit": "إرسال الرسالة", "success": "شكراً لك! سنتواصل معك قريباً", "error": "حدث خطأ ما"}},
+  "footer": {"about": "عن ديفورا", "description": "نحن وكالة رائدة في تطوير الويب", "quickLinks": "روابط سريعة", "services": "الخدمات", "contactInfo": "معلومات الاتصال", "rights": "جميع الحقوق محفوظة"},
+  "serviceDetail": {"whatIs": "ما هي {service}؟", "whyNeed": "لماذا يحتاج عملك إليها", "howWeDo": "كيف ننفذها", "faq": "الأسئلة الشائعة", "cta": "ابدأ مشروعك", "ctaSection": {"title": "مستعد لتحويل عملك؟", "description": "لنناقش مشروعك ونحوّل رؤيتك إلى واقع"}},
+  "about": {"title": "عن ديفورا", "subtitle": "نحن فريق من المطورين والمصممين المتحمسين", "mission": {"title": "مهمتنا", "description": "تمكين الشركات بحلول تقنية متطورة"}, "vision": {"title": "رؤيتنا", "description": "أن نكون الوكالة الرقمية الرائدة"}, "values": {"title": "قيمنا", "quality": {"title": "جودة الكود", "description": "نكتب كود نظيف وقابل للصيانة"}, "clientFocused": {"title": "التركيز على العميل", "description": "نجاحك هو نجاحنا"}, "excellence": {"title": "التميز", "description": "نسعى للتميز"}, "results": {"title": "موجه بالنتائج", "description": "نركز على تقديم نتائج قابلة للقياس"}}, "stats": {"efficiency": "الكفاءة", "fastDelivery": "التسليم السريع", "quality": "الجودة", "security": "الأمان"}, "team": {"title": "تعرف على فريقنا", "subtitle": "محترفون موهوبون مكرسون لنجاحك"}, "cta": {"title": "مستعد للعمل معاً؟", "description": "لنبني شيئاً مذهلاً معاً", "button": "تواصل معنا الآن"}},
+  "contactPage": {"title": "تواصل معنا", "subtitle": "مستعد لبدء مشروعك القادم؟", "info": {"title": "معلومات الاتصال", "description": "تواصل معنا من خلال أي من هذه القنوات"}, "availability": {"title": "التوفر", "description": "الاثنين - الجمعة: 9:00 صباحاً - 6:00 مساءً", "weekend": "عطلة نهاية الأسبوع: متاح للاستفسارات العاجلة"}},
+  "servicesPage": {"title": "خدماتنا", "subtitle": "حلول رقمية شاملة مصممة لتحويل عملك", "cta": {"title": "هل تحتاج حل مخصص؟", "description": "كل عمل فريد من نوعه", "button": "جدولة استشارة"}}
+}
+'@
+
+Set-Content -Path "messages\en.json" -Value $enContent -Encoding UTF8
+Set-Content -Path "messages\ar.json" -Value $arContent -Encoding UTF8
+
+Write-Host "Translation files created successfully!"
+Get-ChildItem messages\*.json | Format-Table Name, Length
+

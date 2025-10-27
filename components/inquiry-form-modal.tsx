@@ -328,82 +328,67 @@ export default function InquiryFormModal({
                       </div>
 
                       {/* Navigation Buttons */}
-                      <div className="flex justify-between items-center pt-8 gap-4">
-                        {locale === "ar" ? (
-                          <>
-                            {/* In Arabic: Next button on the left */}
-                            <Button
-                              onClick={handleNext}
-                              disabled={isSubmitting}
-                              className="min-w-[120px] bg-white text-black hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all disabled:opacity-50"
-                            >
-                              {isSubmitting ? (
+                      <div className={`flex ${locale === "ar" ? "flex-row-reverse" : ""} justify-between items-center pt-8 gap-4`}>
+                        {/* Previous Button */}
+                        <Button
+                          variant="outline"
+                          onClick={handlePrevious}
+                          disabled={currentStep === 0}
+                          className="min-w-[120px] border-white/20 text-white hover:bg-white/10 hover:text-white disabled:opacity-50"
+                        >
+                          {locale === "ar" ? (
+                            <>
+                              السابق
+                              <ChevronRight className="ml-2 h-5 w-5" />
+                            </>
+                          ) : (
+                            <>
+                              <ChevronLeft className="mr-2 h-5 w-5" />
+                              Previous
+                            </>
+                          )}
+                        </Button>
+
+                        {/* Next/Submit Button */}
+                        <Button
+                          onClick={handleNext}
+                          disabled={isSubmitting}
+                          className="min-w-[120px] bg-white text-black hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all disabled:opacity-50"
+                        >
+                          {isSubmitting ? (
+                            <>
+                              {locale === "ar" ? (
                                 <>
                                   <Loader2 className="ml-2 h-5 w-5 animate-spin" />
                                   جاري الإرسال...
                                 </>
-                              ) : currentStep === totalSteps - 1 ? (
-                                <>
-                                  إرسال
-                                  <ChevronLeft className="ml-2 h-5 w-5" />
-                                </>
                               ) : (
-                                <>
-                                  التالي
-                                  <ChevronLeft className="ml-2 h-5 w-5" />
-                                </>
-                              )}
-                            </Button>
-
-                            {/* In Arabic: Previous button on the right */}
-                            <Button
-                              variant="outline"
-                              onClick={handlePrevious}
-                              disabled={currentStep === 0}
-                              className="min-w-[120px] border-white/20 text-white hover:bg-white/10 hover:text-white disabled:opacity-50"
-                            >
-                              السابق
-                              <ChevronRight className="ml-2 h-5 w-5" />
-                            </Button>
-                          </>
-                        ) : (
-                          <>
-                            {/* In English: Previous button on the left */}
-                            <Button
-                              variant="outline"
-                              onClick={handlePrevious}
-                              disabled={currentStep === 0}
-                              className="min-w-[120px] border-white/20 text-white hover:bg-white/10 hover:text-white disabled:opacity-50"
-                            >
-                              <ChevronLeft className="mr-2 h-5 w-5" />
-                              Previous
-                            </Button>
-
-                            {/* In English: Next button on the right */}
-                            <Button
-                              onClick={handleNext}
-                              disabled={isSubmitting}
-                              className="min-w-[120px] bg-white text-black hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all disabled:opacity-50"
-                            >
-                              {isSubmitting ? (
                                 <>
                                   <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                                   Submitting...
                                 </>
-                              ) : currentStep === totalSteps - 1 ? (
-                                <>
-                                  Submit
-                                  <CheckCircle2 className="ml-2 h-5 w-5" />
-                                </>
-                              ) : (
-                                <>
-                                  Next
-                                  <ChevronRight className="ml-2 h-5 w-5" />
-                                </>
                               )}
-                            </Button>
-                          </>
-                        )}
+                            </>
+                          ) : currentStep === totalSteps - 1 ? (
+                            <>
+                              {locale === "ar" ? "إرسال" : "Submit"}
+                              {locale === "ar" ? (
+                                <ChevronLeft className="ml-2 h-5 w-5" />
+                              ) : (
+                                <CheckCircle2 className="ml-2 h-5 w-5" />
+                              )}
+                            </>
+                          ) : (
+                            <>
+                              {locale === "ar" ? "التالي" : "Next"}
+                              {locale === "ar" ? (
+                                <ChevronLeft className="ml-2 h-5 w-5" />
+                              ) : (
+                                <ChevronRight className="ml-2 h-5 w-5" />
+                              )}
+                            </>
+                          )}
+                        </Button>
                       </div>
                     </motion.div>
                   )}
@@ -414,26 +399,67 @@ export default function InquiryFormModal({
                       key="success"
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      className="text-center py-16 space-y-6"
+                      className="text-center py-16 space-y-8"
                     >
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        transition={{ delay: 0.2, type: "spring" }}
+                        transition={{ delay: 0.2, type: "spring", stiffness: 100, damping: 10 }}
                       >
-                        <CheckCircle2 className="w-20 h-20 text-green-500 mx-auto" />
+                        <CheckCircle2 className="w-24 h-24 text-green-500 mx-auto" />
                       </motion.div>
 
-                      <div className="space-y-2">
-                        <h3 className="text-3xl font-bold">
-                          {locale === "ar" ? "شكراً لك!" : "Thank You!"}
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4 }}
+                        className="space-y-4"
+                      >
+                        <h3 className="text-4xl font-bold">
+                          {locale === "ar" ? "تم استقبال طلبك! ✓" : "Request Received! ✓"}
                         </h3>
+                        <p className="text-xl text-green-400 font-semibold">
+                          {locale === "ar"
+                            ? "شكراً لاختيارك ويبر"
+                            : "Thank you for choosing Weber"}
+                        </p>
+                      </motion.div>
+
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.6 }}
+                        className="space-y-3 pt-6 border-t border-border/50"
+                      >
                         <p className="text-lg text-muted-foreground">
                           {locale === "ar"
-                            ? "تم إرسال طلبك بنجاح. سنتواصل معك قريباً!"
-                            : "Your inquiry has been submitted successfully. We'll get back to you soon!"}
+                            ? "تم إرسال طلبك بنجاح وقد استقبلناه!"
+                            : "Your inquiry has been successfully received!"}
                         </p>
-                      </div>
+                        <p className="text-lg font-semibold text-primary">
+                          {locale === "ar"
+                            ? "سنتواصل معك خلال 24 ساعة"
+                            : "We will respond within 24 hours"}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          {locale === "ar"
+                            ? "تحقق من بريدك الإلكتروني والرسائل النصية للحصول على آخر التحديثات"
+                            : "Check your email and SMS for updates"}
+                        </p>
+                      </motion.div>
+
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.8 }}
+                        className="pt-4"
+                      >
+                        <p className="text-xs text-muted-foreground">
+                          {locale === "ar"
+                            ? "يمكنك إغلاق هذه النافذة أو الانتظار لإعادة التوجيه..."
+                            : "You can close this window or wait for redirect..."}
+                        </p>
+                      </motion.div>
                     </motion.div>
                   )}
                 </AnimatePresence>

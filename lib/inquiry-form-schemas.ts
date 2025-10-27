@@ -170,8 +170,8 @@ const FINAL_SECTION: FormSection = {
       id: "agreedToPrivacy",
       type: "checkbox",
       label: {
-        en: "I agree to Devura's Privacy Policy and Terms of Service",
-        ar: "أوافق على سياسة الخصوصية وشروط الخدمة الخاصة بـ ديفورا",
+        en: "I agree to Weber's Privacy Policy and Terms of Service",
+        ar: "أوافق على سياسة الخصوصية وشروط الخدمة الخاصة بـ ويبر",
       },
       required: true,
     },

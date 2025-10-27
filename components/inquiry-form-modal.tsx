@@ -599,7 +599,7 @@ function FormField({
         )}
 
         {/* Checkbox or Multiselect */}
-        {(field.type === "checkbox" || field.type === "multiselect") && (
+        {(field.type === "checkbox" || field.type === "multiselect") && field.options && (
           <div className="space-y-2 max-h-64 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-primary/50 scrollbar-track-background/20">
             {field.options?.map((option, index) => (
               <motion.label
@@ -621,6 +621,24 @@ function FormField({
               </motion.label>
             ))}
           </div>
+        )}
+
+        {/* Standalone Checkbox (for privacy agreement) */}
+        {field.type === "checkbox" && !field.options && (
+          <motion.label
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="flex items-start space-x-3 rtl:space-x-reverse cursor-pointer p-4 rounded-lg bg-background/40 hover:bg-white/10 border border-border/30 hover:border-primary/50 transition-all group"
+          >
+            <input
+              type="checkbox"
+              className="w-5 h-5 mt-0.5 text-primary rounded focus:ring-2 focus:ring-primary focus:ring-offset-0 bg-background/80 border-border/50 cursor-pointer flex-shrink-0"
+              {...register(field.id)}
+            />
+            <span className="text-sm text-white group-hover:text-primary transition-colors flex-1">
+              {field.label[locale]}
+            </span>
+          </motion.label>
         )}
       </div>
 

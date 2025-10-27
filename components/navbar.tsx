@@ -97,8 +97,9 @@ export default function Navbar({ locale }: NavbarProps) {
   };
 
   return (
-    <CardNav
-      logo={
+    <div data-navbar>
+      <CardNav
+        logo={
         <div
           className="logo cursor-pointer hover:opacity-80 transition-opacity -mt-5"
           onClick={goToHome}
@@ -124,6 +125,7 @@ export default function Navbar({ locale }: NavbarProps) {
       languageIcon={<Globe className="w-5 h-5" />}
       onLanguageClick={switchLanguage}
       ease="power3.out"
-    />
+      />
+    </div>
   );
 }

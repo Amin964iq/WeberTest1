@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Fragment } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight, ChevronLeft, CheckCircle2, Loader2, Sparkles } from "lucide-react";
+import { ChevronRight, ChevronLeft, CheckCircle2, Loader2, Sparkles, X } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { getServiceFormSchema } from "@/lib/inquiry-form-schemas";
@@ -37,12 +37,21 @@ export default function InquiryFormModal({
     mode: "onChange",
   });
 
-  // Reset when modal opens
+  // Reset when modal opens and hide navbar/body scroll
   useEffect(() => {
     if (isOpen) {
       setCurrentStep(-1);
       setIsSubmitted(false);
       form.reset();
+      // Hide navbar and prevent body scroll
+      document.body.style.overflow = 'hidden';
+      const navbar = document.querySelector('[data-navbar]');
+      if (navbar) navbar.classList.add('hidden');
+    } else {
+      // Restore navbar and body scroll
+      document.body.style.overflow = 'unset';
+      const navbar = document.querySelector('[data-navbar]');
+      if (navbar) navbar.classList.remove('hidden');
     }
   }, [isOpen, form]);
 
@@ -208,7 +217,13 @@ export default function InquiryFormModal({
               <FloatingElements density="low" showCodeSnippets={false} />
             </div>
 
-            {/* Close Button - REMOVED to make form non-cancelable */}
+            {/* Close Button */}
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-muted transition-colors flex items-center justify-center hover:scale-110"
+            >
+              <X className="h-5 w-5" />
+            </button>
 
             {/* Progress Bar */}
             {currentStep >= 0 && !isSubmitted && (
@@ -313,56 +328,82 @@ export default function InquiryFormModal({
                       </div>
 
                       {/* Navigation Buttons */}
-                      <div className={`flex ${locale === "ar" ? "flex-row-reverse" : ""} justify-between items-center pt-8 gap-4`}>
-                        <Button
-                          variant="outline"
-                          onClick={handlePrevious}
-                          disabled={currentStep === 0}
-                          className="min-w-[120px] border-white/20 text-white hover:bg-white/10 hover:text-white disabled:opacity-50"
-                        >
-                          {locale === "ar" ? (
-                            <>
+                      <div className="flex justify-between items-center pt-8 gap-4">
+                        {locale === "ar" ? (
+                          <>
+                            {/* In Arabic: Next button on the left */}
+                            <Button
+                              onClick={handleNext}
+                              disabled={isSubmitting}
+                              className="min-w-[120px] bg-white text-black hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all disabled:opacity-50"
+                            >
+                              {isSubmitting ? (
+                                <>
+                                  <Loader2 className="ml-2 h-5 w-5 animate-spin" />
+                                  جاري الإرسال...
+                                </>
+                              ) : currentStep === totalSteps - 1 ? (
+                                <>
+                                  إرسال
+                                  <ChevronLeft className="ml-2 h-5 w-5" />
+                                </>
+                              ) : (
+                                <>
+                                  التالي
+                                  <ChevronLeft className="ml-2 h-5 w-5" />
+                                </>
+                              )}
+                            </Button>
+
+                            {/* In Arabic: Previous button on the right */}
+                            <Button
+                              variant="outline"
+                              onClick={handlePrevious}
+                              disabled={currentStep === 0}
+                              className="min-w-[120px] border-white/20 text-white hover:bg-white/10 hover:text-white disabled:opacity-50"
+                            >
                               السابق
                               <ChevronRight className="ml-2 h-5 w-5" />
-                            </>
-                          ) : (
-                            <>
+                            </Button>
+                          </>
+                        ) : (
+                          <>
+                            {/* In English: Previous button on the left */}
+                            <Button
+                              variant="outline"
+                              onClick={handlePrevious}
+                              disabled={currentStep === 0}
+                              className="min-w-[120px] border-white/20 text-white hover:bg-white/10 hover:text-white disabled:opacity-50"
+                            >
                               <ChevronLeft className="mr-2 h-5 w-5" />
                               Previous
-                            </>
-                          )}
-                        </Button>
+                            </Button>
 
-                        <Button
-                          onClick={handleNext}
-                          disabled={isSubmitting}
-                          className="min-w-[120px] bg-white text-black hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all disabled:opacity-50"
-                        >
-                          {isSubmitting ? (
-                            <>
-                              <Loader2 className={locale === "ar" ? "ml-2 h-5 w-5 animate-spin" : "mr-2 h-5 w-5 animate-spin"} />
-                              {locale === "ar" ? "جاري الإرسال..." : "Submitting..."}
-                            </>
-                          ) : currentStep === totalSteps - 1 ? (
-                            <>
-                              {locale === "ar" ? "إرسال" : "Submit"}
-                              {locale === "ar" ? (
-                                <ChevronLeft className="ml-2 h-5 w-5" />
+                            {/* In English: Next button on the right */}
+                            <Button
+                              onClick={handleNext}
+                              disabled={isSubmitting}
+                              className="min-w-[120px] bg-white text-black hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all disabled:opacity-50"
+                            >
+                              {isSubmitting ? (
+                                <>
+                                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                                  Submitting...
+                                </>
+                              ) : currentStep === totalSteps - 1 ? (
+                                <>
+                                  Submit
+                                  <CheckCircle2 className="ml-2 h-5 w-5" />
+                                </>
                               ) : (
-                                <CheckCircle2 className="ml-2 h-5 w-5" />
+                                <>
+                                  Next
+                                  <ChevronRight className="ml-2 h-5 w-5" />
+                                </>
                               )}
-                            </>
-                          ) : (
-                            <>
-                              {locale === "ar" ? "التالي" : "Next"}
-                              {locale === "ar" ? (
-                                <ChevronLeft className="ml-2 h-5 w-5" />
-                              ) : (
-                                <ChevronRight className="ml-2 h-5 w-5" />
-                              )}
-                            </>
-                          )}
-                        </Button>
+                            </Button>
+                          </>
+                        )}
                       </div>
                     </motion.div>
                   )}

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Fragment } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronRight, ChevronLeft, CheckCircle2, Loader2, Sparkles } from "lucide-react";
+import { ChevronRight, ChevronLeft, CheckCircle2, Loader2, Sparkles } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { getServiceFormSchema } from "@/lib/inquiry-form-schemas";
@@ -63,7 +63,7 @@ export default function InquiryFormModal({
   // Calculate display step number (accounting for skipped sub-service section)
   const getDisplayStep = () => {
     if (serviceId === "general-inquiry" && currentStep > 1) {
-      const selectedService = form.getValues("interestedServices");
+      const selectedService = form.getValues("interestedServices" as any);
       if (selectedService === "other") {
         // If "other" is selected and we skipped sub-service section
         return currentStep; // Show step as-is
@@ -74,7 +74,7 @@ export default function InquiryFormModal({
 
   const getDisplayTotal = () => {
     if (serviceId === "general-inquiry") {
-      const selectedService = form.getValues("interestedServices");
+      const selectedService = form.getValues("interestedServices" as any);
       if (selectedService === "other" && currentStep >= 1) {
         // Show one less total when sub-service section is skipped
         return totalSteps - 1;
@@ -103,7 +103,7 @@ export default function InquiryFormModal({
     // For general inquiry: Skip sub-service section if "other" is selected
     let nextStep = currentStep + 1;
     if (serviceId === "general-inquiry" && currentStep === 0) {
-      const selectedService = form.getValues("interestedServices");
+      const selectedService = form.getValues("interestedServices" as any);
       if (selectedService === "other") {
         nextStep = currentStep + 2; // Skip sub-service section (index 1)
       }
@@ -122,7 +122,7 @@ export default function InquiryFormModal({
       let prevStep = currentStep - 1;
       // For general inquiry: Skip sub-service section if "other" was selected
       if (serviceId === "general-inquiry" && currentStep === 2) {
-        const selectedService = form.getValues("interestedServices");
+        const selectedService = form.getValues("interestedServices" as any);
         if (selectedService === "other") {
           prevStep = currentStep - 2; // Skip back to service selection
         }
@@ -322,13 +322,13 @@ export default function InquiryFormModal({
                         >
                           {locale === "ar" ? (
                             <>
-                              {locale === "ar" ? "السابق" : "Previous"}
+                              السابق
                               <ChevronRight className="ml-2 h-5 w-5" />
                             </>
                           ) : (
                             <>
                               <ChevronLeft className="mr-2 h-5 w-5" />
-                              {locale === "ar" ? "السابق" : "Previous"}
+                              Previous
                             </>
                           )}
                         </Button>

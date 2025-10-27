@@ -1,4 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
+
+// Initialize Supabase client
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+let supabase: ReturnType<typeof createClient> | null = null;
+
+if (supabaseUrl && supabaseKey) {
+  supabase = createClient(supabaseUrl, supabaseKey);
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,32 +23,58 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // TODO: Replace with your database integration
-    // Example with Supabase:
-    // const { data: inquiry, error } = await supabase
-    //   .from('inquiries')
-    //   .insert([{
-    //     full_name: data.fullName,
-    //     company_name: data.companyName,
-    //     email: data.email,
-    //     phone: data.phone,
-    //     preferred_contact: data.preferredContact,
-    //     industry: data.industry,
-    //     description: data.description,
-    //     service_id: data.serviceId,
-    //     form_data: data, // Store complete form data as JSON
-    //     created_at: new Date().toISOString(),
-    //   }]);
-    //
-    // if (error) throw error;
+    let inquiryId = `temp-${Date.now()}`;
 
-    // For now, log the data (replace this with actual database save)
+    // If Supabase is configured, save to database
+    if (supabase) {
+      try {
+        const { data: inquiry, error } = await (supabase as any)
+          .from("inquiries")
+          .insert([
+            {
+              full_name: data.fullName,
+              company_name: data.companyName,
+              email: data.email,
+              phone: data.phone,
+              preferred_contact: data.preferredContact,
+              industry: data.industry,
+              description: data.description,
+              service_id: data.serviceId,
+              budget_range: data.budgetRange,
+              timeline: data.timeline,
+              preferred_contact_time: data.preferredContactTime,
+              agreed_to_privacy: data.agreedToPrivacy,
+              additional_comments: data.additionalComments,
+              form_data: data, // Store complete form data as JSON
+              created_at: new Date().toISOString(),
+            },
+          ])
+          .select();
+
+        if (error) {
+          console.error("Database error:", error);
+          throw error;
+        }
+
+        if (inquiry && inquiry.length > 0) {
+          inquiryId = inquiry[0].id;
+          console.log("✅ Inquiry saved to database with ID:", inquiryId);
+        }
+      } catch (dbError) {
+        console.error("❌ Supabase Error:", dbError);
+        // Fall back to logging if database fails
+      }
+    }
+
+    // Log the data for debugging
     console.log("📝 New Inquiry Received:");
     console.log("=".repeat(50));
+    console.log("ID:", inquiryId);
     console.log("Name:", data.fullName);
     console.log("Company:", data.companyName);
     console.log("Email:", data.email);
     console.log("Phone:", data.phone);
+    console.log("Service:", data.serviceId);
     console.log("Preferred Contact:", data.preferredContact);
     console.log("Industry:", data.industry);
     console.log("Preferred Contact Time:", data.preferredContactTime);
@@ -65,7 +102,7 @@ export async function POST(request: NextRequest) {
         success: true,
         message: "Inquiry submitted successfully",
         data: {
-          id: `temp-${Date.now()}`, // Replace with actual database ID
+          id: inquiryId,
           timestamp: new Date().toISOString(),
         },
       },

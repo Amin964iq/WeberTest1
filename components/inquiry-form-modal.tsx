@@ -633,7 +633,9 @@ function FormField({
             <input
               type="checkbox"
               className="w-5 h-5 mt-0.5 text-primary rounded focus:ring-2 focus:ring-primary focus:ring-offset-0 bg-background/80 border-border/50 cursor-pointer flex-shrink-0"
-              {...register(field.id)}
+              {...register(field.id, {
+                validate: (value: any) => value === true || "You must accept the privacy policy"
+              })}
             />
             <span className="text-sm text-white group-hover:text-primary transition-colors flex-1">
               {field.label[locale]}

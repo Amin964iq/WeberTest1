@@ -46,19 +46,42 @@ export default function InquiryFormModal({
     }
   }, [isOpen, form]);
 
-  // Close on escape key
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) onClose();
-    };
-    window.addEventListener("keydown", handleEscape);
-    return () => window.removeEventListener("keydown", handleEscape);
-  }, [isOpen, onClose]);
+  // Close on escape key - DISABLED to make form non-cancelable
+  // useEffect(() => {
+  //   const handleEscape = (e: KeyboardEvent) => {
+  //     if (e.key === "Escape" && isOpen) onClose();
+  //   };
+  //   window.addEventListener("keydown", handleEscape);
+  //   return () => window.removeEventListener("keydown", handleEscape);
+  // }, [isOpen, onClose]);
 
   if (!formSchema) return null;
 
   const totalSteps = formSchema.sections.length;
   const currentSection = currentStep >= 0 ? formSchema.sections[currentStep] : null;
+
+  // Calculate display step number (accounting for skipped sub-service section)
+  const getDisplayStep = () => {
+    if (serviceId === "general-inquiry" && currentStep > 1) {
+      const selectedService = form.getValues("interestedServices");
+      if (selectedService === "other") {
+        // If "other" is selected and we skipped sub-service section
+        return currentStep; // Show step as-is
+      }
+    }
+    return currentStep + 1;
+  };
+
+  const getDisplayTotal = () => {
+    if (serviceId === "general-inquiry") {
+      const selectedService = form.getValues("interestedServices");
+      if (selectedService === "other" && currentStep >= 1) {
+        // Show one less total when sub-service section is skipped
+        return totalSteps - 1;
+      }
+    }
+    return totalSteps;
+  };
 
   const handleNext = async () => {
     if (currentStep === -1) {
@@ -77,8 +100,17 @@ export default function InquiryFormModal({
       }
     }
 
-    if (currentStep < totalSteps - 1) {
-      setCurrentStep(currentStep + 1);
+    // For general inquiry: Skip sub-service section if "other" is selected
+    let nextStep = currentStep + 1;
+    if (serviceId === "general-inquiry" && currentStep === 0) {
+      const selectedService = form.getValues("interestedServices");
+      if (selectedService === "other") {
+        nextStep = currentStep + 2; // Skip sub-service section (index 1)
+      }
+    }
+
+    if (nextStep < totalSteps) {
+      setCurrentStep(nextStep);
     } else {
       // Last step - submit
       form.handleSubmit(onSubmit)();
@@ -87,7 +119,15 @@ export default function InquiryFormModal({
 
   const handlePrevious = () => {
     if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
+      let prevStep = currentStep - 1;
+      // For general inquiry: Skip sub-service section if "other" was selected
+      if (serviceId === "general-inquiry" && currentStep === 2) {
+        const selectedService = form.getValues("interestedServices");
+        if (selectedService === "other") {
+          prevStep = currentStep - 2; // Skip back to service selection
+        }
+      }
+      setCurrentStep(prevStep);
     }
   };
 
@@ -145,13 +185,12 @@ export default function InquiryFormModal({
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          {/* Backdrop */}
+          {/* Backdrop - Non-clickable to prevent closing */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-            onClick={onClose}
           />
 
           {/* Modal */}
@@ -163,19 +202,13 @@ export default function InquiryFormModal({
             className="relative w-full max-w-3xl max-h-[90vh] bg-background rounded-2xl shadow-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Background Effects */}
-            <div className="absolute inset-0 overflow-hidden">
+            {/* Background Effects - Hidden to improve visibility */}
+            <div className="absolute inset-0 overflow-hidden hidden">
               <SpaceBackground />
               <FloatingElements density="low" showCodeSnippets={false} />
             </div>
 
-            {/* Close Button */}
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-muted transition-colors flex items-center justify-center"
-            >
-              <X className="h-5 w-5" />
-            </button>
+            {/* Close Button - REMOVED to make form non-cancelable */}
 
             {/* Progress Bar */}
             {currentStep >= 0 && !isSubmitted && (
@@ -233,7 +266,11 @@ export default function InquiryFormModal({
                         className="min-w-[200px] bg-white text-black hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all text-lg py-6"
                       >
                         {locale === "ar" ? "لنبدأ" : "Let's Start"}
-                        <ChevronRight className="ml-2 rtl:ml-0 rtl:mr-2 h-5 w-5" />
+                        {locale === "ar" ? (
+                          <ChevronLeft className="mr-2 h-5 w-5" />
+                        ) : (
+                          <ChevronRight className="ml-2 h-5 w-5" />
+                        )}
                       </Button>
                     </motion.div>
                   )}
@@ -250,8 +287,8 @@ export default function InquiryFormModal({
                       {/* Step Header */}
                       <div className="text-center mb-8">
                         <p className="text-sm text-muted-foreground mb-2">
-                          {locale === "ar" ? "خطوة" : "Step"} {currentStep + 1}{" "}
-                          {locale === "ar" ? "من" : "of"} {totalSteps}
+                          {locale === "ar" ? "خطوة" : "Step"} {getDisplayStep()}{" "}
+                          {locale === "ar" ? "من" : "of"} {getDisplayTotal()}
                         </p>
                         <h3 className="text-2xl md:text-3xl font-bold mb-2">
                           {currentSection.title[locale]}
@@ -276,15 +313,24 @@ export default function InquiryFormModal({
                       </div>
 
                       {/* Navigation Buttons */}
-                      <div className="flex justify-between items-center pt-8 gap-4">
+                      <div className={`flex ${locale === "ar" ? "flex-row-reverse" : ""} justify-between items-center pt-8 gap-4`}>
                         <Button
                           variant="outline"
                           onClick={handlePrevious}
                           disabled={currentStep === 0}
                           className="min-w-[120px] border-white/20 text-white hover:bg-white/10 hover:text-white disabled:opacity-50"
                         >
-                          <ChevronLeft className="mr-2 rtl:mr-0 rtl:ml-2 h-5 w-5" />
-                          {locale === "ar" ? "السابق" : "Previous"}
+                          {locale === "ar" ? (
+                            <>
+                              {locale === "ar" ? "السابق" : "Previous"}
+                              <ChevronRight className="ml-2 h-5 w-5" />
+                            </>
+                          ) : (
+                            <>
+                              <ChevronLeft className="mr-2 h-5 w-5" />
+                              {locale === "ar" ? "السابق" : "Previous"}
+                            </>
+                          )}
                         </Button>
 
                         <Button
@@ -294,18 +340,26 @@ export default function InquiryFormModal({
                         >
                           {isSubmitting ? (
                             <>
-                              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                              <Loader2 className={locale === "ar" ? "ml-2 h-5 w-5 animate-spin" : "mr-2 h-5 w-5 animate-spin"} />
                               {locale === "ar" ? "جاري الإرسال..." : "Submitting..."}
                             </>
                           ) : currentStep === totalSteps - 1 ? (
                             <>
                               {locale === "ar" ? "إرسال" : "Submit"}
-                              <CheckCircle2 className="ml-2 rtl:ml-0 rtl:mr-2 h-5 w-5" />
+                              {locale === "ar" ? (
+                                <ChevronLeft className="ml-2 h-5 w-5" />
+                              ) : (
+                                <CheckCircle2 className="ml-2 h-5 w-5" />
+                              )}
                             </>
                           ) : (
                             <>
                               {locale === "ar" ? "التالي" : "Next"}
-                              <ChevronRight className="ml-2 rtl:ml-0 rtl:mr-2 h-5 w-5" />
+                              {locale === "ar" ? (
+                                <ChevronLeft className="ml-2 h-5 w-5" />
+                              ) : (
+                                <ChevronRight className="ml-2 h-5 w-5" />
+                              )}
                             </>
                           )}
                         </Button>
@@ -349,6 +403,42 @@ export default function InquiryFormModal({
       )}
     </AnimatePresence>
   );
+}
+
+// Helper function to translate error messages to Arabic
+function translateErrorMessage(message: string, locale: "en" | "ar"): string {
+  if (locale !== "ar") return message;
+
+  const errorTranslations: Record<string, string> = {
+    "Name must be at least 2 characters": "يجب أن يكون الاسم على الأقل 2 أحرف",
+    "Company name must be at least 2 characters": "يجب أن يكون اسم الشركة على الأقل 2 أحرف",
+    "Please enter a valid email address": "يرجى إدخال عنوان بريد إلكتروني صحيح",
+    "Phone number must be at least 8 characters": "يجب أن يكون رقم الهاتف على الأقل 8 أحرف",
+    "Please select your industry": "يرجى اختيار مجال عملك",
+    "This field is required": "هذا الحقل مطلوب",
+    "Please select a budget range": "يرجى اختيار نطاق الميزانية",
+    "Please select a timeline": "يرجى اختيار الإطار الزمني",
+    "Please select your preferred contact time": "يرجى اختيار وقتك المفضل للتواصل",
+    "You must agree to the privacy policy to continue": "يجب أن توافق على سياسة الخصوصية للمتابعة",
+    "Please select at least one service type": "يرجى اختيار نوع خدمة واحد على الأقل",
+    "Please select the main goal": "يرجى اختيار الهدف الرئيسي",
+    "Please select page count": "يرجى اختيار عدد الصفحات",
+    "Please select a design style": "يرجى اختيار نمط التصميم",
+    "Please select at least one system type": "يرجى اختيار نوع نظام واحد على الأقل",
+    "Please describe key features": "يرجى وصف الميزات الأساسية",
+    "Please select user count": "يرجى اختيار عدد المستخدمين",
+    "Please select compliance requirements": "يرجى اختيار متطلبات الامتثال",
+    "Please select at least one data type": "يرجى اختيار نوع بيانات واحد على الأقل",
+    "Please select organization size": "يرجى اختيار حجم المنظمة",
+    "Please select at least one security service": "يرجى اختيار خدمة أمان واحدة على الأقل",
+    "Please describe your infrastructure": "يرجى وصف البنية التحتية الخاصة بك",
+    "Please select a service": "يرجى اختيار خدمة",
+    "Please provide at least 20 characters": "يرجى تقديم 20 حرفًا على الأقل",
+    "Please select one of our main services": "يرجى اختيار إحدى خدماتنا الرئيسية",
+    "Please describe the custom service you need": "يرجى وصف الخدمة المخصصة التي تحتاجها",
+  };
+
+  return errorTranslations[message] || message;
 }
 
 // Form Field Component (same as before but optimized for modal)
@@ -496,7 +586,7 @@ function FormField({
       {/* Error Message */}
       {error && (
         <p className="text-sm text-red-500 mt-1">
-          {error.message as string}
+          {translateErrorMessage(error.message as string, locale)}
         </p>
       )}
     </motion.div>

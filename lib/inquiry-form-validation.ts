@@ -8,7 +8,7 @@ export const basicInfoSchema = z.object({
   phone: z.string().min(8, "Phone number must be at least 8 characters").max(20),
   preferredContact: z.enum(["email", "call", "whatsapp"]),
   industry: z.string().min(1, "Please select your industry"),
-  description: z.string().min(20, "Please provide at least 20 characters").max(500),
+  description: z.string().min(1, "This field is required").max(500),
 });
 
 export const budgetTimelineSchema = z.object({
@@ -50,7 +50,7 @@ export const webDevelopmentSchema = z.object({
 export const customSystemsSchema = z.object({
   ...basicInfoSchema.shape,
   subServices: z.array(z.string()).min(1, "Please select at least one system type"),
-  keyFeatures: z.string().min(20, "Please describe key features (minimum 20 characters)").max(1000),
+  keyFeatures: z.string().min(1, "This field is required").max(1000),
   existingSystem: z.enum(["yes-upgrade", "yes-integrate", "no"]),
   userCount: z.string().min(1, "Please select user count"),
   platformType: z.enum(["web-only", "web-mobile", "web-native"]),
@@ -77,7 +77,7 @@ export const cybersecuritySolutionsSchema = z.object({
   ...basicInfoSchema.shape,
   subServices: z.array(z.string()).min(1, "Please select at least one security service"),
   securityIncident: z.enum(["yes-recent", "yes-past", "no"]),
-  currentInfrastructure: z.string().min(20, "Please describe your infrastructure (minimum 20 characters)").max(1000),
+  currentInfrastructure: z.string().min(1, "This field is required").max(1000),
   industryCompliance: z.string().min(1, "Please select compliance requirements"),
   dataToProtect: z.array(z.string()).min(1, "Please select at least one data type"),
   organizationSize: z.string().min(1, "Please select organization size"),
@@ -91,7 +91,7 @@ export const cybersecuritySolutionsSchema = z.object({
 export const generalInquirySchema = z.object({
   ...basicInfoSchema.shape,
   interestedService: z.string().min(1, "Please select a service"),
-  otherServiceDescription: z.string().min(20, "Please provide at least 20 characters").max(500).optional(),
+  otherServiceDescription: z.string().min(1, "This field is required").max(500).optional(),
   ...budgetTimelineSchema.shape,
   ...finalSchema.shape,
 });

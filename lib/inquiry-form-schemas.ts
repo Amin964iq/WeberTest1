@@ -188,35 +188,28 @@ const SERVICE_SELECTION_SECTION: FormSection = {
     ar: "ما الخدمات التي تحتاجها؟",
   },
   description: {
-    en: "Select all the services you're interested in (you can choose multiple)",
-    ar: "اختر جميع الخدمات التي تهتم بها (يمكنك اختيار أكثر من خدمة)",
+    en: "Select the service you're interested in",
+    ar: "اختر الخدمة التي تهتم بها",
   },
   fields: [
     {
       id: "interestedServices",
-      type: "checkbox",
+      type: "radio",
       label: {
-        en: "Which services are you interested in?",
-        ar: "ما هي الخدمات التي تهتم بها؟",
+        en: "Which main service are you interested in?",
+        ar: "ما هي الخدمة الرئيسية التي تهتم بها؟",
       },
       description: {
-        en: "Select all services that match your needs",
-        ar: "اختر جميع الخدمات التي تناسب احتياجاتك",
+        en: "Please select one of our main services",
+        ar: "يرجى اختيار إحدى خدماتنا الرئيسية",
       },
       required: true,
-      options: SERVICE_CATEGORY_OPTIONS.filter(opt => opt.value !== "other"),
-    },
-    {
-      id: "needsOtherService",
-      type: "checkbox",
-      label: {
-        en: "Looking for something else?",
-        ar: "تبحث عن شيء آخر؟",
-      },
       options: [
-        { value: "other", label: { en: "Other / Custom Service", ar: "خدمة أخرى / مخصصة" } }
+        { value: "web-development", label: { en: "Web Development", ar: "تطوير المواقع" } },
+        { value: "custom-systems", label: { en: "Custom Systems", ar: "الأنظمة المخصصة" } },
+        { value: "cybersecurity-solutions", label: { en: "Cybersecurity Solutions", ar: "حلول الأمن السيبراني" } },
+        { value: "other", label: { en: "Other / Custom Service", ar: "خدمة أخرى / مخصصة" } },
       ],
-      required: false,
     },
     {
       id: "otherServiceDescription",
@@ -230,9 +223,9 @@ const SERVICE_SELECTION_SECTION: FormSection = {
         ar: "أخبرنا عن متطلباتك المحددة أو الخدمة التي تبحث عنها...",
       },
       required: true,
-      validation: { minLength: 20, maxLength: 500 },
+      validation: { minLength: 1, maxLength: 500 },
       conditional: {
-        field: "needsOtherService",
+        field: "interestedServices",
         value: ["other"],
       },
     },
@@ -260,7 +253,7 @@ const SUB_SERVICE_SELECTION_SECTION: FormSection = {
         en: "Web Development - Select specific services:",
         ar: "تطوير المواقع - اختر الخدمات المحددة:",
       },
-      required: false,
+      required: true,
       options: [
         { value: "ecommerce", label: { en: "E-Commerce Website", ar: "موقع تجارة إلكترونية" } },
         { value: "portfolio", label: { en: "Portfolio Website", ar: "موقع ملف شخصي" } },
@@ -273,32 +266,13 @@ const SUB_SERVICE_SELECTION_SECTION: FormSection = {
       },
     },
     {
-      id: "uiuxSubServices",
-      type: "checkbox",
-      label: {
-        en: "UI/UX Design - Select specific services:",
-        ar: "تصميم UI/UX - اختر الخدمات المحددة:",
-      },
-      required: false,
-      options: [
-        { value: "website-design", label: { en: "Website UI Design", ar: "تصميم واجهة موقع" } },
-        { value: "app-design", label: { en: "Mobile App Design", ar: "تصميم تطبيق موبايل" } },
-        { value: "dashboard-design", label: { en: "Dashboard Design", ar: "تصميم لوحة تحكم" } },
-        { value: "wireframing", label: { en: "Wireframing & Prototyping", ar: "الإطارات السلكية والنماذج الأولية" } },
-      ],
-      conditional: {
-        field: "interestedServices",
-        value: ["ui-ux-design"],
-      },
-    },
-    {
       id: "customSystemsSubServices",
       type: "checkbox",
       label: {
         en: "Custom Systems - Select specific services:",
         ar: "أنظمة مخصصة - اختر الخدمات المحددة:",
       },
-      required: false,
+      required: true,
       options: [
         { value: "hotel-clinic", label: { en: "Hotel / Clinic Reservation System", ar: "نظام حجز فندق / عيادة" } },
         { value: "inventory", label: { en: "Inventory Management", ar: "إدارة المخزون" } },
@@ -319,7 +293,7 @@ const SUB_SERVICE_SELECTION_SECTION: FormSection = {
         en: "Cybersecurity - Select specific services:",
         ar: "الأمن السيبراني - اختر الخدمات المحددة:",
       },
-      required: false,
+      required: true,
       options: [
         { value: "penetration-testing", label: { en: "Penetration Testing", ar: "اختبار الاختراق" } },
         { value: "digital-forensics", label: { en: "Digital Forensics", ar: "الطب الشرعي الرقمي" } },

@@ -122,10 +122,10 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
               />
             </motion.div>
 
-            {/* Grid Images for Web Development - Stacked/Layered Effect */}
+            {/* Grid Images for Web Development - Luxurious Hover Effect */}
             {service.id === "web-development" ? (
               <motion.div
-                className="relative w-full h-[320px] sm:h-[380px] md:h-[450px] order-1 lg:order-2"
+                className="relative w-full h-[320px] sm:h-[380px] md:h-[450px] order-1 lg:order-2 perspective"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
@@ -152,19 +152,23 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
                         scale: 0.85,
                       }}
                       animate={{
-                        opacity: otherIsHovered ? 0.3 : 1,
-                        scale: isHovered ? 1.08 : baseScale,
+                        opacity: otherIsHovered ? 0.2 : 1,
+                        scale: isHovered ? 1.12 : baseScale,
                         rotateZ: isHovered ? 0 : baseRotation,
                         x: isHovered ? 0 : (index % 2 === 0 ? -baseOffset : baseOffset),
                         y: isHovered ? 0 : baseOffset,
                         zIndex: isHovered ? 50 : (serviceImages.length - index),
+                        filter: otherIsHovered
+                          ? "blur(12px) brightness(0.6) saturate(0.7)"
+                          : "blur(0px) brightness(1) saturate(1)",
                       }}
                       transition={{
-                        opacity: { duration: 0.3 },
-                        scale: { duration: 0.5, type: "spring", stiffness: 100, damping: 15 },
-                        rotateZ: { duration: 0.5, type: "spring", stiffness: 100, damping: 15 },
-                        x: { duration: 0.5, type: "spring", stiffness: 100, damping: 15 },
-                        y: { duration: 0.5, type: "spring", stiffness: 100, damping: 15 },
+                        opacity: { duration: 0.4, ease: "easeInOut" },
+                        scale: { duration: 0.6, type: "spring", stiffness: 80, damping: 20 },
+                        rotateZ: { duration: 0.6, type: "spring", stiffness: 80, damping: 20 },
+                        x: { duration: 0.6, type: "spring", stiffness: 80, damping: 20 },
+                        y: { duration: 0.6, type: "spring", stiffness: 80, damping: 20 },
+                        filter: { duration: 0.4, ease: "easeInOut" },
                         zIndex: { duration: 0 },
                       }}
                       onMouseEnter={() => handleImageHover(index)}
@@ -175,7 +179,10 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
                           src={image}
                           alt={`${service.id} project ${index + 1}`}
                           fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          className="object-cover transition-transform duration-700"
+                          style={{
+                            transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+                          }}
                           sizes="(max-width: 768px) 80vw, 50vw"
                           priority={index < 2}
                           quality={85}
@@ -184,38 +191,68 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
                           loading={index < 2 ? "eager" : "lazy"}
                         />
 
-                        {/* Gradient overlays */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-background/20 to-transparent" />
+                        {/* Base gradient overlay - always present */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+
+                        {/* Enhanced gradient overlays on hover */}
                         <motion.div
-                          className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10"
+                          className="absolute inset-0 bg-gradient-to-br from-primary/15 via-transparent to-secondary/15"
                           animate={{
                             opacity: isHovered ? 1 : 0,
                           }}
-                          transition={{ duration: 0.3 }}
+                          transition={{ duration: 0.4 }}
                         />
 
-                        {/* Shine effect on hover */}
+                        {/* Luxury shine effect on hover - wider and more elegant */}
                         {isHovered && (
                           <motion.div
                             className="absolute inset-0 opacity-100"
                             initial={{ x: "-100%" }}
                             animate={{ x: "100%" }}
-                            transition={{ duration: 0.8, ease: "easeInOut" }}
+                            transition={{ duration: 1, ease: "easeInOut" }}
                           >
-                            <div className="h-full w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+                            <div className="h-full w-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12" />
                           </motion.div>
                         )}
 
-                        {/* Border glow on hover */}
+                        {/* Corner accent lights on hover */}
+                        {isHovered && (
+                          <>
+                            <motion.div
+                              className="absolute top-0 right-0 w-32 h-32 bg-gradient-radial from-primary/20 to-transparent rounded-full blur-2xl"
+                              initial={{ opacity: 0, scale: 0 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ duration: 0.4 }}
+                            />
+                            <motion.div
+                              className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-radial from-secondary/20 to-transparent rounded-full blur-3xl"
+                              initial={{ opacity: 0, scale: 0 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ duration: 0.4, delay: 0.1 }}
+                            />
+                          </>
+                        )}
+
+                        {/* Elevated border glow on hover */}
                         <motion.div
                           className="absolute inset-0 rounded-2xl md:rounded-3xl pointer-events-none"
                           animate={{
                             boxShadow: isHovered
-                              ? '0 0 40px rgba(var(--primary),0.4), inset 0 0 20px rgba(255,255,255,0.1)'
+                              ? '0 20px 60px rgba(var(--primary),0.5), inset 0 0 30px rgba(255,255,255,0.15), 0 0 60px rgba(var(--secondary),0.3)'
                               : '0 0 0px rgba(var(--primary),0)',
                           }}
-                          transition={{ duration: 0.3 }}
+                          transition={{ duration: 0.4, ease: "easeInOut" }}
                         />
+
+                        {/* Frame border effect on hover */}
+                        {isHovered && (
+                          <motion.div
+                            className="absolute inset-0 rounded-2xl md:rounded-3xl border-2 border-primary/30 pointer-events-none"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.3 }}
+                          />
+                        )}
                       </div>
                     </motion.div>
                   );

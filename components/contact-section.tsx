@@ -1,14 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Mail, MessageCircle, Instagram, FileText } from "lucide-react";
-import InquiryFormModal from "@/components/inquiry-form-modal";
-import { ServiceType } from "@/lib/inquiry-form-types";
+import { Mail, MessageCircle, Instagram, Calendar } from "lucide-react";
 import ScrollSection from "@/components/scroll-section";
 import FloatingSymbols from "@/components/floating-symbols";
 
@@ -17,7 +14,6 @@ export default function ContactSection() {
   const tCommon = useTranslations("common");
   const params = useParams();
   const locale = (params.locale as "en" | "ar") || "en";
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const contactMethods = [
     {
@@ -26,7 +22,6 @@ export default function ContactSection() {
       description: "info@weber.com",
       href: "mailto:info@weber.com?subject=Service%20Inquiry&body=Hello%20Weber%20Team,",
       color: "from-blue-500 to-blue-600",
-      isModal: false,
     },
     {
       icon: <MessageCircle className="h-6 w-6" />,
@@ -34,7 +29,6 @@ export default function ContactSection() {
       description: "+1 (234) 567-890",
       href: "https://wa.me/1234567890?text=Hello%20Weber!%20I%27m%20interested%20in%20your%20services.",
       color: "from-green-500 to-green-600",
-      isModal: false,
     },
     {
       icon: <Instagram className="h-6 w-6" />,
@@ -42,14 +36,13 @@ export default function ContactSection() {
       description: "@weber",
       href: "https://instagram.com/weber",
       color: "from-pink-500 to-purple-600",
-      isModal: false,
     },
     {
-      icon: <FileText className="h-6 w-6" />,
-      title: locale === "ar" ? "املأ النموذج" : "Fill the Form",
-      description: locale === "ar" ? "نموذج استفسار مفصل" : "Detailed inquiry form",
-      color: "from-primary to-secondary",
-      isModal: true,
+      icon: <Calendar className="h-6 w-6" />,
+      title: locale === "ar" ? "احجز اجتماعاً" : "Schedule a Meeting",
+      description: locale === "ar" ? "30 دقيقة استشارة مجانية" : "Free 30-min consultation",
+      href: "https://cal.com/weberiq/30min",
+      color: "from-purple-500 to-pink-600",
     },
   ];
 
@@ -102,43 +95,23 @@ export default function ContactSection() {
         >
           {contactMethods.map((method) => (
             <motion.div key={method.title} variants={item}>
-              {method.isModal ? (
-                <div onClick={() => setIsModalOpen(true)}>
-                  <Card className="group h-full hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer overflow-hidden">
-                    <CardContent className="p-4 text-center space-y-3">
-                      <div className={`w-12 h-12 mx-auto rounded-full bg-gradient-to-br ${method.color} flex items-center justify-center text-white group-hover:scale-110 transition-transform`}>
-                        {method.icon}
-                      </div>
-                      <h3 className="text-base font-semibold">{method.title}</h3>
-                      <p className="text-sm text-muted-foreground">{method.description}</p>
-                      <Button
-                        variant="ghost"
-                        className="w-full text-white hover:bg-white/10"
-                      >
-                        {tCommon("getInTouch")}
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </div>
-              ) : (
-                <a href={method.href} target="_blank" rel="noopener noreferrer">
-                  <Card className="group h-full hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer overflow-hidden">
-                    <CardContent className="p-4 text-center space-y-3">
-                      <div className={`w-12 h-12 mx-auto rounded-full bg-gradient-to-br ${method.color} flex items-center justify-center text-white group-hover:scale-110 transition-transform`}>
-                        {method.icon}
-                      </div>
-                      <h3 className="text-base font-semibold">{method.title}</h3>
-                      <p className="text-sm text-muted-foreground">{method.description}</p>
-                      <Button
-                        variant="ghost"
-                        className="w-full text-white hover:bg-white/10"
-                      >
-                        {tCommon("getInTouch")}
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </a>
-              )}
+              <a href={method.href} target="_blank" rel="noopener noreferrer">
+                <Card className="group h-full hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer overflow-hidden">
+                  <CardContent className="p-4 text-center space-y-3">
+                    <div className={`w-12 h-12 mx-auto rounded-full bg-gradient-to-br ${method.color} flex items-center justify-center text-white group-hover:scale-110 transition-transform`}>
+                      {method.icon}
+                    </div>
+                    <h3 className="text-base font-semibold">{method.title}</h3>
+                    <p className="text-sm text-muted-foreground">{method.description}</p>
+                    <Button
+                      variant="ghost"
+                      className="w-full text-white hover:bg-white/10"
+                    >
+                      {tCommon("getInTouch")}
+                    </Button>
+                  </CardContent>
+                </Card>
+              </a>
             </motion.div>
           ))}
         </motion.div>
@@ -172,13 +145,6 @@ export default function ContactSection() {
         </motion.div>
       </div>
 
-      {/* Inquiry Form Modal */}
-      <InquiryFormModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        serviceId="general-inquiry"
-        locale={locale}
-      />
     </ScrollSection>
   );
 }

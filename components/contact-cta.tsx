@@ -1,30 +1,24 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, MessageCircle, FileText } from "lucide-react";
+import { Mail, MessageCircle, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import InquiryFormModal from "@/components/inquiry-form-modal";
-import { ServiceType } from "@/lib/inquiry-form-types";
 import { BorderBeam } from "@/components/ui/border-beam";
 
 interface ContactCTAProps {
   locale: "en" | "ar";
-  serviceId?: ServiceType;
   variant?: "default" | "compact";
 }
 
-export default function ContactCTA({ locale, serviceId = "general-inquiry", variant = "default" }: ContactCTAProps) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
+export default function ContactCTA({ locale, variant = "default" }: ContactCTAProps) {
   const contactOptions = [
     {
       id: "email",
       icon: <Mail className="h-6 w-6" />,
       title: locale === "ar" ? "راسلنا" : "Email Us",
       description: locale === "ar" ? "أرسل لنا بريد إلكتروني" : "Send us an email",
-      action: () => window.open("mailto:info@weber.com?subject=Project%20Inquiry", "_blank"),
+      href: "mailto:info@weber.com?subject=Project%20Inquiry",
       color: "from-blue-500 to-blue-600",
     },
     {
@@ -32,48 +26,41 @@ export default function ContactCTA({ locale, serviceId = "general-inquiry", vari
       icon: <MessageCircle className="h-6 w-6" />,
       title: locale === "ar" ? "واتساب" : "WhatsApp",
       description: locale === "ar" ? "تحدث معنا مباشرة" : "Chat with us directly",
-      action: () => window.open("https://wa.me/1234567890?text=Hello%20Weber!%20I'm%20interested%20in%20your%20services.", "_blank"),
+      href: "https://wa.me/1234567890?text=Hello%20Weber!%20I'm%20interested%20in%20your%20services.",
       color: "from-green-500 to-green-600",
     },
     {
-      id: "form",
-      icon: <FileText className="h-6 w-6" />,
-      title: locale === "ar" ? "املأ النموذج" : "Fill the Form",
-      description: locale === "ar" ? "أخبرنا عن مشروعك" : "Tell us about your project",
-      action: () => setIsModalOpen(true),
-      color: "from-primary to-secondary",
+      id: "calendar",
+      icon: <Calendar className="h-6 w-6" />,
+      title: locale === "ar" ? "احجز اجتماعاً" : "Schedule a Meeting",
+      description: locale === "ar" ? "30 دقيقة استشارة مجانية" : "Free 30-min consultation",
+      href: "https://cal.com/weberiq/30min",
+      color: "from-purple-500 to-pink-600",
     },
   ];
 
   if (variant === "compact") {
     return (
-      <>
-        <div className="flex flex-wrap gap-3 justify-center">
-          {contactOptions.map((option, index) => (
-            <motion.div
-              key={option.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
+      <div className="flex flex-wrap gap-3 justify-center">
+        {contactOptions.map((option, index) => (
+          <motion.div
+            key={option.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+          >
+            <Button
+              asChild
+              className="bg-white dark:bg-white text-black hover:bg-gray-100 dark:hover:bg-gray-100"
             >
-              <Button
-                onClick={option.action}
-                className="bg-white dark:bg-white text-black hover:bg-gray-100 dark:hover:bg-gray-100"
-              >
+              <a href={option.href} target="_blank" rel="noopener noreferrer">
                 <span className="mr-2 rtl:mr-0 rtl:ml-2">{option.icon}</span>
                 {option.title}
-              </Button>
-            </motion.div>
-          ))}
-        </div>
-
-        <InquiryFormModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          serviceId={serviceId}
-          locale={locale}
-        />
-      </>
+              </a>
+            </Button>
+          </motion.div>
+        ))}
+      </div>
     );
   }
 
@@ -107,49 +94,41 @@ export default function ContactCTA({ locale, serviceId = "general-inquiry", vari
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Card
-                  className="relative group h-full hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer overflow-hidden border-2 hover:border-primary/50"
-                  onClick={option.action}
-                >
-                  <CardContent className="p-8 text-center space-y-4 relative">
-                    {/* Background gradient - removed */}
+                <a href={option.href} target="_blank" rel="noopener noreferrer">
+                  <Card className="relative group h-full hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer overflow-hidden border-2 hover:border-primary/50">
+                    <CardContent className="p-8 text-center space-y-4 relative">
+                      {/* Background gradient - removed */}
 
-                    {/* Icon */}
-                    <div className="relative w-16 h-16 mx-auto rounded-full bg-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
-                      {option.icon}
-                    </div>
+                      {/* Icon */}
+                      <div className="relative w-16 h-16 mx-auto rounded-full bg-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
+                        {option.icon}
+                      </div>
 
-                    {/* Title */}
-                    <h3 className="text-xl font-semibold relative">
-                      {option.title}
-                    </h3>
+                      {/* Title */}
+                      <h3 className="text-xl font-semibold relative">
+                        {option.title}
+                      </h3>
 
-                    {/* Description */}
-                    <p className="text-muted-foreground relative">
-                      {option.description}
-                    </p>
+                      {/* Description */}
+                      <p className="text-muted-foreground relative">
+                        {option.description}
+                      </p>
 
-                    {/* CTA */}
-                    <div className="relative pt-2">
-                      <span className="text-sm font-medium text-primary group-hover:underline">
-                        {locale === "ar" ? "انقر للمتابعة" : "Click to proceed"} →
-                      </span>
-                    </div>
-                  </CardContent>
-                  <BorderBeam duration={8} size={100} />
-                </Card>
+                      {/* CTA */}
+                      <div className="relative pt-2">
+                        <span className="text-sm font-medium text-primary group-hover:underline">
+                          {locale === "ar" ? "انقر للمتابعة" : "Click to proceed"} →
+                        </span>
+                      </div>
+                    </CardContent>
+                    <BorderBeam duration={8} size={100} />
+                  </Card>
+                </a>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
-
-      <InquiryFormModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        serviceId={serviceId}
-        locale={locale}
-      />
     </>
   );
 }

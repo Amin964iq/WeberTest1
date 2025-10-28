@@ -1,12 +1,13 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "@/i18n/routing";
 import { ArrowRight, Code, Layers, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ScrollSection from "@/components/scroll-section";
 import FloatingSymbols from "@/components/floating-symbols";
+import { useEffect, useState } from "react";
 
 const services = [
   {
@@ -34,6 +35,19 @@ const services = [
 
 export default function LuxuryServicesHome() {
   const t = useTranslations("services");
+  const [isMobile, setIsMobile] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+
+  // Detect if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
     <>
@@ -52,22 +66,22 @@ export default function LuxuryServicesHome() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 1 }}
+                  viewport={{ once: isMobile ? true : false, amount: 0.3 }}
+                  transition={{ duration: isMobile ? 0.5 : 1 }}
                   className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-20 items-center"
                 >
                   {/* Left Side - Icon & Visual */}
                   <motion.div
-                    initial={{ opacity: 0, x: -100 }}
+                    initial={{ opacity: 0, x: isMobile ? 0 : -100 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false, amount: 0.3 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
+                    viewport={{ once: isMobile ? true : false, amount: 0.3 }}
+                    transition={{ duration: isMobile ? 0.4 : 0.8, delay: isMobile ? 0 : 0.2 }}
                     className={`relative ${index % 2 === 1 ? "lg:order-2" : ""}`}
                   >
                     <div className="relative">
                       {/* Gradient Background */}
                       <div
-                        className={`absolute inset-0 bg-gradient-to-br ${service.gradient} blur-3xl opacity-50 rounded-full`}
+                        className={`absolute inset-0 bg-gradient-to-br ${service.gradient} ${isMobile ? "blur-xl" : "blur-3xl"} ${isMobile ? "opacity-30" : "opacity-50"} rounded-full`}
                       />
 
                       {/* Icon Container */}
@@ -77,31 +91,35 @@ export default function LuxuryServicesHome() {
                         className="relative z-10 flex items-center justify-center h-[250px] sm:h-[320px] md:h-[350px] lg:h-[400px]"
                       >
                         <div className="relative">
-                          {/* Rotating ring */}
-                          <motion.div
-                            animate={{ rotate: 360 }}
-                            transition={{
-                              duration: 20,
-                              repeat: Infinity,
-                              ease: "linear",
-                            }}
-                            className="absolute inset-0 w-40 sm:w-52 md:w-64 h-40 sm:h-52 md:h-64 border-2 border-primary/30 rounded-full"
-                            style={{
-                              boxShadow: "0 0 60px rgba(var(--primary), 0.3)",
-                            }}
-                          />
+                          {/* Rotating ring - Hidden on mobile for performance */}
+                          {!isMobile && (
+                            <>
+                              <motion.div
+                                animate={{ rotate: 360 }}
+                                transition={{
+                                  duration: 20,
+                                  repeat: Infinity,
+                                  ease: "linear",
+                                }}
+                                className="absolute inset-0 w-40 sm:w-52 md:w-64 h-40 sm:h-52 md:h-64 border-2 border-primary/30 rounded-full"
+                                style={{
+                                  boxShadow: "0 0 60px rgba(var(--primary), 0.3)",
+                                }}
+                              />
 
-                          {/* Counter-rotating ring */}
-                          <motion.div
-                            animate={{ rotate: -360 }}
-                            transition={{
-                              duration: 15,
-                              repeat: Infinity,
-                              ease: "linear",
-                            }}
-                            className="absolute inset-0 w-40 sm:w-52 md:w-64 h-40 sm:h-52 md:h-64 border border-secondary/20 rounded-full"
-                            style={{ margin: "20px" }}
-                          />
+                              {/* Counter-rotating ring */}
+                              <motion.div
+                                animate={{ rotate: -360 }}
+                                transition={{
+                                  duration: 15,
+                                  repeat: Infinity,
+                                  ease: "linear",
+                                }}
+                                className="absolute inset-0 w-40 sm:w-52 md:w-64 h-40 sm:h-52 md:h-64 border border-secondary/20 rounded-full"
+                                style={{ margin: "20px" }}
+                              />
+                            </>
+                          )}
 
                           {/* Icon */}
                           <div className="relative z-20 w-40 sm:w-52 md:w-64 h-40 sm:h-52 md:h-64 flex items-center justify-center bg-background/80 backdrop-blur-xl rounded-full border border-primary/20 shadow-2xl">
@@ -114,18 +132,18 @@ export default function LuxuryServicesHome() {
 
                   {/* Right Side - Content */}
                   <motion.div
-                    initial={{ opacity: 0, x: 100 }}
+                    initial={{ opacity: 0, x: isMobile ? 0 : 100 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false, amount: 0.3 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
+                    viewport={{ once: isMobile ? true : false, amount: 0.3 }}
+                    transition={{ duration: isMobile ? 0.4 : 0.8, delay: isMobile ? 0 : 0.4 }}
                     className={index % 2 === 1 ? "lg:order-1" : ""}
                   >
                     {/* Title */}
                     <motion.h2
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: false, amount: 0.3 }}
-                      transition={{ duration: 0.6, delay: 0.6 }}
+                      viewport={{ once: isMobile ? true : false, amount: 0.3 }}
+                      transition={{ duration: isMobile ? 0.3 : 0.6, delay: isMobile ? 0 : 0.6 }}
                       className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent py-2"
                       style={{ lineHeight: '1.4' }}
                     >
@@ -134,10 +152,10 @@ export default function LuxuryServicesHome() {
 
                     {/* Description */}
                     <motion.p
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: false, amount: 0.3 }}
-                      transition={{ duration: 0.6, delay: 0.7 }}
+                      viewport={{ once: isMobile ? true : false, amount: 0.3 }}
+                      transition={{ duration: isMobile ? 0.3 : 0.6, delay: isMobile ? 0 : 0.7 }}
                       className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8"
                     >
                       {t(`${service.key}.description`)}
@@ -145,10 +163,10 @@ export default function LuxuryServicesHome() {
 
                     {/* CTA Button */}
                     <motion.div
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: false, amount: 0.3 }}
-                      transition={{ duration: 0.6, delay: 0.8 }}
+                      viewport={{ once: isMobile ? true : false, amount: 0.3 }}
+                      transition={{ duration: isMobile ? 0.3 : 0.6, delay: isMobile ? 0 : 0.8 }}
                     >
                       <Link href={`/services/${service.slug}`}>
                         <Button
@@ -162,13 +180,15 @@ export default function LuxuryServicesHome() {
                     </motion.div>
 
                     {/* Decorative line */}
-                    <motion.div
-                      initial={{ scaleX: 0 }}
-                      whileInView={{ scaleX: 1 }}
-                      viewport={{ once: false, amount: 0.3 }}
-                      transition={{ duration: 0.8, delay: 0.9 }}
-                      className="h-px w-full max-w-md mt-12 bg-gradient-to-r from-primary/50 via-primary to-transparent origin-left rtl:origin-right"
-                    />
+                    {!isMobile && (
+                      <motion.div
+                        initial={{ scaleX: 0 }}
+                        whileInView={{ scaleX: 1 }}
+                        viewport={{ once: false, amount: 0.3 }}
+                        transition={{ duration: 0.8, delay: 0.9 }}
+                        className="h-px w-full max-w-md mt-12 bg-gradient-to-r from-primary/50 via-primary to-transparent origin-left rtl:origin-right"
+                      />
+                    )}
                   </motion.div>
                 </motion.div>
               </div>

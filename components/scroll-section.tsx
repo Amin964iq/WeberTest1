@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 interface ScrollSectionProps {
@@ -19,6 +19,18 @@ export default function ScrollSection({
   disableAnimation = false,
 }: ScrollSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect if device is mobile and disable animations for better performance
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -31,8 +43,8 @@ export default function ScrollSection({
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.5, 0.7, 1], [0, 1, 1, 1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.85, 1, 0.85]);
 
-  // If animations are disabled, render simple static section
-  if (disableAnimation) {
+  // If animations are disabled or on mobile, render simple static section
+  if (disableAnimation || isMobile) {
     return (
       <div
         ref={sectionRef}

@@ -18,7 +18,7 @@ export default function FloatingContact({ }: FloatingContactProps) {
     {
       icon: <Phone className="h-5 w-5" />,
       label: "WhatsApp",
-      href: "https://wa.me/1234567890?text=Hello%20Weber!%20I%27m%20interested%20in%20your%20services.",
+      href: "https://wa.me/9647741424344?text=Hello%20Weber!%20I%27m%20interested%20in%20your%20services.",
       color: "bg-green-500 hover:bg-green-600",
     },
     {
@@ -39,7 +39,7 @@ export default function FloatingContact({ }: FloatingContactProps) {
         </svg>
       ),
       label: t("instagram"),
-      href: "https://instagram.com/weber",
+      href: "https://instagram.com/weber.iq",
       color: "bg-pink-500 hover:bg-pink-600",
     },
   ];

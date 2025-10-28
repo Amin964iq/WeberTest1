@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
-import { Mail, Phone, Instagram, Facebook, Twitter, Linkedin, Sparkles, Code2, Rocket, Zap } from "lucide-react";
+import { Mail, Phone, Instagram, Facebook, Twitter, Linkedin, MessageCircle, Sparkles, Code2, Rocket, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { useParams } from "next/navigation";
 
@@ -131,7 +131,7 @@ export default function Footer({ }: FooterProps) {
             </p>
             <div className="flex space-x-3 rtl:space-x-reverse">
               <motion.a
-                href="https://instagram.com"
+                href="https://instagram.com/weber.iq"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.15, rotate: 5, y: -2 }}
@@ -283,8 +283,8 @@ export default function Footer({ }: FooterProps) {
             <ul className="space-y-4">
               {[
                 { icon: Mail, href: "mailto:info@weber.com", label: "info@weber.com" },
-                { icon: Phone, href: "tel:+1234567890", label: "+1 (234) 567-890" },
-                { icon: Instagram, href: "https://instagram.com/weber", label: "@weber", external: true },
+                { icon: MessageCircle, href: "https://wa.me/9647741424344", label: "+964 774 142 4344", external: true },
+                { icon: Instagram, href: "https://instagram.com/weber.iq", label: "@weber.iq", external: true },
               ].map((item, index) => (
                 <motion.li
                   key={index}

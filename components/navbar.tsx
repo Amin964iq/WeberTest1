@@ -57,7 +57,7 @@ export default function Navbar({ locale }: NavbarProps) {
           href: "/about#vision",
         },
         {
-          label: locale === "ar" ? "مشاديعنا" : "Our Portfolio",
+          label: locale === "ar" ? "مشاريعنا" : "Our Portfolio",
           ariaLabel: "Our Portfolio",
           href: "/portfolio",
         },
@@ -77,7 +77,7 @@ export default function Navbar({ locale }: NavbarProps) {
         {
           label: "WhatsApp",
           ariaLabel: "WhatsApp",
-          href: "https://wa.me/1234567890",
+          href: "https://wa.me/9647741424344",
         },
         {
           label: locale === "ar" ? "نموذج الاستفسار" : "Inquiry Form",

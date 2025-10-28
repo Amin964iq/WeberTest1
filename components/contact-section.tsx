@@ -75,12 +75,12 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-2xl mx-auto mb-10"
+          className="text-center max-w-2xl mx-auto mb-6 sm:mb-8 md:mb-10"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-4 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent pb-2">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-3 sm:mb-4 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent pb-2">
             {t("title")}
           </h2>
-          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed px-2 sm:px-0">
             {t("subtitle")}
           </p>
         </motion.div>
@@ -91,21 +91,21 @@ export default function ContactSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 max-w-5xl mx-auto"
         >
           {contactMethods.map((method) => (
             <motion.div key={method.title} variants={item}>
               <a href={method.href} target="_blank" rel="noopener noreferrer">
                 <Card className="group h-full hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer overflow-hidden">
-                  <CardContent className="p-4 text-center space-y-3">
+                  <CardContent className="p-3 sm:p-4 text-center space-y-2 sm:space-y-3">
                     <div className={`w-12 h-12 mx-auto rounded-full bg-gradient-to-br ${method.color} flex items-center justify-center text-white group-hover:scale-110 transition-transform`}>
                       {method.icon}
                     </div>
-                    <h3 className="text-base font-semibold">{method.title}</h3>
-                    <p className="text-sm text-muted-foreground">{method.description}</p>
+                    <h3 className="text-sm sm:text-base font-semibold">{method.title}</h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground">{method.description}</p>
                     <Button
                       variant="ghost"
-                      className="w-full text-white hover:bg-white/10"
+                      className="w-full text-white hover:bg-white/10 min-h-[40px]"
                     >
                       {tCommon("getInTouch")}
                     </Button>
@@ -122,18 +122,18 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center mt-10"
+          className="text-center mt-8 sm:mt-10 md:mt-12"
         >
           <Card className="max-w-2xl mx-auto bg-gradient-to-br from-primary/10 via-secondary/5 to-background border-primary/20">
-            <CardContent className="py-10 px-8 md:py-12 md:px-12">
-              <h3 className="text-xl md:text-2xl font-bold mb-4">
+            <CardContent className="py-6 px-4 sm:py-8 sm:px-8 md:py-12 md:px-12">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4">
                 {tCommon("readyToTransform")}
               </h3>
-              <p className="text-sm md:text-base text-muted-foreground mb-6 max-w-xl mx-auto">
+              <p className="text-xs sm:text-sm md:text-base text-muted-foreground mb-4 sm:mb-6 max-w-xl mx-auto px-2 sm:px-0">
                 {tCommon("discussProject")}
               </p>
               <Button
-                className="bg-white dark:bg-white text-black hover:bg-gray-100 dark:hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all"
+                className="bg-white dark:bg-white text-black hover:bg-gray-100 dark:hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all min-h-[44px] px-4 sm:px-6"
                 asChild
               >
                 <a href="mailto:info@weber.com?subject=Project%20Inquiry">

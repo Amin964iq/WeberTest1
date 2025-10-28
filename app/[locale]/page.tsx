@@ -22,7 +22,7 @@ export default async function HomePage({
       <WhatWeOfferSection locale={locale} />
 
       {/* Spacer */}
-      <div className="h-32" />
+      <div className="h-16 sm:h-20 md:h-32" />
 
       {/* Luxury Services Sections with Scroll Animations */}
       <LuxuryServicesHome />

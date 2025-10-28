@@ -24,39 +24,57 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: "Project 1",
-    titleAr: "المشروع 1",
+    title: "Business River",
+    titleAr: "بيزنس ريفر",
     category: "Web Solutions",
     categoryAr: "حلول ويب",
-    image: "/images/proj1.png",
+    image: "https://ik.imagekit.io/wq0dxvevx/business-river.png?updatedAt=1760266385644",
     color: "from-blue-500/20 to-purple-500/20",
   },
   {
     id: 2,
-    title: "Project 2",
-    titleAr: "المشروع 2",
+    title: "Laurenza",
+    titleAr: "لورينزا",
     category: "Web Solutions",
     categoryAr: "حلول ويب",
-    image: "/images/proj2.png",
+    image: "https://ik.imagekit.io/wq0dxvevx/laurenza1.png?updatedAt=1760265995796",
     color: "from-purple-500/20 to-indigo-500/20",
   },
   {
     id: 3,
-    title: "Project 3",
-    titleAr: "المشروع 3",
+    title: "Demiland",
+    titleAr: "ديميلاند",
     category: "Web Solutions",
     categoryAr: "حلول ويب",
-    image: "/images/proj3.png",
+    image: "https://ik.imagekit.io/wq0dxvevx/demiland1.png?updatedAt=1760265995753",
     color: "from-indigo-500/20 to-pink-500/20",
   },
   {
     id: 4,
-    title: "Project 4",
-    titleAr: "المشروع 4",
+    title: "Al-Saqi",
+    titleAr: "الساقي",
     category: "Web Solutions",
     categoryAr: "حلول ويب",
-    image: "/images/proj4.png",
+    image: "https://ik.imagekit.io/wq0dxvevx/alsaqi.png?updatedAt=1760265464972",
     color: "from-pink-500/20 to-blue-500/20",
+  },
+  {
+    id: 5,
+    title: "Doodle",
+    titleAr: "دودل",
+    category: "Web Solutions",
+    categoryAr: "حلول ويب",
+    image: "https://ik.imagekit.io/wq0dxvevx/doodle.png?updatedAt=1760265464948",
+    color: "from-blue-500/20 to-cyan-500/20",
+  },
+  {
+    id: 6,
+    title: "Fay Flowers",
+    titleAr: "فاي فلاورز",
+    category: "Web Solutions",
+    categoryAr: "حلول ويب",
+    image: "https://ik.imagekit.io/wq0dxvevx/fyayflowers.png?updatedAt=1760265464900",
+    color: "from-cyan-500/20 to-purple-500/20",
   },
 ];
 
@@ -134,7 +152,7 @@ export default function ModernHero({ locale }: ModernHeroProps) {
   }, [controls, isRTL]);
 
   return (
-    <div className="relative min-h-screen flex items-center overflow-hidden pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20">
+    <div className="relative min-h-screen flex items-center overflow-hidden pt-32 sm:pt-40 md:pt-48 lg:pt-56 pb-8 sm:pb-12 md:pb-16 lg:pb-20">
       {/* Code Snippets - Low Density (3-4 boxes) */}
       <FloatingElements density="low" showCodeSnippets={true} />
 
@@ -154,7 +172,7 @@ export default function ModernHero({ locale }: ModernHeroProps) {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute top-20 left-20 w-72 h-72 bg-primary/30 rounded-full blur-3xl"
+          className="absolute top-10 sm:top-20 left-10 sm:left-20 w-40 sm:w-72 h-40 sm:h-72 bg-primary/30 rounded-full blur-3xl"
         />
         <motion.div
           animate={{
@@ -166,13 +184,13 @@ export default function ModernHero({ locale }: ModernHeroProps) {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute bottom-20 right-20 w-96 h-96 bg-secondary/20 rounded-full blur-3xl"
+          className="absolute bottom-10 sm:bottom-20 right-10 sm:right-20 w-48 sm:w-96 h-48 sm:h-96 bg-secondary/20 rounded-full blur-3xl"
         />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Hero Content */}
-        <div className="max-w-4xl mx-auto text-center mb-20">
+        <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-16 md:mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -189,8 +207,8 @@ export default function ModernHero({ locale }: ModernHeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-relaxed mb-6 sm:mb-8 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent pb-2 px-4 sm:px-0"
-            style={{ lineHeight: '1.3' }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight sm:leading-relaxed mb-4 sm:mb-6 md:mb-8 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent pb-2 px-2 sm:px-4 md:px-0"
+            style={{ lineHeight: '1.25' }}
           >
             {t("title")}
           </motion.h1>
@@ -199,7 +217,7 @@ export default function ModernHero({ locale }: ModernHeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-6 sm:mb-8 px-4 sm:px-0"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto mb-4 sm:mb-6 md:mb-8 px-4 sm:px-0"
           >
             {t("subtitle")}
           </motion.p>
@@ -208,11 +226,11 @@ export default function ModernHero({ locale }: ModernHeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0"
+            className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center px-4 sm:px-0"
           >
             <Link href="/contact" className="w-full sm:w-auto">
               <Button
-                className="w-full sm:w-auto bg-white dark:bg-white text-black hover:bg-gray-100 dark:hover:bg-gray-100 group text-xs sm:text-sm px-4 sm:px-5 py-2 h-auto shadow-lg hover:shadow-xl transition-all"
+                className="w-full sm:w-auto bg-white dark:bg-white text-black hover:bg-gray-100 dark:hover:bg-gray-100 group text-xs sm:text-sm px-4 sm:px-6 py-3 sm:py-2.5 h-auto min-h-[44px] sm:min-h-[40px] shadow-lg hover:shadow-xl transition-all"
               >
                 {t("cta1")}
                 <ArrowRight className="ml-2 rtl:mr-2 rtl:ml-0 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform rtl:rotate-180 rtl:group-hover:-translate-x-1" />
@@ -221,7 +239,7 @@ export default function ModernHero({ locale }: ModernHeroProps) {
             <Link href="/services" className="w-full sm:w-auto">
               <Button
                 variant="outline"
-                className="w-full sm:w-auto text-white dark:text-white border-white dark:border-white hover:bg-white/10 dark:hover:bg-white/10 text-xs sm:text-sm px-4 sm:px-5 py-2 border-2 h-auto"
+                className="w-full sm:w-auto text-white dark:text-white border-white dark:border-white hover:bg-white/10 dark:hover:bg-white/10 text-xs sm:text-sm px-4 sm:px-6 py-3 sm:py-2.5 border-2 h-auto min-h-[44px] sm:min-h-[40px]"
               >
                 {t("exploreServices")}
               </Button>
@@ -233,7 +251,7 @@ export default function ModernHero({ locale }: ModernHeroProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid grid-cols-3 gap-4 sm:gap-8 md:gap-12 max-w-3xl mx-auto mt-12 sm:mt-16 md:mt-20 px-4 sm:px-0"
+            className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8 md:gap-12 max-w-3xl mx-auto mt-12 sm:mt-16 md:mt-20 px-4 sm:px-0"
           >
             {[
               { label: locale === "ar" ? "الكفاءة" : "EFFICIENCY" },
@@ -251,10 +269,10 @@ export default function ModernHero({ locale }: ModernHeroProps) {
         </div>
 
         {/* Infinite Scrolling Projects Showcase */}
-        <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mt-8">
-          <div className="overflow-hidden py-16">
+        <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mt-12">
+          <div className="overflow-hidden py-8">
             <motion.div
-              className="flex gap-8 items-center"
+              className="flex gap-6 sm:gap-8 items-center"
               animate={controls}
               style={{ width: "fit-content" }}
             >
@@ -281,7 +299,7 @@ export default function ModernHero({ locale }: ModernHeroProps) {
                       }}
                     >
                       <Card
-                        className={`w-[280px] sm:w-[320px] md:w-[380px] h-[240px] sm:h-[270px] md:h-[300px] overflow-hidden bg-gradient-to-br ${project.color} backdrop-blur-sm border-0 transition-all cursor-pointer group relative shadow-2xl hover:shadow-primary/30`}
+                        className={`w-[300px] sm:w-[350px] md:w-[400px] h-[260px] sm:h-[300px] md:h-[340px] overflow-hidden bg-gradient-to-br ${project.color} backdrop-blur-sm border-0 transition-all cursor-pointer group relative shadow-2xl hover:shadow-primary/30`}
                         style={{
                           transform: `perspective(1000px) rotateY(${isRTL ? rotation * 2 : -rotation * 2}deg)`,
                         }}
@@ -321,19 +339,19 @@ export default function ModernHero({ locale }: ModernHeroProps) {
             </motion.div>
           </div>
 
-          {/* Ultra-Smooth Gradient Fades - No Visible Edges */}
+          {/* Subtle Gradient Fades - Hidden on Mobile */}
           <div
-            className="absolute inset-y-0 left-0 pointer-events-none z-20"
+            className="hidden md:block absolute inset-y-0 left-0 pointer-events-none z-20"
             style={{
-              width: '50%',
-              background: 'linear-gradient(to right, hsl(var(--background)) 0%, hsl(var(--background)) 5%, hsl(var(--background)) 10%, hsl(var(--background)) 15%, hsl(var(--background) / 0.98) 20%, hsl(var(--background) / 0.95) 25%, hsl(var(--background) / 0.9) 30%, hsl(var(--background) / 0.85) 35%, hsl(var(--background) / 0.75) 40%, hsl(var(--background) / 0.65) 45%, hsl(var(--background) / 0.55) 50%, hsl(var(--background) / 0.45) 55%, hsl(var(--background) / 0.35) 60%, hsl(var(--background) / 0.25) 65%, hsl(var(--background) / 0.18) 70%, hsl(var(--background) / 0.12) 75%, hsl(var(--background) / 0.08) 80%, hsl(var(--background) / 0.05) 85%, hsl(var(--background) / 0.02) 90%, hsl(var(--background) / 0.01) 95%, transparent 100%)'
+              width: '20%',
+              background: 'linear-gradient(to right, hsl(var(--background)) 0%, hsl(var(--background) / 0.9) 50%, transparent 100%)'
             }}
           />
           <div
-            className="absolute inset-y-0 right-0 pointer-events-none z-20"
+            className="hidden md:block absolute inset-y-0 right-0 pointer-events-none z-20"
             style={{
-              width: '50%',
-              background: 'linear-gradient(to left, hsl(var(--background)) 0%, hsl(var(--background)) 5%, hsl(var(--background)) 10%, hsl(var(--background)) 15%, hsl(var(--background) / 0.98) 20%, hsl(var(--background) / 0.95) 25%, hsl(var(--background) / 0.9) 30%, hsl(var(--background) / 0.85) 35%, hsl(var(--background) / 0.75) 40%, hsl(var(--background) / 0.65) 45%, hsl(var(--background) / 0.55) 50%, hsl(var(--background) / 0.45) 55%, hsl(var(--background) / 0.35) 60%, hsl(var(--background) / 0.25) 65%, hsl(var(--background) / 0.18) 70%, hsl(var(--background) / 0.12) 75%, hsl(var(--background) / 0.08) 80%, hsl(var(--background) / 0.05) 85%, hsl(var(--background) / 0.02) 90%, hsl(var(--background) / 0.01) 95%, transparent 100%)'
+              width: '20%',
+              background: 'linear-gradient(to left, hsl(var(--background)) 0%, hsl(var(--background) / 0.9) 50%, transparent 100%)'
             }}
           />
         </div>

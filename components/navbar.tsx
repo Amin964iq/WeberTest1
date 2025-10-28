@@ -85,6 +85,11 @@ export default function Navbar({ locale }: NavbarProps) {
 
   const switchLanguage = () => {
     const newLocale = locale === "en" ? "ar" : "en";
+    // Save the new language preference to localStorage
+    console.log("=== Language Switch ===");
+    console.log("Switching from", locale, "to", newLocale);
+    localStorage.setItem("preferredLanguage", newLocale);
+    console.log("Saved to localStorage:", localStorage.getItem("preferredLanguage"));
     router.replace(pathname, { locale: newLocale });
   };
 

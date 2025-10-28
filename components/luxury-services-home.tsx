@@ -54,7 +54,7 @@ export default function LuxuryServicesHome() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: false, amount: 0.3 }}
                   transition={{ duration: 1 }}
-                  className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center"
+                  className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-20 items-center"
                 >
                   {/* Left Side - Icon & Visual */}
                   <motion.div
@@ -74,7 +74,7 @@ export default function LuxuryServicesHome() {
                       <motion.div
                         whileHover={{ scale: 1.05, rotate: 5 }}
                         transition={{ type: "spring", stiffness: 300 }}
-                        className="relative z-10 flex items-center justify-center h-[400px]"
+                        className="relative z-10 flex items-center justify-center h-[250px] sm:h-[320px] md:h-[350px] lg:h-[400px]"
                       >
                         <div className="relative">
                           {/* Rotating ring */}
@@ -85,7 +85,7 @@ export default function LuxuryServicesHome() {
                               repeat: Infinity,
                               ease: "linear",
                             }}
-                            className="absolute inset-0 w-64 h-64 border-2 border-primary/30 rounded-full"
+                            className="absolute inset-0 w-40 sm:w-52 md:w-64 h-40 sm:h-52 md:h-64 border-2 border-primary/30 rounded-full"
                             style={{
                               boxShadow: "0 0 60px rgba(var(--primary), 0.3)",
                             }}
@@ -99,13 +99,13 @@ export default function LuxuryServicesHome() {
                               repeat: Infinity,
                               ease: "linear",
                             }}
-                            className="absolute inset-0 w-64 h-64 border border-secondary/20 rounded-full"
+                            className="absolute inset-0 w-40 sm:w-52 md:w-64 h-40 sm:h-52 md:h-64 border border-secondary/20 rounded-full"
                             style={{ margin: "20px" }}
                           />
 
                           {/* Icon */}
-                          <div className="relative z-20 w-64 h-64 flex items-center justify-center bg-background/80 backdrop-blur-xl rounded-full border border-primary/20 shadow-2xl">
-                            <Icon className="w-32 h-32 text-primary" strokeWidth={1.5} />
+                          <div className="relative z-20 w-40 sm:w-52 md:w-64 h-40 sm:h-52 md:h-64 flex items-center justify-center bg-background/80 backdrop-blur-xl rounded-full border border-primary/20 shadow-2xl">
+                            <Icon className="w-20 sm:w-24 md:w-28 lg:w-32 h-20 sm:h-24 md:h-28 lg:h-32 text-primary" strokeWidth={1.5} />
                           </div>
                         </div>
                       </motion.div>

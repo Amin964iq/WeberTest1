@@ -37,13 +37,19 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
   const serviceImages = useMemo(() => {
     switch (service.id) {
       case "web-development":
-        return ["/images/proj1.png", "/images/proj2.png", "/images/proj3.png", "/images/proj4.png"];
+        return [
+          "https://ik.imagekit.io/wq0dxvevx/business-river.png?updatedAt=1760266385644",
+          "https://ik.imagekit.io/wq0dxvevx/laurenza1.png?updatedAt=1760265995796"
+        ];
       case "custom-systems":
         return ["/sys.png", "/sys.png"];
       case "cybersecurity-solutions":
         return ["/images/services/cybersecurity-hero.jpg", "/images/services/cybersecurity.jpg"];
       default:
-        return ["/images/proj1.png", "/images/proj2.png"];
+        return [
+          "https://ik.imagekit.io/wq0dxvevx/business-river.png?updatedAt=1760266385644",
+          "https://ik.imagekit.io/wq0dxvevx/laurenza1.png?updatedAt=1760265995796"
+        ];
     }
   }, [service.id]);
 
@@ -103,12 +109,12 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 pb-6 leading-tight">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 pb-4 sm:pb-6 leading-tight">
                   <span className="bg-gradient-to-r from-primary via-primary/80 to-secondary bg-clip-text text-transparent">
                     {t(`${service.id}.title`)}
                   </span>
                 </h1>
-                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
                   {t(`${service.id}.description`)}
                 </p>
               </motion.div>
@@ -122,227 +128,90 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
               />
             </motion.div>
 
-            {/* Grid Images for Web Development - Luxurious Hover Effect */}
-            {service.id === "web-development" ? (
-              <motion.div
-                className="relative w-full h-[320px] sm:h-[380px] md:h-[450px] order-1 lg:order-2 perspective"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
-              >
-                {serviceImages.map((image, index) => {
-                  const isHovered = hoveredImage === index;
-                  const otherIsHovered = hoveredImage !== null && hoveredImage !== index;
+            {/* Images Section - Clean 2-Image Layout */}
+            <motion.div
+              className="relative h-[200px] sm:h-[260px] md:h-[350px] lg:h-[420px] order-1 lg:order-2 mt-8 sm:mt-10 md:mt-0"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
+            >
+              {/* Background glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 blur-3xl opacity-50" />
 
-                  // Calculate position for stacked effect
-                  const baseRotation = (index - 1.5) * 8; // -12, -4, 4, 12 degrees
-                  const baseOffset = index * 15; // Progressive offset
-                  const baseScale = 1 - (index * 0.05); // Slight scale decrease for depth
+              {serviceImages.map((image, index) => {
+                const isFirst = index === 0;
+                const isHovered = hoveredImage === index;
+                const otherIsHovered = hoveredImage !== null && hoveredImage !== index;
 
-                  return (
-                    <motion.div
-                      key={index}
-                      className="absolute inset-0 cursor-pointer group"
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                      }}
-                      initial={{
-                        opacity: 0,
-                        scale: 0.85,
-                      }}
-                      animate={{
-                        opacity: otherIsHovered ? 0.2 : 1,
-                        scale: isHovered ? 1.12 : baseScale,
-                        rotateZ: isHovered ? 0 : baseRotation,
-                        x: isHovered ? 0 : (index % 2 === 0 ? -baseOffset : baseOffset),
-                        y: isHovered ? 0 : baseOffset,
-                        zIndex: isHovered ? 50 : (serviceImages.length - index),
-                        filter: otherIsHovered
-                          ? "blur(12px) brightness(0.6) saturate(0.7)"
-                          : "blur(0px) brightness(1) saturate(1)",
-                      }}
-                      transition={{
-                        opacity: { duration: 0.4, ease: "easeInOut" },
-                        scale: { duration: 0.6, type: "spring", stiffness: 80, damping: 20 },
-                        rotateZ: { duration: 0.6, type: "spring", stiffness: 80, damping: 20 },
-                        x: { duration: 0.6, type: "spring", stiffness: 80, damping: 20 },
-                        y: { duration: 0.6, type: "spring", stiffness: 80, damping: 20 },
-                        filter: { duration: 0.4, ease: "easeInOut" },
-                        zIndex: { duration: 0 },
-                      }}
-                      onMouseEnter={() => handleImageHover(index)}
-                      onMouseLeave={handleImageLeave}
-                    >
-                      <div className="relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-border/50 group">
-                        <Image
-                          src={image}
-                          alt={`${service.id} project ${index + 1}`}
-                          fill
-                          className="object-cover transition-transform duration-700"
-                          style={{
-                            transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-                          }}
-                          sizes="(max-width: 768px) 80vw, 50vw"
-                          priority={index < 2}
-                          quality={85}
-                          placeholder="blur"
-                          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
-                          loading={index < 2 ? "eager" : "lazy"}
-                        />
+                return (
+                  <motion.div
+                    key={index}
+                    className="absolute cursor-pointer"
+                    style={{
+                      // Better spacing - both images fully visible
+                      left: isFirst ? '0' : '15%',
+                      top: isFirst ? '0' : '12%',
+                      right: isFirst ? '15%' : '0',
+                      bottom: isFirst ? '12%' : '0',
+                      transformOrigin: "center center",
+                    }}
+                    initial={{
+                      opacity: 0,
+                      scale: 0.85,
+                      rotate: isFirst ? -2 : 2,
+                    }}
+                    animate={{
+                      opacity: otherIsHovered ? 0.5 : 1,
+                      scale: isHovered ? 1.05 : 1,
+                      rotate: isHovered ? 0 : (isFirst ? -2 : 2),
+                      zIndex: isHovered ? 30 : (isFirst ? 20 : 10),
+                      filter: otherIsHovered ? "blur(5px) brightness(0.5)" : "blur(0px) brightness(1)",
+                    }}
+                    transition={{
+                      opacity: { duration: 0.3 },
+                      scale: { duration: 0.5, type: "spring", stiffness: 100, damping: 15 },
+                      rotate: { duration: 0.5 },
+                      filter: { duration: 0.3 },
+                      zIndex: { duration: 0 }
+                    }}
+                    onMouseEnter={() => handleImageHover(index)}
+                    onMouseLeave={handleImageLeave}
+                  >
+                    <div className="relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-border/50 group">
+                      <Image
+                        src={image}
+                        alt={`${service.id} example ${index + 1}`}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        priority={index === 0}
+                        quality={85}
+                        placeholder="blur"
+                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
+                        loading={index === 0 ? "eager" : "lazy"}
+                      />
 
-                        {/* Base gradient overlay - always present */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+                      {/* Gradient overlays */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-background/20 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                        {/* Enhanced gradient overlays on hover */}
-                        <motion.div
-                          className="absolute inset-0 bg-gradient-to-br from-primary/15 via-transparent to-secondary/15"
-                          animate={{
-                            opacity: isHovered ? 1 : 0,
-                          }}
-                          transition={{ duration: 0.4 }}
-                        />
+                      {/* Shine effect on hover */}
+                      <motion.div
+                        className="absolute inset-0 opacity-0 group-hover:opacity-100"
+                        initial={{ x: "-100%" }}
+                        whileHover={{ x: "100%" }}
+                        transition={{ duration: 0.8, ease: "easeInOut" }}
+                      >
+                        <div className="h-full w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+                      </motion.div>
 
-                        {/* Luxury shine effect on hover - wider and more elegant */}
-                        {isHovered && (
-                          <motion.div
-                            className="absolute inset-0 opacity-100"
-                            initial={{ x: "-100%" }}
-                            animate={{ x: "100%" }}
-                            transition={{ duration: 1, ease: "easeInOut" }}
-                          >
-                            <div className="h-full w-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12" />
-                          </motion.div>
-                        )}
-
-                        {/* Corner accent lights on hover */}
-                        {isHovered && (
-                          <>
-                            <motion.div
-                              className="absolute top-0 right-0 w-32 h-32 bg-gradient-radial from-primary/20 to-transparent rounded-full blur-2xl"
-                              initial={{ opacity: 0, scale: 0 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              transition={{ duration: 0.4 }}
-                            />
-                            <motion.div
-                              className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-radial from-secondary/20 to-transparent rounded-full blur-3xl"
-                              initial={{ opacity: 0, scale: 0 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              transition={{ duration: 0.4, delay: 0.1 }}
-                            />
-                          </>
-                        )}
-
-                        {/* Elevated border glow on hover */}
-                        <motion.div
-                          className="absolute inset-0 rounded-2xl md:rounded-3xl pointer-events-none"
-                          animate={{
-                            boxShadow: isHovered
-                              ? '0 20px 60px rgba(var(--primary),0.5), inset 0 0 30px rgba(255,255,255,0.15), 0 0 60px rgba(var(--secondary),0.3)'
-                              : '0 0 0px rgba(var(--primary),0)',
-                          }}
-                          transition={{ duration: 0.4, ease: "easeInOut" }}
-                        />
-
-                        {/* Frame border effect on hover */}
-                        {isHovered && (
-                          <motion.div
-                            className="absolute inset-0 rounded-2xl md:rounded-3xl border-2 border-primary/30 pointer-events-none"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.3 }}
-                          />
-                        )}
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </motion.div>
-            ) : (
-              <motion.div
-                className="relative h-[400px] md:h-[500px] lg:h-[600px] order-1 lg:order-2"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
-              >
-                {/* Background glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 blur-3xl opacity-50" />
-
-                {serviceImages.map((image, index) => {
-                  const isFirst = index === 0;
-                  const isHovered = hoveredImage === index;
-                  const otherIsHovered = hoveredImage !== null && hoveredImage !== index;
-
-                  return (
-                    <motion.div
-                      key={index}
-                      className="absolute cursor-pointer"
-                      style={{
-                        // Better spacing - both images fully visible
-                        left: isFirst ? '0' : '15%',
-                        top: isFirst ? '0' : '12%',
-                        right: isFirst ? '15%' : '0',
-                        bottom: isFirst ? '12%' : '0',
-                        transformOrigin: "center center",
-                      }}
-                      initial={{
-                        opacity: 0,
-                        scale: 0.85,
-                        rotate: isFirst ? -2 : 2,
-                      }}
-                      animate={{
-                        opacity: otherIsHovered ? 0.5 : 1,
-                        scale: isHovered ? 1.05 : 1,
-                        rotate: isHovered ? 0 : (isFirst ? -2 : 2),
-                        zIndex: isHovered ? 30 : (isFirst ? 20 : 10),
-                        filter: otherIsHovered ? "blur(5px) brightness(0.5)" : "blur(0px) brightness(1)",
-                      }}
-                      transition={{
-                        opacity: { duration: 0.3 },
-                        scale: { duration: 0.5, type: "spring", stiffness: 100, damping: 15 },
-                        rotate: { duration: 0.5 },
-                        filter: { duration: 0.3 },
-                        zIndex: { duration: 0 }
-                      }}
-                      onMouseEnter={() => handleImageHover(index)}
-                      onMouseLeave={handleImageLeave}
-                    >
-                      <div className="relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-border/50 group">
-                        <Image
-                          src={image}
-                          alt={`${service.id} example ${index + 1}`}
-                          fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-105"
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                          priority={index === 0}
-                          quality={85}
-                          placeholder="blur"
-                          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
-                          loading={index === 0 ? "eager" : "lazy"}
-                        />
-
-                        {/* Gradient overlays */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-background/20 to-transparent" />
-                        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                        {/* Shine effect on hover */}
-                        <motion.div
-                          className="absolute inset-0 opacity-0 group-hover:opacity-100"
-                          initial={{ x: "-100%" }}
-                          whileHover={{ x: "100%" }}
-                          transition={{ duration: 0.8, ease: "easeInOut" }}
-                        >
-                          <div className="h-full w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
-                        </motion.div>
-
-                        {/* Border glow on hover */}
-                        <div className={`absolute inset-0 rounded-2xl md:rounded-3xl transition-all duration-500 ${isHovered ? 'ring-2 ring-primary/50 shadow-[0_0_30px_rgba(var(--primary),0.3)]' : ''}`} />
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </motion.div>
-            )}
+                      {/* Border glow on hover */}
+                      <div className={`absolute inset-0 rounded-2xl md:rounded-3xl transition-all duration-500 ${isHovered ? 'ring-2 ring-primary/50 shadow-[0_0_30px_rgba(var(--primary),0.3)]' : ''}`} />
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
           </div>
         </div>
       </motion.section>

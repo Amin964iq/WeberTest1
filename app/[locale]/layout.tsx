@@ -11,6 +11,7 @@ import PageTransition from '@/components/page-transition';
 import SpaceBackground from '@/components/space-background';
 import FloatingElements from '@/components/floating-elements';
 import GlobalClickSpark from '@/components/GlobalClickSpark';
+import LanguageProvider from '@/components/language-provider';
 import { IBM_Plex_Sans_Arabic } from 'next/font/google';
 
 const ibmPlexArabic = IBM_Plex_Sans_Arabic({
@@ -119,14 +120,16 @@ export default async function LocaleLayout({
             <FloatingElements density="low" showCodeSnippets={false} />
 
             <NextIntlClientProvider messages={messages}>
-              <div className="relative z-10">
-                <Navbar locale={locale} />
-                <PageTransition>
-                  <main className="min-h-screen">{children}</main>
-                </PageTransition>
-                <Footer locale={locale} />
-                <FloatingContact locale={locale} />
-              </div>
+              <LanguageProvider>
+                <div className="relative z-10">
+                  <Navbar locale={locale} />
+                  <PageTransition>
+                    <main className="min-h-screen">{children}</main>
+                  </PageTransition>
+                  <Footer locale={locale} />
+                  <FloatingContact locale={locale} />
+                </div>
+              </LanguageProvider>
             </NextIntlClientProvider>
           </ThemeProvider>
         </GlobalClickSpark>

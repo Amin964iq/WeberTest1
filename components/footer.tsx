@@ -192,6 +192,7 @@ export default function Footer({ }: FooterProps) {
               {[
                 { href: "/", label: tNav("home") },
                 { href: "/services", label: tNav("services") },
+                { href: "/portfolio", label: isArabic ? "محفظتنا" : "Our Portfolio" },
                 { href: "/about", label: tNav("about") },
                 { href: "/contact", label: tNav("contact") },
               ].map((link, index) => (

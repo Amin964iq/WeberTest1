@@ -56,6 +56,11 @@ export default function Navbar({ locale }: NavbarProps) {
           ariaLabel: "Our Vision",
           href: "/about#vision",
         },
+        {
+          label: locale === "ar" ? "مشاديعنا" : "Our Portfolio",
+          ariaLabel: "Our Portfolio",
+          href: "/portfolio",
+        },
       ],
     },
     {

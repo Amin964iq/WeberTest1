@@ -64,10 +64,10 @@ export default function ContactPage() {
                     <h3 className="text-lg font-semibold mb-2">
                       {t("availability.title")}
                     </h3>
-                    <p className="text-muted-foreground text-sm mb-1 break-words">
+                    <p className="text-foreground/80 text-sm mb-1 break-words">
                       {t("availability.description")}
                     </p>
-                    <p className="text-muted-foreground text-sm break-words">
+                    <p className="text-foreground/80 text-sm break-words">
                       {t("availability.weekend")}
                     </p>
                   </div>

@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/routing";
 import { ArrowRight, Sparkles } from "lucide-react";
 import FloatingElements from "@/components/floating-elements";
-import { BorderBeam } from "@/components/ui/border-beam";
 
 export default function ServicesPage() {
   const t = useTranslations("servicesPage");
@@ -145,7 +144,6 @@ export default function ServicesPage() {
                   </Link>
                 </motion.div>
               </CardContent>
-              <BorderBeam duration={12} size={150} />
             </Card>
           </motion.div>
         </div>

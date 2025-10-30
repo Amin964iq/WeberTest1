@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
-import { Mail, Instagram, Facebook, Twitter, Linkedin, MessageCircle, Sparkles, Code2, Rocket, Zap } from "lucide-react";
+import { Mail, Phone, Instagram, Facebook, Twitter, Linkedin, MessageCircle, Sparkles, Code2, Rocket, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { useParams } from "next/navigation";
 
@@ -307,7 +307,7 @@ export default function Footer({ }: FooterProps) {
                       <item.icon className="h-4 w-4 text-primary" />
                     </motion.div>
                     <span className="group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform">
-                      <bdo dir="ltr">{item.label}</bdo>
+                      {item.label}
                     </span>
                   </a>
                 </motion.li>

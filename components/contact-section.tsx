@@ -22,6 +22,7 @@ export default function ContactSection() {
       description: "+964 774 142 4344",
       href: "https://wa.me/9647741424344?text=Hello%20Weber!%20I%27m%20interested%20in%20your%20services.",
       color: "from-green-500 to-green-600",
+      displayNumber: locale === "ar" ? "+٩٦٤ ٧٧٤ ١٤٢ ٤٣٤٤" : "+964 774 142 4344",
     },
     {
       icon: <Mail className="h-6 w-6" />,
@@ -40,7 +41,7 @@ export default function ContactSection() {
     {
       icon: <Calendar className="h-6 w-6" />,
       title: locale === "ar" ? "احجز استشارة" : "Schedule a Call",
-      description: locale === "ar" ? "استشارة مجانية مع الفريق" : "Free consultation with our team",
+      description: locale === "ar" ? "تحدث مع الفريق" : "Talk with our team",
       href: "https://cal.com/weberiq/30min",
       color: "from-purple-500 to-pink-600",
     },
@@ -102,13 +103,7 @@ export default function ContactSection() {
                       {method.icon}
                     </div>
                     <h3 className="text-sm sm:text-base font-semibold">{method.title}</h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground">
-                      {(method.description.includes("+") || method.description.includes("@") || method.description.includes(".iq")) ? (
-                        <bdo dir="ltr">{method.description}</bdo>
-                      ) : (
-                        <span dir="auto">{method.description}</span>
-                      )}
-                    </p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">{(method as any).displayNumber || method.description}</p>
                     <Button
                       variant="ghost"
                       className="w-full text-white hover:bg-white/10 min-h-[40px]"

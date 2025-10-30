@@ -94,7 +94,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <Card className="relative h-full bg-gradient-to-br from-primary/10 to-background border-primary/20">
+              <Card className="h-full bg-gradient-to-br from-primary/10 to-background border-primary/20">
                 <CardContent className="p-8">
                   <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-6">
                     <Rocket className="h-8 w-8" />
@@ -102,7 +102,7 @@ export default function AboutPage() {
                   <h2 className="text-2xl md:text-3xl font-bold mb-4">
                     {t("mission.title")}
                   </h2>
-                  <p className="text-lg text-foreground leading-relaxed">
+                  <p className="text-lg text-muted-foreground leading-relaxed">
                     {t("mission.description")}
                   </p>
                 </CardContent>
@@ -115,15 +115,15 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <Card className="relative h-full bg-gradient-to-br from-secondary/10 to-background border-secondary/20">
+              <Card className="h-full bg-gradient-to-br from-secondary/20 to-background border-secondary/20">
                 <CardContent className="p-8">
                   <div className="w-16 h-16 rounded-full bg-secondary/30 flex items-center justify-center text-secondary mb-6">
                     <Eye className="h-8 w-8" />
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
+                  <h2 className="text-2xl md:text-3xl font-bold mb-4">
                     {t("vision.title")}
                   </h2>
-                  <p className="text-lg text-foreground leading-relaxed">
+                  <p className="text-lg text-foreground/80 leading-relaxed">
                     {t("vision.description")}
                   </p>
                 </CardContent>
@@ -174,7 +174,7 @@ export default function AboutPage() {
               },
             ].map((value, index) => (
               <motion.div key={index} variants={item}>
-                <Card className="relative h-full hover:shadow-lg transition-all duration-300 hover:border-primary/50 group overflow-hidden">
+                <Card className="h-full hover:shadow-lg transition-all duration-300 hover:border-primary/50 group">
                   <CardContent className="p-6 text-center">
                     <div className="w-16 h-16 mx-auto rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:bg-primary/20 transition-colors">
                       {value.icon}
@@ -203,7 +203,7 @@ export default function AboutPage() {
             transition={{ duration: 0.5 }}
             className="max-w-4xl mx-auto"
           >
-            <Card className="relative bg-gradient-to-br from-primary/10 via-secondary/5 to-background border-primary/20 overflow-hidden">
+            <Card className="bg-gradient-to-br from-primary/10 via-secondary/5 to-background border-primary/20">
               <CardContent className="p-12 text-center">
                 <h3 className="text-3xl font-bold mb-4">
                   {t("cta.title")}

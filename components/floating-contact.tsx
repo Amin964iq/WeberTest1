@@ -24,7 +24,7 @@ export default function FloatingContact({ }: FloatingContactProps) {
     {
       icon: <Mail className="h-5 w-5" />,
       label: t("email"),
-      href: "mailto:info@weber.com?subject=Service%20Inquiry&body=Hello%20Weber%20Team,",
+      href: "mailto:weberagancy@gmail.com?subject=Service%20Inquiry&body=Hello%20Weber%20Team,",
       color: "bg-blue-500 hover:bg-blue-600",
     },
     {

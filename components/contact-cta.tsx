@@ -25,7 +25,7 @@ export default function ContactCTA({ locale, variant = "default" }: ContactCTAPr
       id: "calendar",
       icon: <Calendar className="h-6 w-6" />,
       title: locale === "ar" ? "احجز استشارة" : "Schedule a Call",
-      description: locale === "ar" ? "استشارة مجانية 30 دقيقة" : "Free 30-minute consultation",
+      description: locale === "ar" ? "تحدث مع فريقنا" : "Talk with our team",
       href: "https://cal.com/weberiq/30min",
       color: "from-purple-500 to-pink-600",
     },
@@ -111,11 +111,7 @@ export default function ContactCTA({ locale, variant = "default" }: ContactCTAPr
 
                       {/* Description */}
                       <p className="text-muted-foreground relative">
-                        {(option.description.includes("+") || option.description.includes("@") || option.description.includes(".iq")) ? (
-                          <bdo dir="ltr">{option.description}</bdo>
-                        ) : (
-                          <span dir="auto">{option.description}</span>
-                        )}
+                        {option.description}
                       </p>
 
                       {/* CTA */}

@@ -42,7 +42,7 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
           "https://ik.imagekit.io/wq0dxvevx/laurenza1.png?updatedAt=1760265995796"
         ];
       case "custom-systems":
-        return ["/sys.png", "/sys.png"];
+        return ["/sys.png", "/uiux.png"];
       case "cybersecurity-solutions":
         return ["/images/services/cybersecurity-hero.jpg", "/images/services/cybersecurity.jpg"];
       default:

@@ -17,6 +17,13 @@ export default function ContactSection() {
 
   const contactMethods = [
     {
+      icon: <MessageCircle className="h-6 w-6" />,
+      title: t("whatsapp"),
+      description: "+964 774 142 4344",
+      href: "https://wa.me/9647741424344?text=Hello%20Weber!%20I%27m%20interested%20in%20your%20services.",
+      color: "from-green-500 to-green-600",
+    },
+    {
       icon: <Mail className="h-6 w-6" />,
       title: t("email"),
       description: "info@weber.com",
@@ -24,23 +31,16 @@ export default function ContactSection() {
       color: "from-blue-500 to-blue-600",
     },
     {
-      icon: <MessageCircle className="h-6 w-6" />,
-      title: t("whatsapp"),
-      description: "+1 (234) 567-890",
-      href: "https://wa.me/1234567890?text=Hello%20Weber!%20I%27m%20interested%20in%20your%20services.",
-      color: "from-green-500 to-green-600",
-    },
-    {
       icon: <Instagram className="h-6 w-6" />,
       title: t("instagram"),
-      description: "@weber",
-      href: "https://instagram.com/weber",
+      description: "@weber.iq",
+      href: "https://instagram.com/weber.iq",
       color: "from-pink-500 to-purple-600",
     },
     {
       icon: <Calendar className="h-6 w-6" />,
-      title: locale === "ar" ? "احجز اجتماعاً" : "Schedule a Meeting",
-      description: locale === "ar" ? "30 دقيقة استشارة مجانية" : "Free 30-min consultation",
+      title: locale === "ar" ? "احجز استشارة" : "Schedule a Call",
+      description: locale === "ar" ? "تحدث مع الفريق" : "Talk with our team",
       href: "https://cal.com/weberiq/30min",
       color: "from-purple-500 to-pink-600",
     },
@@ -127,17 +127,17 @@ export default function ContactSection() {
           <Card className="max-w-2xl mx-auto bg-gradient-to-br from-primary/10 via-secondary/5 to-background border-primary/20">
             <CardContent className="py-6 px-4 sm:py-8 sm:px-8 md:py-12 md:px-12">
               <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4">
-                {tCommon("readyToTransform")}
+                {locale === "ar" ? "جاهز لتحقيق حلمك الرقمي؟" : "Ready to bring your vision to life?"}
               </h3>
               <p className="text-xs sm:text-sm md:text-base text-muted-foreground mb-4 sm:mb-6 max-w-xl mx-auto px-2 sm:px-0">
-                {tCommon("discussProject")}
+                {locale === "ar" ? "احجز استشارة مجانية مع فريقنا لمناقشة مشروعك والحصول على خطة تفصيلية" : "Schedule a free consultation with our team to discuss your project and get a detailed plan"}
               </p>
               <Button
                 className="bg-white dark:bg-white text-black hover:bg-gray-100 dark:hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all min-h-[44px] px-4 sm:px-6"
                 asChild
               >
-                <a href="mailto:info@weber.com?subject=Project%20Inquiry">
-                  {tCommon("startProjectToday")}
+                <a href="https://cal.com/weberiq/30min" target="_blank" rel="noopener noreferrer">
+                  {locale === "ar" ? "احجز استشارة مجانية" : "Schedule Free Consultation"}
                 </a>
               </Button>
             </CardContent>

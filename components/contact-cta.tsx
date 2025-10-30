@@ -14,28 +14,28 @@ interface ContactCTAProps {
 export default function ContactCTA({ locale, variant = "default" }: ContactCTAProps) {
   const contactOptions = [
     {
-      id: "email",
-      icon: <Mail className="h-6 w-6" />,
-      title: locale === "ar" ? "راسلنا" : "Email Us",
-      description: locale === "ar" ? "أرسل لنا بريد إلكتروني" : "Send us an email",
-      href: "mailto:info@weber.com?subject=Project%20Inquiry",
-      color: "from-blue-500 to-blue-600",
-    },
-    {
       id: "whatsapp",
       icon: <MessageCircle className="h-6 w-6" />,
       title: locale === "ar" ? "واتساب" : "WhatsApp",
-      description: locale === "ar" ? "تحدث معنا مباشرة" : "Chat with us directly",
-      href: "https://wa.me/1234567890?text=Hello%20Weber!%20I'm%20interested%20in%20your%20services.",
+      description: "+964 774 142 4344",
+      href: "https://wa.me/9647741424344?text=Hello%20Weber!%20I'm%20interested%20in%20your%20services.",
       color: "from-green-500 to-green-600",
     },
     {
       id: "calendar",
       icon: <Calendar className="h-6 w-6" />,
-      title: locale === "ar" ? "احجز اجتماعاً" : "Schedule a Meeting",
-      description: locale === "ar" ? "30 دقيقة استشارة مجانية" : "Free 30-min consultation",
+      title: locale === "ar" ? "احجز استشارة" : "Schedule a Call",
+      description: locale === "ar" ? "تحدث مع فريقنا" : "Talk with our team",
       href: "https://cal.com/weberiq/30min",
       color: "from-purple-500 to-pink-600",
+    },
+    {
+      id: "email",
+      icon: <Mail className="h-6 w-6" />,
+      title: locale === "ar" ? "بريد إلكتروني" : "Email",
+      description: "info@weber.com",
+      href: "mailto:info@weber.com?subject=Project%20Inquiry",
+      color: "from-blue-500 to-blue-600",
     },
   ];
 
@@ -76,12 +76,12 @@ export default function ContactCTA({ locale, variant = "default" }: ContactCTAPr
             className="text-center max-w-3xl mx-auto mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              {locale === "ar" ? "مستعد للبدء؟" : "Ready to Get Started?"}
+              {locale === "ar" ? "تواصل معنا الآن" : "Get in Touch with Us"}
             </h2>
             <p className="text-lg text-muted-foreground">
               {locale === "ar"
-                ? "اختر الطريقة المفضلة للتواصل معنا"
-                : "Choose your preferred way to contact us"}
+                ? "اختر الطريقة التي تفضلها للتحدث معنا عن مشروعك"
+                : "Choose how you'd like to connect with us about your project"}
             </p>
           </motion.div>
 

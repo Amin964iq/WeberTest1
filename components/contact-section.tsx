@@ -22,6 +22,7 @@ export default function ContactSection() {
       description: "+964 774 142 4344",
       href: "https://wa.me/9647741424344?text=Hello%20Weber!%20I%27m%20interested%20in%20your%20services.",
       color: "from-green-500 to-green-600",
+      displayPhone: "4344 241 477 469+",
     },
     {
       icon: <Mail className="h-6 w-6" />,
@@ -102,7 +103,9 @@ export default function ContactSection() {
                       {method.icon}
                     </div>
                     <h3 className="text-sm sm:text-base font-semibold">{method.title}</h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground">{method.description}</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground" dir={locale === "ar" && (method as any).displayPhone ? "ltr" : "auto"}>
+                      {locale === "ar" && (method as any).displayPhone ? (method as any).displayPhone : method.description}
+                    </p>
                     <Button
                       variant="ghost"
                       className="w-full text-white hover:bg-white/10 min-h-[40px]"

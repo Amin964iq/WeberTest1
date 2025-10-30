@@ -9,9 +9,18 @@ import { Link } from "@/i18n/routing";
 import { ArrowRight, Sparkles } from "lucide-react";
 import FloatingElements from "@/components/floating-elements";
 import { BorderBeam } from "@/components/ui/border-beam";
+import { TextScramble } from "@/components/motion-primitives/text-scramble";
+import { useParams } from "next/navigation";
+import * as React from "react";
+
+const arabicChars = "ابتثجحخدذرزسشصضطظعغفقكلمنهويىءئؤةأإآ";
+const englishChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
 export default function ServicesPage() {
   const t = useTranslations("servicesPage");
+  const params = useParams();
+  const locale = (params.locale as string) || "en";
+  const [isHovered, setIsHovered] = React.useState(false);
 
   return (
     <div className="min-h-screen pt-20">
@@ -57,6 +66,8 @@ export default function ServicesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="max-w-5xl mx-auto text-center"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
             {/* Badge */}
             <motion.div
@@ -72,14 +83,16 @@ export default function ServicesPage() {
             </motion.div>
 
             {/* Title */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-light mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent"
+            <TextScramble
+              className="text-5xl md:text-6xl lg:text-7xl font-light mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent block"
+              trigger={isHovered}
+              duration={0.8}
+              speed={0.04}
+              characterSet={locale === "ar" ? arabicChars : englishChars}
+              as="h1"
             >
               {t("title")}
-            </motion.h1>
+            </TextScramble>
 
             {/* Subtitle */}
             <motion.p

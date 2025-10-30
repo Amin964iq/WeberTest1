@@ -7,14 +7,20 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useParams } from "next/navigation";
+import { TextScramble } from "@/components/motion-primitives/text-scramble";
+import * as React from "react";
 
 const SpaceBackground = dynamic(() => import("@/components/space-background"));
 const FloatingElements = dynamic(() => import("@/components/floating-elements"));
+
+const arabicChars = "ابتثجحخدذرزسشصضطظعغفقكلمنهويىءئؤةأإآ";
+const englishChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
 export default function PortfolioPage() {
   const params = useParams();
   const locale = (params.locale as string) || "ar";
   const isArabic = locale === "ar";
+  const [isHovered, setIsHovered] = React.useState(false);
 
   return (
     <>
@@ -60,6 +66,8 @@ export default function PortfolioPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
             {/* Badge */}
             <motion.div
@@ -74,19 +82,19 @@ export default function PortfolioPage() {
             </motion.div>
 
             {/* Title */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight sm:leading-relaxed"
+            <TextScramble
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight sm:leading-relaxed bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent block"
+              trigger={isHovered}
+              duration={0.8}
+              speed={0.04}
+              characterSet={isArabic ? arabicChars : englishChars}
+              as="h1"
               style={{ lineHeight: "1.2" }}
             >
-              <span className="bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
-                {isArabic
-                  ? "استكشف مشاريعنا الناجحة"
-                  : "Showcase of Success"}
-              </span>
-            </motion.h1>
+              {isArabic
+                ? "استكشف مشاريعنا الناجحة"
+                : "Showcase of Success"}
+            </TextScramble>
 
             {/* Subtitle */}
             <motion.p

@@ -5,9 +5,18 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Code, Users, Award, Target, Rocket, Eye } from "lucide-react";
 import FloatingElements from "@/components/floating-elements";
+import { TextScramble } from "@/components/motion-primitives/text-scramble";
+import { useParams } from "next/navigation";
+import * as React from "react";
+
+const arabicChars = "ابتثجحخدذرزسشصضطظعغفقكلمنهويىءئؤةأإآ";
+const englishChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
 export default function AboutPage() {
   const t = useTranslations("about");
+  const params = useParams();
+  const locale = (params.locale as string) || "en";
+  const [isHovered, setIsHovered] = React.useState(false);
 
   const container = {
     hidden: { opacity: 0 },
@@ -42,10 +51,19 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="max-w-4xl mx-auto text-center"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent pb-2">
+            <TextScramble
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent pb-2 block"
+              trigger={isHovered}
+              duration={0.8}
+              speed={0.04}
+              characterSet={locale === "ar" ? arabicChars : englishChars}
+              as="h1"
+            >
               {t("title")}
-            </h1>
+            </TextScramble>
             <p className="text-xl md:text-2xl text-muted-foreground">
               {t("subtitle")}
             </p>

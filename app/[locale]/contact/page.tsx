@@ -54,7 +54,7 @@ export default function ContactPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12"
           >
-            <Card className="bg-gradient-to-br from-primary/10 to-background border-primary/20">
+            <Card className="relative bg-gradient-to-br from-primary/10 to-background border-primary/20 overflow-hidden">
               <CardContent className="p-6">
                 <div className="flex items-start space-x-4 rtl:space-x-reverse">
                   <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary flex-shrink-0">
@@ -64,10 +64,10 @@ export default function ContactPage() {
                     <h3 className="text-lg font-semibold mb-2">
                       {t("availability.title")}
                     </h3>
-                    <p className="text-foreground/80 text-sm mb-1 break-words">
+                    <p className="text-muted-foreground text-sm mb-1 break-words">
                       {t("availability.description")}
                     </p>
-                    <p className="text-foreground/80 text-sm break-words">
+                    <p className="text-muted-foreground text-sm break-words">
                       {t("availability.weekend")}
                     </p>
                   </div>
@@ -75,7 +75,7 @@ export default function ContactPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-br from-secondary/10 to-background border-secondary/20">
+            <Card className="relative bg-gradient-to-br from-secondary/10 to-background border-secondary/20 overflow-hidden">
               <CardContent className="p-6">
                 <div className="flex items-start space-x-4 rtl:space-x-reverse">
                   <div className="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary flex-shrink-0">
@@ -85,7 +85,7 @@ export default function ContactPage() {
                     <h3 className="text-lg font-semibold mb-2">
                       {t("info.title")}
                     </h3>
-                    <p className="text-foreground/80 text-sm break-words">
+                    <p className="text-muted-foreground text-sm break-words">
                       {t("info.description")}
                     </p>
                   </div>

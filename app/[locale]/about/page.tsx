@@ -133,15 +133,15 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <Card className="h-full bg-gradient-to-br from-secondary/20 to-background border-secondary/20">
+              <Card className="h-full bg-gradient-to-br from-secondary/10 to-background border-secondary/20">
                 <CardContent className="p-8">
-                  <div className="w-16 h-16 rounded-full bg-secondary/30 flex items-center justify-center text-secondary mb-6">
+                  <div className="w-16 h-16 rounded-full bg-secondary/20 flex items-center justify-center text-secondary mb-6">
                     <Eye className="h-8 w-8" />
                   </div>
                   <h2 className="text-2xl md:text-3xl font-bold mb-4">
                     {t("vision.title")}
                   </h2>
-                  <p className="text-lg text-foreground/80 leading-relaxed">
+                  <p className="text-lg text-muted-foreground leading-relaxed">
                     {t("vision.description")}
                   </p>
                 </CardContent>

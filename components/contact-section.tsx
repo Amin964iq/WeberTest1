@@ -103,7 +103,11 @@ export default function ContactSection() {
                     </div>
                     <h3 className="text-sm sm:text-base font-semibold">{method.title}</h3>
                     <p className="text-xs sm:text-sm text-muted-foreground">
-                      <bdo dir="ltr">{method.description}</bdo>
+                      {(method.description.includes("+") || method.description.includes("@") || method.description.includes(".iq")) ? (
+                        <bdo dir="ltr">{method.description}</bdo>
+                      ) : (
+                        <span dir="auto">{method.description}</span>
+                      )}
                     </p>
                     <Button
                       variant="ghost"

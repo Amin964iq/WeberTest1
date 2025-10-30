@@ -111,7 +111,11 @@ export default function ContactCTA({ locale, variant = "default" }: ContactCTAPr
 
                       {/* Description */}
                       <p className="text-muted-foreground relative">
-                        <bdo dir="ltr">{option.description}</bdo>
+                        {(option.description.includes("+") || option.description.includes("@") || option.description.includes(".iq")) ? (
+                          <bdo dir="ltr">{option.description}</bdo>
+                        ) : (
+                          <span dir="auto">{option.description}</span>
+                        )}
                       </p>
 
                       {/* CTA */}

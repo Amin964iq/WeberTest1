@@ -82,19 +82,19 @@ export default function PortfolioPage() {
             </motion.div>
 
             {/* Title */}
-            <TextScramble
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight sm:leading-relaxed bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent block"
-              trigger={isHovered}
-              duration={0.8}
-              speed={0.04}
-              characterSet={isArabic ? arabicChars : englishChars}
-              as="h1"
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight sm:leading-relaxed"
               style={{ lineHeight: "1.2" }}
             >
-              {isArabic
-                ? "استكشف مشاريعنا الناجحة"
-                : "Showcase of Success"}
-            </TextScramble>
+              <span className="bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
+                {isArabic
+                  ? "استكشف مشاريعنا الناجحة"
+                  : "Showcase of Success"}
+              </span>
+            </motion.h1>
 
             {/* Subtitle */}
             <motion.p

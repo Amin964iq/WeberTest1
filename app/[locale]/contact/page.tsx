@@ -39,16 +39,9 @@ export default function ContactPage() {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            <TextScramble
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent pb-2 block"
-              trigger={isHovered}
-              duration={0.8}
-              speed={0.04}
-              characterSet={locale === "ar" ? arabicChars : englishChars}
-              as="h1"
-            >
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent pb-2">
               {t("title")}
-            </TextScramble>
+            </h1>
             <p className="text-xl md:text-2xl text-muted-foreground">
               {t("subtitle")}
             </p>

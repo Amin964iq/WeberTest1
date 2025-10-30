@@ -83,16 +83,14 @@ export default function ServicesPage() {
             </motion.div>
 
             {/* Title */}
-            <TextScramble
-              className="text-5xl md:text-6xl lg:text-7xl font-light mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent block"
-              trigger={isHovered}
-              duration={0.8}
-              speed={0.04}
-              characterSet={locale === "ar" ? arabicChars : englishChars}
-              as="h1"
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-5xl md:text-6xl lg:text-7xl font-light mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent"
             >
               {t("title")}
-            </TextScramble>
+            </motion.h1>
 
             {/* Subtitle */}
             <motion.p

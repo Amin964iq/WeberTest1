@@ -128,51 +128,34 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
               />
             </motion.div>
 
-            {/* Images Section - Clean 2-Image Layout */}
+            {/* Images Section - Side by Side Layout */}
             <motion.div
-              className="relative h-[200px] sm:h-[260px] md:h-[350px] lg:h-[420px] order-1 lg:order-2 mt-8 sm:mt-10 md:mt-0"
+              className="flex flex-col sm:flex-row gap-4 md:gap-6 order-1 lg:order-2 mt-8 sm:mt-10 md:mt-0"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
             >
-              {/* Background glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 blur-3xl opacity-30" />
-
               {serviceImages.map((image, index) => {
-                const isFirst = index === 0;
                 const isHovered = hoveredImage === index;
-                const otherIsHovered = hoveredImage !== null && hoveredImage !== index;
 
                 return (
                   <motion.div
                     key={index}
-                    className="absolute cursor-pointer"
-                    style={{
-                      // Better spacing - both images fully visible
-                      left: isFirst ? '0' : '15%',
-                      top: isFirst ? '0' : '12%',
-                      right: isFirst ? '15%' : '0',
-                      bottom: isFirst ? '12%' : '0',
-                      transformOrigin: "center center",
-                    }}
+                    className="flex-1 cursor-pointer h-[200px] sm:h-[260px] md:h-[350px] lg:h-[420px]"
                     initial={{
                       opacity: 0,
                       scale: 0.85,
-                      rotate: isFirst ? -2 : 2,
+                      x: index === 0 ? -30 : 30,
                     }}
                     animate={{
-                      opacity: otherIsHovered ? 0.5 : 1,
-                      scale: isHovered ? 1.05 : 1,
-                      rotate: isHovered ? 0 : (isFirst ? -2 : 2),
-                      zIndex: isHovered ? 30 : (isFirst ? 20 : 10),
-                      filter: otherIsHovered ? "blur(5px) brightness(0.5)" : "blur(0px) brightness(1)",
+                      opacity: 1,
+                      scale: 1,
+                      x: 0,
                     }}
                     transition={{
                       opacity: { duration: 0.3 },
                       scale: { duration: 0.5, type: "spring", stiffness: 100, damping: 15 },
-                      rotate: { duration: 0.5 },
-                      filter: { duration: 0.3 },
-                      zIndex: { duration: 0 }
+                      x: { duration: 0.5 },
                     }}
                     onMouseEnter={() => handleImageHover(index)}
                     onMouseLeave={handleImageLeave}
@@ -191,9 +174,8 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
                         loading={index === 0 ? "eager" : "lazy"}
                       />
 
-                      {/* Gradient overlays */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/5 via-transparent to-transparent" />
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      {/* Subtle gradient overlay only on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                       {/* Shine effect on hover */}
                       <motion.div

@@ -33,8 +33,8 @@ export default function ContactCTA({ locale, variant = "default" }: ContactCTAPr
       id: "email",
       icon: <Mail className="h-6 w-6" />,
       title: locale === "ar" ? "بريد إلكتروني" : "Email",
-      description: "info@weber.com",
-      href: "mailto:info@weber.com?subject=Project%20Inquiry",
+      description: "weberagancy@gmail.com",
+      href: "mailto:weberagancy@gmail.com?subject=Project%20Inquiry",
       color: "from-blue-500 to-blue-600",
     },
   ];
@@ -111,7 +111,7 @@ export default function ContactCTA({ locale, variant = "default" }: ContactCTAPr
 
                       {/* Description */}
                       <p className="text-muted-foreground relative">
-                        {option.description}
+                        <bdo dir="ltr">{option.description}</bdo>
                       </p>
 
                       {/* CTA */}

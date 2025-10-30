@@ -26,8 +26,8 @@ export default function ContactSection() {
     {
       icon: <Mail className="h-6 w-6" />,
       title: t("email"),
-      description: "info@weber.com",
-      href: "mailto:info@weber.com?subject=Service%20Inquiry&body=Hello%20Weber%20Team,",
+      description: "weberagancy@gmail.com",
+      href: "mailto:weberagancy@gmail.com?subject=Service%20Inquiry&body=Hello%20Weber%20Team,",
       color: "from-blue-500 to-blue-600",
     },
     {
@@ -102,7 +102,9 @@ export default function ContactSection() {
                       {method.icon}
                     </div>
                     <h3 className="text-sm sm:text-base font-semibold">{method.title}</h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground">{method.description}</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">
+                      <bdo dir="ltr">{method.description}</bdo>
+                    </p>
                     <Button
                       variant="ghost"
                       className="w-full text-white hover:bg-white/10 min-h-[40px]"

@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Code, Users, Award, Target, Rocket, Eye } from "lucide-react";
 import FloatingElements from "@/components/floating-elements";
-import { BorderBeam } from "@/components/ui/border-beam";
 
 export default function AboutPage() {
   const t = useTranslations("about");
@@ -95,7 +94,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <Card className="relative h-full bg-gradient-to-br from-primary/10 to-background border-primary/20 overflow-hidden">
+              <Card className="relative h-full bg-gradient-to-br from-primary/10 to-background border-primary/20">
                 <CardContent className="p-8">
                   <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-6">
                     <Rocket className="h-8 w-8" />
@@ -103,11 +102,10 @@ export default function AboutPage() {
                   <h2 className="text-2xl md:text-3xl font-bold mb-4">
                     {t("mission.title")}
                   </h2>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
+                  <p className="text-lg text-foreground leading-relaxed">
                     {t("mission.description")}
                   </p>
                 </CardContent>
-                <BorderBeam duration={10} size={120} />
               </Card>
             </motion.div>
 
@@ -117,7 +115,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <Card className="relative h-full bg-gradient-to-br from-secondary/20 to-background/80 border-secondary/30 backdrop-blur-sm overflow-hidden">
+              <Card className="relative h-full bg-gradient-to-br from-secondary/10 to-background border-secondary/20">
                 <CardContent className="p-8">
                   <div className="w-16 h-16 rounded-full bg-secondary/30 flex items-center justify-center text-secondary mb-6">
                     <Eye className="h-8 w-8" />
@@ -125,11 +123,10 @@ export default function AboutPage() {
                   <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
                     {t("vision.title")}
                   </h2>
-                  <p className="text-lg text-foreground/90 leading-relaxed">
+                  <p className="text-lg text-foreground leading-relaxed">
                     {t("vision.description")}
                   </p>
                 </CardContent>
-                <BorderBeam duration={10} size={120} />
               </Card>
             </motion.div>
           </div>

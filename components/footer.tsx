@@ -282,7 +282,7 @@ export default function Footer({ }: FooterProps) {
             </h3>
             <ul className="space-y-4">
               {[
-                { icon: Mail, href: "mailto:info@weber.com", label: "info@weber.com" },
+                { icon: Mail, href: "mailto:weberagancy@gmail.com", label: "weberagancy@gmail.com" },
                 { icon: MessageCircle, href: "https://wa.me/9647741424344", label: "+964 774 142 4344", external: true },
                 { icon: Instagram, href: "https://instagram.com/weber.iq", label: "@weber.iq", external: true },
               ].map((item, index) => (
@@ -307,7 +307,7 @@ export default function Footer({ }: FooterProps) {
                       <item.icon className="h-4 w-4 text-primary" />
                     </motion.div>
                     <span className="group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform">
-                      {item.label}
+                      <bdo dir="ltr">{item.label}</bdo>
                     </span>
                   </a>
                 </motion.li>

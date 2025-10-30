@@ -25,7 +25,7 @@ export default function ContactCTA({ locale, variant = "default" }: ContactCTAPr
       id: "calendar",
       icon: <Calendar className="h-6 w-6" />,
       title: locale === "ar" ? "احجز استشارة" : "Schedule a Call",
-      description: locale === "ar" ? "تحدث مع فريقنا" : "Talk with our team",
+      description: locale === "ar" ? "استشارة مجانية 30 دقيقة" : "Free 30-minute consultation",
       href: "https://cal.com/weberiq/30min",
       color: "from-purple-500 to-pink-600",
     },

@@ -40,7 +40,7 @@ export default function ContactSection() {
     {
       icon: <Calendar className="h-6 w-6" />,
       title: locale === "ar" ? "احجز استشارة" : "Schedule a Call",
-      description: locale === "ar" ? "تحدث مع الفريق" : "Talk with our team",
+      description: locale === "ar" ? "استشارة مجانية مع الفريق" : "Free consultation with our team",
       href: "https://cal.com/weberiq/30min",
       color: "from-purple-500 to-pink-600",
     },

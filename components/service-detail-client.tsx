@@ -192,7 +192,7 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
                       />
 
                       {/* Gradient overlays */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-background/20 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-background/10 to-transparent" />
                       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                       {/* Shine effect on hover */}

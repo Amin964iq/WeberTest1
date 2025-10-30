@@ -16,7 +16,7 @@ export default function AboutPage() {
   const t = useTranslations("about");
   const params = useParams();
   const locale = (params.locale as string) || "en";
-  const [isHovered, setIsHovered] = React.useState(false);
+  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
 
   const container = {
     hidden: { opacity: 0 },
@@ -51,8 +51,6 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="max-w-4xl mx-auto text-center"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent pb-2">
               {t("title")}
@@ -81,14 +79,14 @@ export default function AboutPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                 className="text-center group"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
               >
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 blur-xl group-hover:blur-2xl transition-all opacity-0 group-hover:opacity-100" />
                   <TextScramble
                     className="relative text-base font-light tracking-[0.15em] uppercase text-foreground/60 group-hover:text-foreground transition-colors block"
-                    trigger={isHovered}
+                    trigger={hoveredIndex === index}
                     duration={0.8}
                     speed={0.04}
                     characterSet={locale === "ar" ? arabicChars : englishChars}

@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
-import { Mail, Phone, Instagram, Facebook, Twitter, Linkedin, MessageCircle, Sparkles, Code2, Rocket, Zap } from "lucide-react";
+import { Mail, Instagram, Facebook, Twitter, Linkedin, MessageCircle, Sparkles, Code2, Rocket, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { useParams } from "next/navigation";
 

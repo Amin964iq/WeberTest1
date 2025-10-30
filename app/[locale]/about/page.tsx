@@ -186,7 +186,6 @@ export default function AboutPage() {
                       {t(`values.${value.key}.description`)}
                     </p>
                   </CardContent>
-                  <BorderBeam duration={8} size={100} />
                 </Card>
               </motion.div>
             ))}
@@ -223,7 +222,6 @@ export default function AboutPage() {
                   </div>
                 </motion.a>
               </CardContent>
-              <BorderBeam duration={12} size={150} />
             </Card>
           </motion.div>
         </div>

@@ -11,7 +11,6 @@ import {
   Sparkles
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ScrollSection from "@/components/scroll-section";
 import FloatingSymbols from "@/components/floating-symbols";
 import { getSubServicesByServiceId } from "@/lib/sub-services";
 import { getSubServiceIcon } from "@/lib/sub-service-icons";
@@ -48,7 +47,7 @@ export default function LuxuryServicesFull() {
 
   return (
     <>
-      {services.map((service, index) => {
+      {services.map((service) => {
         const Icon = service.icon;
         const subServices = getSubServicesByServiceId(service.slug);
 

@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "@/i18n/routing";
 import { ArrowRight, Code, Layers, Shield, Sparkles } from "lucide-react";
 import { services } from "@/lib/services";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { BorderBeam } from "@/components/ui/border-beam";
 
 interface LuxuryServicesSectionProps {
@@ -23,7 +23,6 @@ export default function LuxuryServicesSection({ mode = "brief" }: LuxuryServices
   });
 
   // Transform for parallax effects
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   const serviceData = [

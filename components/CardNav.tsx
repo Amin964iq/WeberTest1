@@ -21,7 +21,6 @@ interface NavItem {
 
 interface CardNavProps {
   logo: React.ReactNode;
-  logoAlt?: string;
   items: NavItem[];
   className?: string;
   ease?: string;
@@ -37,7 +36,6 @@ interface CardNavProps {
 
 const CardNav = ({
   logo,
-  logoAlt = 'Logo',
   items,
   className = '',
   ease = 'power3.out',

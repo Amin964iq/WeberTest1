@@ -166,7 +166,7 @@ function DockItem({ children, className, onClick }: DockItemProps) {
       onClick={onClick}
     >
       {Children.map(children, (child) => {
-        const element = child as React.ReactElement<any>;
+        const element = child as React.ReactElement<Record<string, unknown>>;
         return cloneElement(element, {
           ...(element.props || {}),
           width,

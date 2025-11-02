@@ -8,10 +8,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Github, ExternalLink } from "lucide-react";
 import { useParams } from "next/navigation";
 import { notFound } from "next/navigation";
-import dynamic from "next/dynamic";
-
-const SpaceBackground = dynamic(() => import("@/components/space-background"));
-const FloatingElements = dynamic(() => import("@/components/floating-elements"));
 
 export default function ProjectDetailPage() {
   const params = useParams();
@@ -28,12 +24,6 @@ export default function ProjectDetailPage() {
 
   return (
     <>
-      {/* Space Background */}
-      <SpaceBackground />
-
-      {/* Floating Elements */}
-      <FloatingElements density="low" showCodeSnippets={false} />
-
       {/* Hero Section */}
       <motion.section className="relative min-h-[70vh] flex items-center overflow-hidden pt-20 sm:pt-28 md:pt-32 pb-12 z-10">
         {/* Animated Background */}

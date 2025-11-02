@@ -5,13 +5,9 @@ import PortfolioGrid from "@/components/portfolio-grid";
 import { Link } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import dynamic from "next/dynamic";
 import { useParams } from "next/navigation";
 import { TextScramble } from "@/components/motion-primitives/text-scramble";
 import * as React from "react";
-
-const SpaceBackground = dynamic(() => import("@/components/space-background"));
-const FloatingElements = dynamic(() => import("@/components/floating-elements"));
 
 const arabicChars = "ابتثجحخدذرزسشصضطظعغفقكلمنهويىءئؤةأإآ";
 const englishChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -24,12 +20,6 @@ export default function PortfolioPage() {
 
   return (
     <>
-      {/* Space Background */}
-      <SpaceBackground />
-
-      {/* Floating Elements */}
-      <FloatingElements density="low" showCodeSnippets={false} />
-
       {/* Hero Section */}
       <section className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-screen flex items-center overflow-hidden pt-20 sm:pt-28 md:pt-32 pb-12 z-10">
         {/* Animated Background */}

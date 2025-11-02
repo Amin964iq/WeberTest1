@@ -4,7 +4,6 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Code, Users, Award, Target, Rocket, Eye } from "lucide-react";
-import FloatingElements from "@/components/floating-elements";
 import { TextScramble } from "@/components/motion-primitives/text-scramble";
 import { useParams } from "next/navigation";
 import * as React from "react";
@@ -37,9 +36,6 @@ export default function AboutPage() {
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 overflow-hidden">
-        {/* Code Snippets */}
-        <FloatingElements density="medium" showCodeSnippets={true} />
-
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
           <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />

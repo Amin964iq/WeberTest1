@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import ContactSection from "@/components/contact-section";
 import { Card, CardContent } from "@/components/ui/card";
 import { Clock, MapPin } from "lucide-react";
-import FloatingElements from "@/components/floating-elements";
 import { TextScramble } from "@/components/motion-primitives/text-scramble";
 import { useParams } from "next/navigation";
 import * as React from "react";
@@ -22,9 +21,6 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen pt-20">
       <section className="relative py-20 overflow-visible">
-        {/* Code Snippets */}
-        <FloatingElements density="medium" showCodeSnippets={true} />
-
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
           <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />

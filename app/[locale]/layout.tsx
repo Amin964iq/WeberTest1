@@ -8,14 +8,10 @@ import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import FloatingContact from '@/components/floating-contact';
 import PageTransition from '@/components/page-transition';
-import SpaceBackground from '@/components/space-background';
-import SpaceBackgroundRebranding from '@/components/space-background-rebranding';
-import SpaceBackgroundBlank from '@/components/space-background-blank';
-import FloatingElements from '@/components/floating-elements';
 import GlobalClickSpark from '@/components/GlobalClickSpark';
 import LanguageProvider from '@/components/language-provider';
+import VideoBackground from '@/components/video-background';
 import { IBM_Plex_Sans_Arabic } from 'next/font/google';
-import { BACKGROUND_THEME } from '@/lib/background-config';
 
 const ibmPlexArabic = IBM_Plex_Sans_Arabic({
   weight: ['100', '200', '300', '400', '500', '600', '700'],
@@ -116,17 +112,8 @@ export default async function LocaleLayout({
             forcedTheme="dark"
             disableTransitionOnChange
           >
-            {/* Dynamic background - switch theme in lib/background-config.ts */}
-            {BACKGROUND_THEME === 'rebranding' ? (
-              <SpaceBackgroundRebranding />
-            ) : BACKGROUND_THEME === 'blank' ? (
-              <SpaceBackgroundBlank />
-            ) : (
-              <SpaceBackground />
-            )}
-
-            {/* Floating code elements - no code snippets, only small elements */}
-            <FloatingElements density="low" showCodeSnippets={false} />
+            {/* VIDEO BACKGROUND */}
+            <VideoBackground />
 
             <NextIntlClientProvider messages={messages}>
               <LanguageProvider>

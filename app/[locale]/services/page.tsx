@@ -25,6 +25,8 @@ export default function ServicesPage() {
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+        {/* Code Snippets */}
+
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
           <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
@@ -56,7 +58,10 @@ export default function ServicesPage() {
           />
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -118,7 +123,10 @@ export default function ServicesPage() {
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -1,29 +1,36 @@
 "use client";
 
+/**
+ * Video Background Component
+ * Displays a full-screen video background with pure quality and full opacity
+ */
+
 export default function VideoBackground() {
   return (
-    <video
-      autoPlay
-      muted
-      loop
-      playsInline
+    <div
+      className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
       style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100vh",
-        objectFit: "cover",
-        objectPosition: "center",
-        zIndex: 0,
-        opacity: 1,
-        margin: 0,
-        padding: 0,
-        border: "none",
+        backgroundColor: '#000000',
       }}
     >
-      <source src="/back.mov" type="video/quicktime" />
-      <source src="/back.mp4" type="video/mp4" />
-    </video>
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="absolute inset-0 w-full h-full"
+        style={{
+          opacity: 1,
+          objectFit: 'cover',
+          objectPosition: 'center',
+          display: 'block',
+        }}
+      >
+        <source src="/backkk.mov" type="video/quicktime" />
+        <source src="/back.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
   );
 }

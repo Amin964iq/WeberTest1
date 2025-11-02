@@ -8,7 +8,6 @@ import { Card } from "@/components/ui/card";
 import { Link } from "@/i18n/routing";
 import { ArrowRight, Sparkles } from "lucide-react";
 import Image from "next/image";
-import FloatingElements from "@/components/floating-elements";
 import { TextScramble } from "@/components/motion-primitives/text-scramble";
 
 interface Project {
@@ -153,9 +152,6 @@ export default function ModernHero({ locale }: ModernHeroProps) {
 
   return (
     <div className="relative min-h-screen flex items-center overflow-hidden pt-32 sm:pt-40 md:pt-48 lg:pt-56 pb-8 sm:pb-12 md:pb-16 lg:pb-20">
-      {/* Code Snippets - Low Density (3-4 boxes) */}
-      <FloatingElements density="low" showCodeSnippets={true} />
-
       {/* Animated Background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5" />
@@ -187,6 +183,9 @@ export default function ModernHero({ locale }: ModernHeroProps) {
           className="absolute bottom-10 sm:bottom-20 right-10 sm:right-20 w-48 sm:w-96 h-48 sm:h-96 bg-secondary/20 rounded-full blur-3xl"
         />
       </div>
+
+      {/* Dark Overlay for Text Readability */}
+      <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Hero Content */}

@@ -5,6 +5,7 @@ import PortfolioGrid from "@/components/portfolio-grid";
 import { Link } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import dynamic from "next/dynamic";
 import { useParams } from "next/navigation";
 import { TextScramble } from "@/components/motion-primitives/text-scramble";
 import * as React from "react";
@@ -20,6 +21,7 @@ export default function PortfolioPage() {
 
   return (
     <>
+
       {/* Hero Section */}
       <section className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-screen flex items-center overflow-hidden pt-20 sm:pt-28 md:pt-32 pb-12 z-10">
         {/* Animated Background */}
@@ -50,7 +52,10 @@ export default function PortfolioPage() {
           />
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

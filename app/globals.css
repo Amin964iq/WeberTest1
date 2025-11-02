@@ -50,26 +50,22 @@
 }
 
 @layer base {
-  html {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  * {
+    @apply border-border;
   }
-
   body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #000000;
-    background-image: none !important;
-    background: #000000 !important;
+    @apply text-foreground;
+    background-color: transparent;
+    position: relative;
     overflow-x: hidden;
   }
 
-  * {
-    @apply border-border;
+  html {
+    background-color: transparent;
+  }
+
+  main {
+    background-color: transparent;
   }
 }
 
@@ -87,19 +83,10 @@ html {
   direction: ltr;
 }
 
-/* Remove all background elements and overlays */
-.absolute.inset-0.pointer-events-none {
-  display: none !important;
-}
-
-.bg-gradient-to-br {
-  background: none !important;
-}
-
-.bg-grid-white {
-  background: none !important;
-}
-
-.animate-pulse {
-  animation: none !important;
+/* Fix line-height for large text on desktop */
+@media (min-width: 1024px) {
+  .lg\:text-5xl {
+    font-size: 3rem;
+    line-height: 2;
+  }
 }

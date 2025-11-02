@@ -94,8 +94,11 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
           <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
           <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
         </motion.div>
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
 
-        <div className="container mx-auto px-4">
+
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Title and Description */}
             <motion.div
@@ -218,7 +221,7 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
 
       {/* What Is Section */}
       <section className="py-20 bg-muted/30 relative z-10">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -243,7 +246,7 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
 
       {/* Why Your Business Needs It Section */}
       <section className="py-20 relative z-10">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -279,7 +282,7 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
 
       {/* How We Execute Section */}
       <section className="py-20 bg-muted/30 relative z-10">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -316,7 +319,7 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
 
       {/* FAQ Section */}
       <section className="py-20 relative z-10">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -374,7 +377,7 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-background via-muted/30 to-background relative z-10">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}

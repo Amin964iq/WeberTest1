@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Github, ExternalLink } from "lucide-react";
 import { useParams } from "next/navigation";
 import { notFound } from "next/navigation";
+import dynamic from "next/dynamic";
 
 export default function ProjectDetailPage() {
   const params = useParams();
@@ -54,7 +55,10 @@ export default function ProjectDetailPage() {
           />
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -128,7 +132,10 @@ export default function ProjectDetailPage() {
 
       {/* Project Image - Large Featured Section */}
       <section className="relative py-16 sm:py-20 md:py-28 z-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -154,7 +161,10 @@ export default function ProjectDetailPage() {
 
       {/* Overview Section */}
       <section className="relative py-16 sm:py-20 md:py-28 z-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -178,7 +188,10 @@ export default function ProjectDetailPage() {
 
       {/* Features Section */}
       <section className="relative py-16 sm:py-20 md:py-28 z-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -224,7 +237,10 @@ export default function ProjectDetailPage() {
 
       {/* Technology Stack */}
       <section className="relative py-16 sm:py-20 md:py-28 z-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -362,7 +378,10 @@ export default function ProjectDetailPage() {
 
       {/* Challenges Section */}
       <section className="relative py-16 sm:py-20 md:py-28 z-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -409,7 +428,10 @@ export default function ProjectDetailPage() {
       {/* Links Section */}
       {(project.links.github || project.links.live || project.links.demo) && (
         <section className="relative py-16 sm:py-20 md:py-28 z-10">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
+
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-4xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -487,7 +509,10 @@ export default function ProjectDetailPage() {
 
       {/* Outcome Section */}
       <section className="relative py-16 sm:py-20 md:py-28 z-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -511,7 +536,10 @@ export default function ProjectDetailPage() {
 
       {/* Related Projects Section */}
       <section className="relative py-16 sm:py-20 md:py-28 z-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

@@ -83,3 +83,11 @@ html {
 [dir="ltr"] {
   direction: ltr;
 }
+
+/* Fix line-height for large text on desktop */
+@media (min-width: 1024px) {
+  .lg\:text-5xl {
+    font-size: 3rem;
+    line-height: 2;
+  }
+}

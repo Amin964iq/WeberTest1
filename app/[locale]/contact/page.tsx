@@ -21,7 +21,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen pt-20">
-      <section className="relative py-20 overflow-hidden">
+      <section className="relative py-20 overflow-visible">
         {/* Code Snippets */}
         <FloatingElements density="medium" showCodeSnippets={true} />
 
@@ -30,7 +30,7 @@ export default function ContactPage() {
           <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 overflow-visible">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -38,8 +38,9 @@ export default function ContactPage() {
             className="max-w-4xl mx-auto text-center mb-12"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            style={{ overflow: 'visible' }}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent pb-2">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-relaxed py-8 px-2" style={{ overflow: 'visible', whiteSpace: 'normal' }}>
               {t("title")}
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground">
@@ -75,10 +76,10 @@ export default function ContactPage() {
               </CardContent>
             </Card>
 
-            <Card className="relative bg-gradient-to-br from-secondary/10 to-background border-secondary/20 overflow-hidden">
+            <Card className="relative bg-gradient-to-br from-primary/10 to-background border-primary/20 overflow-hidden">
               <CardContent className="p-6">
                 <div className="flex items-start space-x-4 rtl:space-x-reverse">
-                  <div className="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary flex-shrink-0">
                     <MapPin className="h-6 w-6" />
                   </div>
                   <div className="flex-1 min-w-0">

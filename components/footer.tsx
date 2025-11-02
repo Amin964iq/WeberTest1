@@ -5,6 +5,7 @@ import { Link } from "@/i18n/routing";
 import { Mail, Phone, Instagram, Facebook, Twitter, Linkedin, MessageCircle, Sparkles, Code2, Rocket, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { useParams } from "next/navigation";
+import Image from "next/image";
 
 interface FooterProps {
   locale: string;
@@ -115,18 +116,24 @@ export default function Footer({ }: FooterProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="space-y-4"
+            className="space-y-4 relative"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, type: "spring" }}
-              className="text-2xl font-bold bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent animate-gradient"
+              className="h-12 w-auto absolute top-24 left-0 rtl:left-auto rtl:right-0 -mt-24"
             >
-              DEVURA
+              <Image
+                src="/images/weber-logo-white.png"
+                alt="Weber Logo"
+                height={48}
+                width={150}
+                className="object-contain"
+              />
             </motion.div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed pt-16">
               {t("description")}
             </p>
             <div className="flex space-x-3 rtl:space-x-reverse">
@@ -142,36 +149,34 @@ export default function Footer({ }: FooterProps) {
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/0 to-secondary/0 group-hover:from-primary/10 group-hover:to-secondary/10 transition-all duration-300" />
               </motion.a>
               <motion.a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:weberagancy@gmail.com"
                 whileHover={{ scale: 1.15, rotate: -5, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 className="group relative w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 hover:from-primary/30 hover:to-secondary/30 flex items-center justify-center border border-primary/20 hover:border-primary/40 transition-all duration-300"
               >
-                <Facebook className="h-5 w-5 text-primary group-hover:text-primary transition-colors" />
+                <Mail className="h-5 w-5 text-primary group-hover:text-primary transition-colors" />
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/0 to-secondary/0 group-hover:from-primary/10 group-hover:to-secondary/10 transition-all duration-300" />
               </motion.a>
               <motion.a
-                href="https://twitter.com"
+                href="https://wa.me/9647741424344"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.15, rotate: 5, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 className="group relative w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 hover:from-primary/30 hover:to-secondary/30 flex items-center justify-center border border-primary/20 hover:border-primary/40 transition-all duration-300"
               >
-                <Twitter className="h-5 w-5 text-primary group-hover:text-primary transition-colors" />
+                <MessageCircle className="h-5 w-5 text-primary group-hover:text-primary transition-colors" />
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/0 to-secondary/0 group-hover:from-primary/10 group-hover:to-secondary/10 transition-all duration-300" />
               </motion.a>
               <motion.a
-                href="https://linkedin.com"
+                href="https://cal.com/weberiq/30min"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.15, rotate: -5, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 className="group relative w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 hover:from-primary/30 hover:to-secondary/30 flex items-center justify-center border border-primary/20 hover:border-primary/40 transition-all duration-300"
               >
-                <Linkedin className="h-5 w-5 text-primary group-hover:text-primary transition-colors" />
+                <Phone className="h-5 w-5 text-primary group-hover:text-primary transition-colors" />
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/0 to-secondary/0 group-hover:from-primary/10 group-hover:to-secondary/10 transition-all duration-300" />
               </motion.a>
             </div>
@@ -192,7 +197,7 @@ export default function Footer({ }: FooterProps) {
               {[
                 { href: "/", label: tNav("home") },
                 { href: "/services", label: tNav("services") },
-                { href: "/portfolio", label: isArabic ? "محفظتنا" : "Our Portfolio" },
+                { href: "/portfolio", label: isArabic ? "مشاريعنا" : "Our Portfolio" },
                 { href: "/about", label: tNav("about") },
                 { href: "/contact", label: tNav("contact") },
               ].map((link, index) => (
@@ -237,9 +242,9 @@ export default function Footer({ }: FooterProps) {
             </h3>
             <ul className="space-y-3">
               {[
-                { href: "/services/web-development", label: "Web Development" },
-                { href: "/services/custom-systems", label: "Custom Systems" },
-                { href: "/services/cybersecurity-solutions", label: "Cybersecurity Solutions" },
+                { href: "/services/web-development", label: isArabic ? "تطوير المواقع" : "Web Development" },
+                { href: "/services/custom-systems", label: isArabic ? "أنظمة مخصصة" : "Custom Systems" },
+                { href: "/services/cybersecurity-solutions", label: isArabic ? "حلول الأمن السيبراني" : "Cybersecurity Solutions" },
               ].map((link, index) => (
                 <motion.li
                   key={link.href}
@@ -306,7 +311,10 @@ export default function Footer({ }: FooterProps) {
                     >
                       <item.icon className="h-4 w-4 text-primary" />
                     </motion.div>
-                    <span className="group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform">
+                    <span
+                      className="group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform"
+                      dir={item.label.startsWith("+") ? "ltr" : undefined}
+                    >
                       {item.label}
                     </span>
                   </a>
@@ -340,7 +348,7 @@ export default function Footer({ }: FooterProps) {
           </div>
 
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -349,12 +357,18 @@ export default function Footer({ }: FooterProps) {
             >
               <span>© {currentYear}</span>
               <span className="text-primary">•</span>
-              <span className="font-semibold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                DEVURA
-              </span>
+              <div className="h-5 w-auto relative -mt-5">
+                <Image
+                  src="/images/weber-logo-white.png"
+                  alt="Weber Logo"
+                  height={20}
+                  width={60}
+                  className="object-contain"
+                />
+              </div>
               <span className="text-primary">•</span>
               <span>{t("rights")}</span>
-            </motion.p>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -363,17 +377,7 @@ export default function Footer({ }: FooterProps) {
               transition={{ delay: 0.6 }}
               className="flex items-center gap-2 text-xs"
             >
-              <motion.span
-                animate={{
-                  opacity: [0.5, 1, 0.5],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                }}
-                className="w-2 h-2 rounded-full bg-primary"
-              />
-              <span>Crafted with passion</span>
+              <span>{isArabic ? "صُنع بشغف" : "Crafted with passion"}</span>
             </motion.div>
           </div>
         </motion.div>

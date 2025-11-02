@@ -72,7 +72,7 @@ export default function Navbar({ locale }: NavbarProps) {
         {
           label: "Email",
           ariaLabel: "Email us",
-          href: "mailto:info@weber.com",
+          href: "mailto:weberagancy@gmail.com",
         },
         {
           label: "WhatsApp",
@@ -80,9 +80,9 @@ export default function Navbar({ locale }: NavbarProps) {
           href: "https://wa.me/9647741424344",
         },
         {
-          label: locale === "ar" ? "نموذج الاستفسار" : "Inquiry Form",
-          ariaLabel: "Contact Form",
-          href: "/contact",
+          label: locale === "ar" ? "احجز اجتماع" : "Schedule a Meeting",
+          ariaLabel: "Schedule a Meeting",
+          href: "https://cal.com/weberiq/30min",
         },
       ],
     },

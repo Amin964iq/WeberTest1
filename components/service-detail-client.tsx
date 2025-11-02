@@ -42,9 +42,9 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
           "https://ik.imagekit.io/wq0dxvevx/laurenza1.png?updatedAt=1760265995796"
         ];
       case "custom-systems":
-        return ["/sys.png", "/sysdev.jpg"];
+        return ["/sysdev2.jpg", "/sysdev.jpg"];
       case "cybersecurity-solutions":
-        return ["/images/services/cybersecurity-hero.jpg", "/images/services/cybersecurity.jpg"];
+        return ["/cyber2.jpg", "/images/services/cybersecurity.jpg"];
       default:
         return [
           "https://ik.imagekit.io/wq0dxvevx/business-river.png?updatedAt=1760266385644",
@@ -128,34 +128,51 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
               />
             </motion.div>
 
-            {/* Images Section - Side by Side Layout */}
+            {/* Images Section - Clean 2-Image Layout */}
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 md:gap-6 order-1 lg:order-2 mt-8 sm:mt-10 md:mt-0"
+              className="relative h-[200px] sm:h-[260px] md:h-[350px] lg:h-[420px] order-1 lg:order-2 mt-8 sm:mt-10 md:mt-0"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
             >
+              {/* Background glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 blur-3xl opacity-50" />
+
               {serviceImages.map((image, index) => {
+                const isFirst = index === 0;
                 const isHovered = hoveredImage === index;
+                const otherIsHovered = hoveredImage !== null && hoveredImage !== index;
 
                 return (
                   <motion.div
                     key={index}
-                    className="flex-1 cursor-pointer h-[200px] sm:h-[260px] md:h-[350px] lg:h-[420px]"
+                    className="absolute cursor-pointer"
+                    style={{
+                      // Better spacing - both images fully visible
+                      left: isFirst ? '15%' : '0',
+                      top: isFirst ? '12%' : '0',
+                      right: isFirst ? '0' : '15%',
+                      bottom: isFirst ? '0' : '12%',
+                      transformOrigin: "center center",
+                    }}
                     initial={{
                       opacity: 0,
                       scale: 0.85,
-                      x: index === 0 ? -30 : 30,
+                      rotate: isFirst ? -2 : 2,
                     }}
                     animate={{
-                      opacity: 1,
-                      scale: 1,
-                      x: 0,
+                      opacity: otherIsHovered ? 0.5 : 1,
+                      scale: isHovered ? 1.05 : 1,
+                      rotate: isHovered ? 0 : (isFirst ? -2 : 2),
+                      zIndex: isHovered ? 30 : (isFirst ? 10 : 20),
+                      filter: otherIsHovered ? "blur(5px) brightness(0.5)" : "blur(0px) brightness(1)",
                     }}
                     transition={{
                       opacity: { duration: 0.3 },
                       scale: { duration: 0.5, type: "spring", stiffness: 100, damping: 15 },
-                      x: { duration: 0.5 },
+                      rotate: { duration: 0.5 },
+                      filter: { duration: 0.3 },
+                      zIndex: { duration: 0 }
                     }}
                     onMouseEnter={() => handleImageHover(index)}
                     onMouseLeave={handleImageLeave}
@@ -174,7 +191,8 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
                         loading={index === 0 ? "eager" : "lazy"}
                       />
 
-                      {/* Subtle gradient overlay only on hover */}
+                      {/* Gradient overlays */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-background/20 to-transparent" />
                       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                       {/* Shine effect on hover */}

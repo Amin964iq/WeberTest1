@@ -124,7 +124,6 @@ export default function Navbar({ locale }: NavbarProps) {
           />
         </div>
       }
-      logoAlt="Weber Logo"
       items={navItems}
       baseColor="rgba(0, 0, 0, 0.8)"
       menuColor="#fff"

@@ -58,8 +58,6 @@ export default function ServicesPage() {
           />
         </div>
 
-        {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
@@ -123,8 +121,6 @@ export default function ServicesPage() {
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
         </div>
 
-        {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div

@@ -55,8 +55,6 @@ export default function ProjectDetailPage() {
           />
         </div>
 
-        {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
@@ -132,8 +130,6 @@ export default function ProjectDetailPage() {
 
       {/* Project Image - Large Featured Section */}
       <section className="relative py-16 sm:py-20 md:py-28 z-10">
-        {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
@@ -161,8 +157,6 @@ export default function ProjectDetailPage() {
 
       {/* Overview Section */}
       <section className="relative py-16 sm:py-20 md:py-28 z-10">
-        {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto">
@@ -188,8 +182,6 @@ export default function ProjectDetailPage() {
 
       {/* Features Section */}
       <section className="relative py-16 sm:py-20 md:py-28 z-10">
-        {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto">
@@ -237,8 +229,6 @@ export default function ProjectDetailPage() {
 
       {/* Technology Stack */}
       <section className="relative py-16 sm:py-20 md:py-28 z-10">
-        {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto">
@@ -378,8 +368,6 @@ export default function ProjectDetailPage() {
 
       {/* Challenges Section */}
       <section className="relative py-16 sm:py-20 md:py-28 z-10">
-        {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto">
@@ -428,8 +416,6 @@ export default function ProjectDetailPage() {
       {/* Links Section */}
       {(project.links.github || project.links.live || project.links.demo) && (
         <section className="relative py-16 sm:py-20 md:py-28 z-10">
-        {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
 
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-4xl mx-auto">
@@ -509,8 +495,6 @@ export default function ProjectDetailPage() {
 
       {/* Outcome Section */}
       <section className="relative py-16 sm:py-20 md:py-28 z-10">
-        {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto">
@@ -536,8 +520,6 @@ export default function ProjectDetailPage() {
 
       {/* Related Projects Section */}
       <section className="relative py-16 sm:py-20 md:py-28 z-10">
-        {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-6xl mx-auto">

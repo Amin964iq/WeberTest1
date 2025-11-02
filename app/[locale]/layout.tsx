@@ -115,6 +115,9 @@ export default async function LocaleLayout({
             {/* VIDEO BACKGROUND */}
             <VideoBackground />
 
+            {/* GLOBAL DARK OVERLAY - One continuous layer across entire site */}
+            <div className="fixed inset-0 bg-black/40 z-5 pointer-events-none" />
+
             <NextIntlClientProvider messages={messages}>
               <LanguageProvider>
                 <div className="relative z-10">

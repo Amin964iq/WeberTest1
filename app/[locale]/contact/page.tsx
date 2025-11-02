@@ -26,8 +26,6 @@ export default function ContactPage() {
           <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
         </div>
 
-        {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 overflow-visible relative z-10">
           <motion.div

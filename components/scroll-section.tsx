@@ -58,8 +58,6 @@ export default function ScrollSection({
           </div>
         )}
 
-        {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
 
         {/* Main Content */}
         <div className="relative z-10 w-full">
@@ -87,8 +85,6 @@ export default function ScrollSection({
             </div>
           )}
 
-          {/* Dark Overlay for Text Readability */}
-          <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
 
           {/* Main Content */}
           <div className="relative z-10 w-full">

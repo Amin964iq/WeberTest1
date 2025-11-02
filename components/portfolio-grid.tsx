@@ -12,8 +12,6 @@ export default function PortfolioGrid({ locale }: PortfolioGridProps) {
   return (
     <section className="relative py-20 sm:py-24 md:py-32 z-10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

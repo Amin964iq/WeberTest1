@@ -9,6 +9,7 @@ import dynamic from "next/dynamic";
 import { useParams } from "next/navigation";
 import { TextScramble } from "@/components/motion-primitives/text-scramble";
 import VideoBackground from "@/components/video-background";
+import CodeSpaceBackground from "@/components/code-space-background";
 import * as React from "react";
 
 const arabicChars = "ابتثجحخدذرزسشصضطظعغفقكلمنهويىءئؤةأإآ";
@@ -97,11 +98,17 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Portfolio Grid Section */}
-      <PortfolioGrid locale={locale} />
+      {/* Non-Hero Content with Space Background */}
+      <div className="relative">
+        <CodeSpaceBackground fixed={false} />
 
-      {/* CTA Section */}
-      <section className="relative py-16 sm:py-20 md:py-28 z-10">
+        {/* Portfolio Grid Section */}
+        <div className="relative z-10">
+          <PortfolioGrid locale={locale} />
+        </div>
+
+        {/* CTA Section */}
+        <section className="relative py-16 sm:py-20 md:py-28 z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -143,7 +150,8 @@ export default function PortfolioPage() {
             </div>
           </motion.div>
         </div>
-      </section>
+        </section>
+      </div>
     </>
   );
 }

@@ -125,26 +125,22 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center mt-8 sm:mt-10 md:mt-12"
+          className="text-center mt-8 sm:mt-10 md:mt-12 max-w-2xl mx-auto py-6 px-4 sm:py-8 sm:px-8 md:py-12 md:px-12"
         >
-          <Card className="max-w-2xl mx-auto bg-gradient-to-br from-primary/10 via-secondary/5 to-background border-primary/20">
-            <CardContent className="py-6 px-4 sm:py-8 sm:px-8 md:py-12 md:px-12">
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4">
-                {locale === "ar" ? "جاهز لتحقيق حلمك الرقمي؟" : "Ready to bring your vision to life?"}
-              </h3>
-              <p className="text-xs sm:text-sm md:text-base text-muted-foreground mb-4 sm:mb-6 max-w-xl mx-auto px-2 sm:px-0">
-                {locale === "ar" ? "احجز استشارة مجانية مع فريقنا لمناقشة مشروعك والحصول على خطة تفصيلية" : "Schedule a free consultation with our team to discuss your project and get a detailed plan"}
-              </p>
-              <Button
-                className="bg-white dark:bg-white text-black hover:bg-gray-100 dark:hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all min-h-[44px] px-4 sm:px-6"
-                asChild
-              >
-                <a href="https://cal.com/weberiq/30min" target="_blank" rel="noopener noreferrer">
-                  {locale === "ar" ? "احجز استشارة مجانية" : "Schedule Free Consultation"}
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
+          <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4">
+            {locale === "ar" ? "جاهز لتحقيق حلمك الرقمي؟" : "Ready to bring your vision to life?"}
+          </h3>
+          <p className="text-xs sm:text-sm md:text-base text-muted-foreground mb-4 sm:mb-6 max-w-xl mx-auto px-2 sm:px-0">
+            {locale === "ar" ? "احجز استشارة مجانية مع فريقنا لمناقشة مشروعك والحصول على خطة تفصيلية" : "Schedule a free consultation with our team to discuss your project and get a detailed plan"}
+          </p>
+          <Button
+            className="bg-white dark:bg-white text-black hover:bg-gray-100 dark:hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all min-h-[44px] px-4 sm:px-6"
+            asChild
+          >
+            <a href="https://cal.com/weberiq/30min" target="_blank" rel="noopener noreferrer">
+              {locale === "ar" ? "احجز استشارة مجانية" : "Schedule Free Consultation"}
+            </a>
+          </Button>
         </motion.div>
       </div>
 

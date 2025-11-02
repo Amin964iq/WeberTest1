@@ -112,7 +112,6 @@ export default async function LocaleLayout({
             forcedTheme="dark"
             disableTransitionOnChange
           >
-
             <NextIntlClientProvider messages={messages}>
               <LanguageProvider>
                 <div className="relative z-10">

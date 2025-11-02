@@ -10,6 +10,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { TextScramble } from "@/components/motion-primitives/text-scramble";
 import VideoBackground from "@/components/video-background";
+import CodeSpaceBackground from "@/components/code-space-background";
 import { useParams } from "next/navigation";
 import * as React from "react";
 
@@ -86,11 +87,17 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Luxury Services with Scroll Animations */}
-      <LuxuryServicesFull />
+      {/* Non-Hero Content with Space Background */}
+      <div className="relative">
+        <CodeSpaceBackground fixed={false} />
 
-      {/* CTA Section */}
-      <section className="py-32 relative overflow-hidden">
+        {/* Luxury Services with Scroll Animations */}
+        <div className="relative z-10">
+          <LuxuryServicesFull />
+        </div>
+
+        {/* CTA Section */}
+        <section className="py-32 relative overflow-hidden z-10">
 
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -131,7 +138,8 @@ export default function ServicesPage() {
             </Card>
           </motion.div>
         </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 }

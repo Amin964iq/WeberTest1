@@ -55,17 +55,17 @@
   }
   body {
     @apply text-foreground;
-    background-color: #0F0108;
+    background-color: #000000;
     position: relative;
     overflow-x: hidden;
   }
 
   html {
-    background-color: #0F0108;
+    background-color: #000000;
   }
 
   main {
-    background-color: #0F0108;
+    background-color: #000000;
   }
 }
 

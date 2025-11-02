@@ -71,59 +71,6 @@ export default function WhatWeOfferSection({ locale }: WhatWeOfferSectionProps) 
               </motion.span>
             </motion.h2>
 
-            {/* Shining Line - under the sentence, shines based on language direction */}
-            <div className="relative mt-12 flex justify-center overflow-hidden">
-              <div className="relative w-full max-w-2xl h-[3px]">
-                {/* Base line */}
-                <motion.div
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 0.8, delay: 0.5 }}
-                  className="h-full w-full bg-gradient-to-r from-transparent via-primary/30 to-transparent origin-center"
-                />
-
-                {/* Shine effect - gradient that sweeps across based on language direction */}
-                <motion.div
-                  initial={{
-                    x: isRTL ? "100%" : "-100%",
-                    opacity: 0
-                  }}
-                  whileInView={{
-                    x: isRTL ? "-100%" : "100%",
-                    opacity: [0, 1, 1, 1, 0]
-                  }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{
-                    duration: 2,
-                    delay: 0.8,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-primary to-transparent"
-                  style={{
-                    filter: "blur(4px)",
-                    boxShadow: "0 0 20px rgba(var(--primary), 0.8)",
-                  }}
-                />
-
-                {/* Bright shine overlay */}
-                <motion.div
-                  initial={{
-                    x: isRTL ? "100%" : "-100%",
-                  }}
-                  whileInView={{
-                    x: isRTL ? "-100%" : "100%",
-                  }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{
-                    duration: 2,
-                    delay: 0.8,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute top-1/2 -translate-y-1/2 w-32 h-8 bg-gradient-to-r from-transparent via-white to-transparent opacity-80 blur-sm"
-                />
-              </div>
-            </div>
           </motion.div>
         </div>
       </div>

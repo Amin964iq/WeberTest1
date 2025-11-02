@@ -8,6 +8,7 @@ import { Clock, MapPin } from "lucide-react";
 import { TextScramble } from "@/components/motion-primitives/text-scramble";
 import { useParams } from "next/navigation";
 import VideoBackground from "@/components/video-background";
+import CodeSpaceBackground from "@/components/code-space-background";
 import * as React from "react";
 
 const arabicChars = "ابتثجحخدذرزسشصضطظعغفقكلمنهويىءئؤةأإآ";
@@ -94,7 +95,14 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <ContactSection />
+      {/* Non-Hero Content with Space Background */}
+      <div className="relative">
+        <CodeSpaceBackground fixed={false} />
+
+        <div className="relative z-10">
+          <ContactSection />
+        </div>
+      </div>
     </div>
   );
 }

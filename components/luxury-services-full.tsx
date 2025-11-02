@@ -231,15 +231,28 @@ export default function LuxuryServicesFull() {
                   transition={{ duration: 0.8, delay: 1 }}
                   className="text-center"
                 >
-                  <Link href={`/services/${service.slug}`}>
-                    <Button
-                      size="sm"
-                      className="group bg-white dark:bg-white text-black hover:bg-gray-100 dark:hover:bg-gray-100 text-sm px-6 py-2.5 h-auto shadow-xl hover:shadow-2xl transition-all"
-                    >
-                      {t("exploreService")}
-                      <ArrowRight className="ml-2 rtl:mr-2 rtl:ml-0 h-4 w-4 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform rtl:rotate-180" />
-                    </Button>
-                  </Link>
+                  <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+                    <Link href={`/services/${service.slug}`}>
+                      <Button
+                        size="sm"
+                        className="group bg-white dark:bg-white text-black hover:bg-gray-100 dark:hover:bg-gray-100 text-sm px-6 py-2.5 h-auto shadow-xl hover:shadow-2xl transition-all"
+                      >
+                        {t("exploreService")}
+                        <ArrowRight className="ml-2 rtl:mr-2 rtl:ml-0 h-4 w-4 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform rtl:rotate-180" />
+                      </Button>
+                    </Link>
+
+                    <Link href="/portfolio">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="group border-white/30 text-white hover:bg-white/10 text-sm px-6 py-2.5 h-auto shadow-xl hover:shadow-2xl transition-all border"
+                      >
+                        {t("ourProjects")}
+                        <ArrowRight className="ml-2 rtl:mr-2 rtl:ml-0 h-4 w-4 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform rtl:rotate-180" />
+                      </Button>
+                    </Link>
+                  </div>
 
                   {/* Decorative lines */}
                   <motion.div

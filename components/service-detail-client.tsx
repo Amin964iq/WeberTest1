@@ -4,12 +4,15 @@ import { useState, useMemo, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, ArrowRight } from "lucide-react";
+import { Link } from "@/i18n/routing";
 import { Service } from "@/lib/services";
 import { ServiceDetail } from "@/lib/service-details";
 import dynamic from "next/dynamic";
 import VideoBackground from "@/components/video-background";
+import CodeSpaceBackground from "@/components/code-space-background";
 import { subServicesData } from "@/lib/sub-services";
+import { Button } from "@/components/ui/button";
 
 // Lazy load heavy components for better performance
 // Note: loading message will use the common translations via the parent component
@@ -90,10 +93,8 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 pb-4 sm:pb-6 leading-tight">
-                  <span className="bg-gradient-to-r from-primary via-primary/80 to-secondary bg-clip-text text-transparent">
-                    {t(`${service.id}.title`)}
-                  </span>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 pb-4 sm:pb-6 leading-tight text-white">
+                  {t(`${service.id}.title`)}
                 </h1>
                 <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
                   {t(`${service.id}.description`)}
@@ -197,199 +198,217 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
         </div>
       </motion.section>
 
-      {/* What Is Section */}
-      <section className="py-20 bg-muted/30 relative z-10">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center space-y-6"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold">
-              {t(`${service.id}.whatIs.title`)}
-            </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              {detail.whatIs[locale as "en" | "ar"]}
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      {/* Non-Hero Content with Space Background */}
+      <div className="relative">
+        <CodeSpaceBackground fixed={false} />
 
-      {/* Sub-Services Grid - The Missing Section! */}
-      {subServices.length > 0 && (
-        <SubServicesGrid subServices={subServices} locale={locale} />
-      )}
+        {/* What Is Section */}
+        <section className="py-20 relative z-10">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="max-w-4xl mx-auto text-center space-y-6"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold">
+                {t(`${service.id}.whatIs.title`)}
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                {detail.whatIs[locale as "en" | "ar"]}
+              </p>
+            </motion.div>
+          </div>
+        </section>
 
-      {/* Why Your Business Needs It Section */}
-      <section className="py-20 relative z-10">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              {t(`${service.id}.whyNeed.title`)}
-            </h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              {detail.whyNeed[locale as "en" | "ar"].map((reason, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="p-6 bg-card rounded-xl border shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <div className="flex items-start space-x-4 rtl:space-x-reverse gap-4">
-                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <span className="text-primary font-bold text-sm">{index + 1}</span>
-                    </div>
-                    <p className="text-muted-foreground flex-1">{reason}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
+        {/* Sub-Services Grid - The Missing Section! */}
+        {subServices.length > 0 && (
+          <div className="relative z-10">
+            <SubServicesGrid subServices={subServices} locale={locale} />
+          </div>
+        )}
 
-      {/* How We Execute Section */}
-      <section className="py-20 bg-muted/30 relative z-10">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              {t(`${service.id}.howWeDo.title`)}
-            </h2>
-            <div className="space-y-8">
-              {detail.howWeDo[locale as "en" | "ar"].map((step, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="flex items-start space-x-6 rtl:space-x-reverse gap-6"
-                >
-                  <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-primary-foreground font-bold">{index + 1}</span>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold mb-2">{step.step}</h3>
-                    <p className="text-muted-foreground">{step.description}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-20 relative z-10">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl mx-auto"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              {t(`${service.id}.faq.title`)}
-            </h2>
-            <div className="space-y-4">
-              {detail.faqs[locale as "en" | "ar"].map((faq, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-card rounded-xl border shadow-sm"
-                >
-                  <button
-                    onClick={() => toggleFaq(index)}
-                    className="w-full p-6 text-left flex items-center justify-between hover:bg-muted/50 transition-colors"
-                    aria-expanded={openFaq === index}
-                    aria-controls={`faq-answer-${index}`}
+        {/* Why Your Business Needs It Section */}
+        <section className="py-20 relative z-10">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="max-w-4xl mx-auto"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+                {t(`${service.id}.whyNeed.title`)}
+              </h2>
+              <div className="grid md:grid-cols-2 gap-8">
+                {detail.whyNeed[locale as "en" | "ar"].map((reason, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="p-6 bg-card rounded-xl border shadow-sm hover:shadow-md transition-shadow"
                   >
-                    <span className="font-semibold">{faq.question}</span>
-                    {openFaq === index ? (
-                      <ChevronUp className="h-5 w-5 text-muted-foreground" />
-                    ) : (
-                      <ChevronDown className="h-5 w-5 text-muted-foreground" />
-                    )}
-                  </button>
-                  <AnimatePresence>
-                    {openFaq === index && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                        id={`faq-answer-${index}`}
-                        role="region"
-                      >
-                        <div className="p-6 pt-0 text-muted-foreground">{faq.answer}</div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
+                    <div className="flex items-start space-x-4 rtl:space-x-reverse gap-4">
+                      <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-primary font-bold text-sm">{index + 1}</span>
+                      </div>
+                      <p className="text-muted-foreground flex-1">{reason}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-background via-muted/30 to-background relative z-10">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center space-y-8"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              {t(`${service.id}.cta.title`)}
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              {t(`${service.id}.cta.description`)}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.a
-                href="/contact"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center px-8 py-4 bg-white dark:bg-white text-black rounded-xl font-semibold hover:bg-gray-100 dark:hover:bg-gray-100 transition-colors shadow-lg"
-              >
-                {t(`${service.id}.cta.primary`)}
-              </motion.a>
-              <motion.a
-                href="https://wa.me/1234567890"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center px-8 py-4 border-2 border-primary text-primary rounded-xl font-semibold hover:bg-primary hover:text-primary-foreground transition-colors"
-              >
-                {t(`${service.id}.cta.secondary`)}
-              </motion.a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+        {/* How We Execute Section */}
+        <section className="py-20 relative z-10">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="max-w-4xl mx-auto"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+                {t(`${service.id}.howWeDo.title`)}
+              </h2>
+              <div className="space-y-8">
+                {detail.howWeDo[locale as "en" | "ar"].map((step, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="flex items-start space-x-6 rtl:space-x-reverse gap-6"
+                  >
+                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                      <span className="text-primary-foreground font-bold">{index + 1}</span>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-semibold mb-2">{step.step}</h3>
+                      <p className="text-muted-foreground">{step.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-20 relative z-10">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="max-w-3xl mx-auto"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+                {t(`${service.id}.faq.title`)}
+              </h2>
+              <div className="space-y-4">
+                {detail.faqs[locale as "en" | "ar"].map((faq, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="bg-card rounded-xl border shadow-sm"
+                  >
+                    <button
+                      onClick={() => toggleFaq(index)}
+                      className="w-full p-6 text-left flex items-center justify-between hover:bg-muted/50 transition-colors"
+                      aria-expanded={openFaq === index}
+                      aria-controls={`faq-answer-${index}`}
+                    >
+                      <span className="font-semibold">{faq.question}</span>
+                      {openFaq === index ? (
+                        <ChevronUp className="h-5 w-5 text-muted-foreground" />
+                      ) : (
+                        <ChevronDown className="h-5 w-5 text-muted-foreground" />
+                      )}
+                    </button>
+                    <AnimatePresence>
+                      {openFaq === index && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                          id={`faq-answer-${index}`}
+                          role="region"
+                        >
+                          <div className="p-6 pt-0 text-muted-foreground">{faq.answer}</div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-20 relative z-10">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="max-w-4xl mx-auto text-center space-y-8"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                {t(`${service.id}.cta.title`)}
+              </h2>
+              <p className="text-xl text-muted-foreground">
+                {t(`${service.id}.cta.description`)}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center flex-wrap">
+                <motion.a
+                  href="/contact"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center justify-center px-8 py-4 bg-white dark:bg-white text-black rounded-xl font-semibold hover:bg-gray-100 dark:hover:bg-gray-100 transition-colors shadow-lg"
+                >
+                  {t(`${service.id}.cta.primary`)}
+                </motion.a>
+                <motion.a
+                  href="https://wa.me/1234567890"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-primary text-primary rounded-xl font-semibold hover:bg-primary hover:text-primary-foreground transition-colors"
+                >
+                  {t(`${service.id}.cta.secondary`)}
+                </motion.a>
+
+                <Link href="/portfolio">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="group border-white/30 text-white hover:bg-white/10 px-8 py-4 h-auto shadow-lg hover:shadow-xl transition-all border-2 rounded-xl font-semibold text-base"
+                  >
+                    {t("ourProjects")}
+                    <ArrowRight className="ml-2 rtl:mr-2 rtl:ml-0 h-5 w-5 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform rtl:rotate-180" />
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

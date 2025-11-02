@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Code, Users, Award, Target, Rocket, Eye } from "lucide-react";
 import { TextScramble } from "@/components/motion-primitives/text-scramble";
 import VideoBackground from "@/components/video-background";
+import CodeSpaceBackground from "@/components/code-space-background";
 import { useParams } from "next/navigation";
 import * as React from "react";
 
@@ -99,8 +100,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="py-16 md:py-24">
+      {/* Non-Hero Content with Space Background */}
+      <div className="relative">
+        <CodeSpaceBackground fixed={false} />
+
+        {/* Mission & Vision */}
+        <section className="py-16 md:py-24 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <motion.div
@@ -146,10 +151,10 @@ export default function AboutPage() {
             </motion.div>
           </div>
         </div>
-      </section>
+        </section>
 
-      {/* Values Section */}
-      <section className="py-16 md:py-24 bg-muted/50">
+        {/* Values Section */}
+        <section className="py-16 md:py-24 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -206,10 +211,10 @@ export default function AboutPage() {
             ))}
           </motion.div>
         </div>
-      </section>
+        </section>
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-24">
+        {/* CTA Section */}
+        <section className="py-16 md:py-24 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -240,7 +245,8 @@ export default function AboutPage() {
             </Card>
           </motion.div>
         </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 }

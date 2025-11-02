@@ -161,12 +161,13 @@ export default function LuxuryServicesHome() {
                       {t(`${service.key}.description`)}
                     </motion.p>
 
-                    {/* CTA Button */}
+                    {/* CTA Buttons */}
                     <motion.div
                       initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: isMobile ? true : false, amount: 0.3 }}
                       transition={{ duration: isMobile ? 0.3 : 0.6, delay: isMobile ? 0 : 0.8 }}
+                      className="flex flex-col sm:flex-row gap-4 items-start sm:items-center"
                     >
                       <Link href={`/services/${service.slug}`}>
                         <Button
@@ -174,6 +175,17 @@ export default function LuxuryServicesHome() {
                           className="group bg-white dark:bg-white text-black hover:bg-gray-100 dark:hover:bg-gray-100 text-sm px-5 py-2 h-auto shadow-lg hover:shadow-xl transition-all"
                         >
                           {t("learnMore")}
+                          <ArrowRight className="ml-2 rtl:mr-2 rtl:ml-0 h-4 w-4 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform rtl:rotate-180" />
+                        </Button>
+                      </Link>
+
+                      <Link href="/portfolio">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="group border-white/30 text-white hover:bg-white/10 text-sm px-5 py-2 h-auto shadow-lg hover:shadow-xl transition-all border"
+                        >
+                          {t("ourProjects")}
                           <ArrowRight className="ml-2 rtl:mr-2 rtl:ml-0 h-4 w-4 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform rtl:rotate-180" />
                         </Button>
                       </Link>

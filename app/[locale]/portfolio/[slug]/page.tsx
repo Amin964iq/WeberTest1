@@ -9,6 +9,7 @@ import { ArrowRight, Github, ExternalLink } from "lucide-react";
 import { useParams } from "next/navigation";
 import { notFound } from "next/navigation";
 import dynamic from "next/dynamic";
+import VideoBackground from "@/components/video-background";
 
 export default function ProjectDetailPage() {
   const params = useParams();
@@ -27,33 +28,10 @@ export default function ProjectDetailPage() {
     <>
       {/* Hero Section */}
       <motion.section className="relative min-h-[70vh] flex items-center overflow-hidden pt-20 sm:pt-28 md:pt-32 pb-12 z-10">
+      {/* Video Background */}
+      <VideoBackground />
+
         {/* Animated Background */}
-        <div className="absolute inset-0 -z-10">
-          <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute top-10 sm:top-20 left-10 sm:left-20 w-40 sm:w-72 h-40 sm:h-72 bg-primary/30 rounded-full blur-3xl"
-          />
-          <motion.div
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.2, 0.4, 0.2],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute bottom-10 sm:bottom-20 right-10 sm:right-20 w-48 sm:w-96 h-48 sm:h-96 bg-secondary/20 rounded-full blur-3xl"
-          />
-        </div>
 
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

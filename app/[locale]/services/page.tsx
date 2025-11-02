@@ -9,6 +9,7 @@ import { Link } from "@/i18n/routing";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { TextScramble } from "@/components/motion-primitives/text-scramble";
+import VideoBackground from "@/components/video-background";
 import { useParams } from "next/navigation";
 import * as React from "react";
 
@@ -25,38 +26,11 @@ export default function ServicesPage() {
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+        {/* Video Background */}
+        <VideoBackground />
+
         {/* Code Snippets */}
 
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
-          <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
-
-          {/* Animated orbs */}
-          <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute top-20 left-20 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
-          />
-          <motion.div
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.2, 0.4, 0.2],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute bottom-20 right-20 w-96 h-96 bg-secondary/20 rounded-full blur-3xl"
-          />
-        </div>
 
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -117,9 +91,6 @@ export default function ServicesPage() {
 
       {/* CTA Section */}
       <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
-        </div>
 
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

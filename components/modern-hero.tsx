@@ -9,6 +9,7 @@ import { Link } from "@/i18n/routing";
 import { ArrowRight, Sparkles } from "lucide-react";
 import Image from "next/image";
 import { TextScramble } from "@/components/motion-primitives/text-scramble";
+import VideoBackground from "@/components/video-background";
 
 interface Project {
   id: number;
@@ -152,38 +153,12 @@ export default function ModernHero({ locale }: ModernHeroProps) {
 
   return (
     <div className="relative min-h-screen flex items-center overflow-hidden pt-32 sm:pt-40 md:pt-48 lg:pt-56 pb-8 sm:pb-12 md:pb-16 lg:pb-20">
-      {/* Animated Background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5" />
-        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+      {/* Video Background */}
+      <VideoBackground />
 
-        {/* Floating Orbs */}
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-10 sm:top-20 left-10 sm:left-20 w-40 sm:w-72 h-40 sm:h-72 bg-primary/30 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute bottom-10 sm:bottom-20 right-10 sm:right-20 w-48 sm:w-96 h-48 sm:h-96 bg-secondary/20 rounded-full blur-3xl"
-        />
-      </div>
 
+      {/* Dark Overlay for Text Readability */}
+      <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Hero Content */}
@@ -341,14 +316,12 @@ export default function ModernHero({ locale }: ModernHeroProps) {
             className="hidden md:block absolute inset-y-0 left-0 pointer-events-none z-20"
             style={{
               width: '20%',
-              background: 'linear-gradient(to right, hsl(var(--background)) 0%, hsl(var(--background) / 0.9) 50%, transparent 100%)'
             }}
           />
           <div
             className="hidden md:block absolute inset-y-0 right-0 pointer-events-none z-20"
             style={{
               width: '20%',
-              background: 'linear-gradient(to left, hsl(var(--background)) 0%, hsl(var(--background) / 0.9) 50%, transparent 100%)'
             }}
           />
         </div>

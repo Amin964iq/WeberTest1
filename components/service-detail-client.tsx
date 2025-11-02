@@ -8,17 +8,12 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { Service } from "@/lib/services";
 import { ServiceDetail } from "@/lib/service-details";
 import dynamic from "next/dynamic";
+import VideoBackground from "@/components/video-background";
 import { subServicesData } from "@/lib/sub-services";
 
 // Lazy load heavy components for better performance
 // Note: loading message will use the common translations via the parent component
 const SubServicesGrid = dynamic(() => import("@/components/sub-services-grid"));
-const SpaceBackground = dynamic(() => import("@/components/space-background"), {
-  ssr: false, // Client-side only for performance
-});
-const FloatingElements = dynamic(() => import("@/components/floating-elements"), {
-  ssr: false, // Client-side only for performance
-});
 
 interface ServiceDetailClientProps {
   service: Service;
@@ -71,30 +66,15 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
 
   return (
     <div className="min-h-screen bg-background relative">
-      {/* Space Background - Same as Homepage */}
-      <SpaceBackground />
-
-      {/* Floating Code Elements - no code snippets boxes */}
-      <FloatingElements density="low" showCodeSnippets={false} />
-
       {/* Hero Section with Enhanced Layered Images */}
-      <motion.section 
+      <motion.section
         className="relative py-20 md:py-32 overflow-hidden z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
       >
-        {/* Background decorative elements */}
-        <motion.div 
-          className="absolute inset-0 -z-10"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-        >
-          <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
-        </motion.div>
-
+        {/* Video Background */}
+        <VideoBackground />
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -219,7 +199,7 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
 
       {/* What Is Section */}
       <section className="py-20 bg-muted/30 relative z-10">
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -244,7 +224,7 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
 
       {/* Why Your Business Needs It Section */}
       <section className="py-20 relative z-10">
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -280,7 +260,7 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
 
       {/* How We Execute Section */}
       <section className="py-20 bg-muted/30 relative z-10">
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -317,7 +297,7 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
 
       {/* FAQ Section */}
       <section className="py-20 relative z-10">
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -375,7 +355,7 @@ export default function ServiceDetailClient({ service, detail, locale }: Service
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-background via-muted/30 to-background relative z-10">
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -8,7 +8,7 @@
 export default function VideoBackground() {
   return (
     <div
-      className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
+      className="absolute inset-0 pointer-events-none z-0 overflow-hidden"
       style={{
         backgroundColor: '#000000',
       }}

@@ -10,7 +10,7 @@ import FloatingContact from '@/components/floating-contact';
 import PageTransition from '@/components/page-transition';
 import GlobalClickSpark from '@/components/GlobalClickSpark';
 import LanguageProvider from '@/components/language-provider';
-import VideoBackground from '@/components/video-background';
+
 import { IBM_Plex_Sans_Arabic } from 'next/font/google';
 
 const ibmPlexArabic = IBM_Plex_Sans_Arabic({
@@ -112,11 +112,6 @@ export default async function LocaleLayout({
             forcedTheme="dark"
             disableTransitionOnChange
           >
-            {/* VIDEO BACKGROUND */}
-            <VideoBackground />
-
-            {/* GLOBAL DARK OVERLAY - One continuous layer across entire site */}
-            <div className="fixed inset-0 bg-black/40 z-5 pointer-events-none" />
 
             <NextIntlClientProvider messages={messages}>
               <LanguageProvider>

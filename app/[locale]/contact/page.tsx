@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Clock, MapPin } from "lucide-react";
 import { TextScramble } from "@/components/motion-primitives/text-scramble";
 import { useParams } from "next/navigation";
+import VideoBackground from "@/components/video-background";
 import * as React from "react";
 
 const arabicChars = "ابتثجحخدذرزسشصضطظعغفقكلمنهويىءئؤةأإآ";
@@ -21,10 +22,9 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen pt-20">
       <section className="relative py-20 overflow-visible">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
-          <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
-        </div>
+      {/* Video Background */}
+      <VideoBackground />
+
 
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 overflow-visible relative z-10">

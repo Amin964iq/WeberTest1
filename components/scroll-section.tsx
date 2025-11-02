@@ -58,7 +58,6 @@ export default function ScrollSection({
           </div>
         )}
 
-
         {/* Main Content */}
         <div className="relative z-10 w-full">
           {children}
@@ -84,7 +83,6 @@ export default function ScrollSection({
               {backgroundElements}
             </div>
           )}
-
 
           {/* Main Content */}
           <div className="relative z-10 w-full">

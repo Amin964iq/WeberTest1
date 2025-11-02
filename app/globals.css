@@ -55,17 +55,17 @@
   }
   body {
     @apply text-foreground;
-    background-color: transparent;
+    background-color: #0F0108;
     position: relative;
     overflow-x: hidden;
   }
 
   html {
-    background-color: transparent;
+    background-color: #0F0108;
   }
 
   main {
-    background-color: transparent;
+    background-color: #0F0108;
   }
 }
 

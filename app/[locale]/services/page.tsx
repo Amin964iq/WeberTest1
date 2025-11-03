@@ -7,8 +7,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/routing";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { BorderBeam } from "@/components/ui/border-beam";
-import { TextScramble } from "@/components/motion-primitives/text-scramble";
 import VideoBackground from "@/components/video-background";
 import CodeSpaceBackground from "@/components/code-space-background";
 import { useParams } from "next/navigation";
@@ -97,47 +95,44 @@ export default function ServicesPage() {
         </div>
 
         {/* CTA Section */}
-        <section className="py-32 relative overflow-hidden z-10">
-
-
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto"
-          >
-            <Card className="relative bg-gradient-to-br from-primary/10 via-secondary/5 to-background border-primary/20 shadow-2xl overflow-hidden">
-              <CardContent className="p-12 md:p-16 text-center">
-                <motion.div
-                  initial={{ scale: 0.9 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <Sparkles className="w-12 h-12 text-primary mx-auto mb-6" />
-                  <h3 className="text-3xl md:text-4xl font-light mb-6 text-foreground">
-                    {t("cta.title")}
-                  </h3>
-                  <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-                    {t("cta.description")}
-                  </p>
-                  <Link href="/contact">
-                    <Button
-                      size="lg"
-                      className="bg-white dark:bg-white text-black hover:bg-gray-100 dark:hover:bg-gray-100 group text-lg px-10 py-7 h-auto shadow-xl hover:shadow-2xl transition-all"
-                    >
-                      {t("cta.button")}
-                      <ArrowRight className="ml-3 rtl:mr-3 rtl:ml-0 h-6 w-6 group-hover:translate-x-2 rtl:group-hover:-translate-x-2 transition-transform rtl:rotate-180" />
-                    </Button>
-                  </Link>
-                </motion.div>
-              </CardContent>
-              <BorderBeam duration={12} size={150} />
-            </Card>
-          </motion.div>
-        </div>
+        <section className="py-16 relative overflow-hidden z-10">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="max-w-4xl mx-auto"
+            >
+              <Card className="relative bg-gradient-to-br from-primary/10 via-secondary/5 to-background border-primary/20 shadow-2xl overflow-hidden">
+                <CardContent className="p-8 md:p-12 text-center">
+                  <motion.div
+                    initial={{ scale: 0.9 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <Sparkles className="w-12 h-12 text-primary mx-auto mb-6" />
+                    <h3 className="text-3xl md:text-4xl font-light mb-6 text-foreground">
+                      {t("cta.title")}
+                    </h3>
+                    <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+                      {t("cta.description")}
+                    </p>
+                    <Link href="/contact">
+                      <Button
+                        size="lg"
+                        className="bg-white dark:bg-white text-black hover:bg-gray-100 dark:hover:bg-gray-100 group text-lg px-10 py-7 h-auto shadow-xl hover:shadow-2xl transition-all"
+                      >
+                        {t("cta.button")}
+                        <ArrowRight className="ml-3 rtl:mr-3 rtl:ml-0 h-6 w-6 group-hover:translate-x-2 rtl:group-hover:-translate-x-2 transition-transform rtl:rotate-180" />
+                      </Button>
+                    </Link>
+                  </motion.div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
         </section>
       </div>
     </div>

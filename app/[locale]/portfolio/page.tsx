@@ -1,36 +1,33 @@
 "use client";
 
 import { motion } from "framer-motion";
-import PortfolioGrid from "@/components/portfolio-grid";
 import { Link } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useParams } from "next/navigation";
-import { TextScramble } from "@/components/motion-primitives/text-scramble";
 import VideoBackground from "@/components/video-background";
-import CodeSpaceBackground from "@/components/code-space-background";
+import InfiniteMenu from "@/components/infinite-menu";
 import * as React from "react";
 
-const arabicChars = "ابتثجحخدذرزسشصضطظعغفقكلمنهويىءئؤةأإآ";
-const englishChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+const DynamicInfiniteMenu = dynamic(() => import("@/components/infinite-menu"), {
+  ssr: false,
+  loading: () => <div className="relative min-h-screen bg-black flex items-center justify-center">
+    <p className="text-white">Loading portfolio...</p>
+  </div>
+});
 
 export default function PortfolioPage() {
   const params = useParams();
   const locale = (params.locale as string) || "ar";
   const isArabic = locale === "ar";
-  const [isHovered, setIsHovered] = React.useState(false);
 
   return (
     <>
-
       {/* Hero Section */}
       <section className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-screen flex items-center overflow-hidden pt-20 sm:pt-28 md:pt-32 pb-12 z-10">
-      {/* Video Background */}
-      <VideoBackground />
-
-        {/* Animated Background */}
-
+        {/* Video Background */}
+        <VideoBackground />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
@@ -38,8 +35,6 @@ export default function PortfolioPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
           >
             {/* Badge */}
             <motion.div
@@ -98,17 +93,22 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Non-Hero Content with Space Background */}
-      <div className="relative">
-        <CodeSpaceBackground fixed={false} />
+      {/* Infinite Menu Section */}
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-black">
+        {/* Video Background */}
+        <VideoBackground />
 
-        {/* Portfolio Grid Section */}
-        <div className="relative z-10">
-          <PortfolioGrid locale={locale} />
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/40 z-5 pointer-events-none" />
+
+        {/* Infinite Menu Component */}
+        <div className="relative z-10 w-full">
+          <InfiniteMenu locale={locale} />
         </div>
+      </section>
 
-        {/* CTA Section */}
-        <section className="relative py-16 sm:py-20 md:py-28 z-10">
+      {/* CTA Section */}
+      <section className="relative py-16 sm:py-20 md:py-28 z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -150,8 +150,7 @@ export default function PortfolioPage() {
             </div>
           </motion.div>
         </div>
-        </section>
-      </div>
+      </section>
     </>
   );
 }

@@ -3,10 +3,11 @@
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Code, Users, Award, Target, Rocket, Eye } from "lucide-react";
+import { Code, Users, Award, Target, Rocket, Eye, ArrowRight } from "lucide-react";
 import { TextScramble } from "@/components/motion-primitives/text-scramble";
 import VideoBackground from "@/components/video-background";
 import CodeSpaceBackground from "@/components/code-space-background";
+import { Link } from "@/i18n/routing";
 import { useParams } from "next/navigation";
 import * as React from "react";
 
@@ -231,16 +232,31 @@ export default function AboutPage() {
                 <p className="text-lg text-muted-foreground mb-8">
                   {t("cta.description")}
                 </p>
-                <motion.a
-                  href="/contact"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-block"
-                >
-                  <div className="px-8 py-3 rounded-lg bg-white dark:bg-white text-black font-semibold hover:bg-gray-100 dark:hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all">
-                    {t("cta.button")}
-                  </div>
-                </motion.a>
+                <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+                  <motion.a
+                    href="/contact"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-block"
+                  >
+                    <div className="px-8 py-3 rounded-lg bg-white dark:bg-white text-black font-semibold hover:bg-gray-100 dark:hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all">
+                      {t("cta.button")}
+                    </div>
+                  </motion.a>
+
+                  <Link href="/portfolio">
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="inline-block"
+                    >
+                      <div className="px-8 py-3 rounded-lg border-2 border-white text-white hover:bg-white/10 font-semibold shadow-lg hover:shadow-xl transition-all flex items-center gap-2">
+                        {t("ourProjects")}
+                        <ArrowRight className="h-4 w-4 rtl:rotate-180" />
+                      </div>
+                    </motion.div>
+                  </Link>
+                </div>
               </CardContent>
             </Card>
           </motion.div>

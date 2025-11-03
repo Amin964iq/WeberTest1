@@ -121,11 +121,11 @@ export default function ServicesPage() {
                     </p>
                     <Link href="/contact">
                       <Button
-                        size="lg"
-                        className="bg-white dark:bg-white text-black hover:bg-gray-100 dark:hover:bg-gray-100 group text-lg px-10 py-7 h-auto shadow-xl hover:shadow-2xl transition-all"
+                        size="md"
+                        className="bg-white dark:bg-white text-black hover:bg-gray-100 dark:hover:bg-gray-100 group px-6 py-3 h-auto shadow-lg hover:shadow-xl transition-all"
                       >
                         {t("cta.button")}
-                        <ArrowRight className="ml-3 rtl:mr-3 rtl:ml-0 h-6 w-6 group-hover:translate-x-2 rtl:group-hover:-translate-x-2 transition-transform rtl:rotate-180" />
+                        <ArrowRight className="ml-2 rtl:mr-2 rtl:ml-0 h-4 w-4 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform rtl:rotate-180" />
                       </Button>
                     </Link>
                   </motion.div>

@@ -6,10 +6,10 @@ import '@/app/globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
-import FloatingContact from '@/components/floating-contact';
 import PageTransition from '@/components/page-transition';
 import GlobalClickSpark from '@/components/GlobalClickSpark';
 import LanguageProvider from '@/components/language-provider';
+import TargetCursor from '@/components/target-cursor';
 
 import { IBM_Plex_Sans_Arabic } from 'next/font/google';
 
@@ -114,13 +114,13 @@ export default async function LocaleLayout({
           >
             <NextIntlClientProvider messages={messages}>
               <LanguageProvider>
+                <TargetCursor targetSelector=".cursor-target, button, a, [role='button']" spinDuration={2} hideDefaultCursor={true} />
                 <div className="relative z-10">
                   <Navbar locale={locale} />
                   <PageTransition>
                     <main className="min-h-screen">{children}</main>
                   </PageTransition>
                   <Footer locale={locale} />
-                  <FloatingContact locale={locale} />
                 </div>
               </LanguageProvider>
             </NextIntlClientProvider>

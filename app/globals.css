@@ -83,6 +83,14 @@ html {
   direction: ltr;
 }
 
+/* Cursor Target for Target Cursor Component */
+.cursor-target,
+button,
+a,
+[role="button"] {
+  cursor: pointer;
+}
+
 /* Fix line-height for large text on desktop */
 @media (min-width: 1024px) {
   .lg\:text-5xl {
